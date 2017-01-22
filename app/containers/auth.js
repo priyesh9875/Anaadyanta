@@ -56,7 +56,7 @@ class LoginScreen extends Component {
 
   componentDidMount() {
     if (this.props.currentUser && this.props.currentUser.isLoggedIn) {
-      Actions.dashboard({ type: "reset" })
+      Actions.syncServer({ type: "reset" })
     }
     this.setState({ initialRun: false })
   }
