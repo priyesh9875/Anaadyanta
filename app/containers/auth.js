@@ -4,9 +4,7 @@
 
 import React, { Component } from 'react'
 import {
-  Text,
   View,
-  TouchableOpacity,
   LayoutAnimation,
   Platform,
   UIManager,
@@ -168,7 +166,7 @@ class LoginScreen extends Component {
           const coordinatingEvents = snapshot.val().coordinatingEvents
           listener()
           this.props.actions.login(email, uid, name, role, phone, coordinatingEvents)
-          Actions.syncServer({ type: "reset" })
+          Actions.syncServer({ type: "reset", isConnected: true })
         }, (err) => {
           listener()
           alert(JSON.stringify(err))

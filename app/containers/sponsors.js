@@ -1,5 +1,7 @@
 import React, { Component } from 'react';
-import { Container, Content, H1, Text, Card } from 'native-base';
+import { Card } from 'native-base';
+import { Text } from "@components/ui"
+
 import Loading from "@components/general/Loading";
 import { AppSizes } from '@theme/';
 import {
@@ -23,14 +25,13 @@ const styles = StyleSheet.create({
 
     },
     item: {
-        width: AppSizes.screen.width / 2 -8,
+        width: AppSizes.screen.width / 2 - 8,
         height: 180,
         margin: 3,
         padding: 0,
-        margin: 0
     },
     itemImage: {
-        width: AppSizes.screen.width / 2 ,
+        width: AppSizes.screen.width / 2,
         height: 180,
     }
 });
@@ -68,8 +69,8 @@ class Sponsors extends Component {
         return <Card
             containerStyle={{ margin: 5, paddingTop: 20 }}
             wrapperStyle={{ margin: 0, padding: 0 }}
-            title="We are greatly thankful to following sponsors for their support "
             >
+            <Text  style={{color: "black", textAlign: "center", padding: 10}}>We are greatly thankful to following sponsors for their support</Text>
             <ListView contentContainerStyle={styles.list}
                 dataSource={this.state.dataSource}
                 renderRow={(rowData) => <SponsorsRowItem item={rowData} />}
@@ -88,9 +89,9 @@ class Sponsors extends Component {
 class SponsorsRowItem extends Component {
     render() {
         return (
-            <TouchableOpacity style={styles.item}>
+            <View style={styles.item}>
                 <Image source={this.props.item.pic} style={styles.itemImage} />
-            </TouchableOpacity>
+            </View>
         );
     }
 }

@@ -5,7 +5,6 @@
 import React, { Component } from 'react'
 import {
   View,
-  Text,
   TextInput,
   BackAndroid,
   TouchableOpacity,
@@ -17,7 +16,8 @@ import {
 import { firebaseApp } from '@config/firebase'
 import { getColor } from '@config/getColor'
 import * as Animatable from 'react-native-animatable'
-
+import { Text } from "@components/ui"
+import { Container, Content } from "native-base"
 export default class SignUpForm extends Component {
   constructor(props) {
     super(props)
@@ -63,9 +63,13 @@ export default class SignUpForm extends Component {
       : null
 
     const signUpForm = this.state.signUpSuccess ?
-      null
+      { errorMessage }
       :
-      <View>
+      <View
+        style={{
+          alignItems: "center",
+        }}>
+
         <View style={[styles.inputContainer, { marginBottom: 10 }]}>
           <TextInput
             style={styles.inputField}
@@ -130,9 +134,19 @@ export default class SignUpForm extends Component {
         animation={animation}
         style={styles.container}
         onAnimationEnd={this._handleAnimEnd.bind(this)}>
-        <Text style={styles.title}>Sign Up</Text>
-        {errorMessage}
-        {signUpForm}
+        <Content
+          contentContainerStyle={{
+            justifyContent: "flex-end",
+            alignItems: "center",
+            flex: 1
+          }}>
+          <Text onPress={this._handleGoBack.bind(this)} p>Go back</Text>
+
+          <Text style={styles.title} h1>Sign Up</Text>
+
+          {signUpForm}
+
+        </Content>
       </Animatable.View>
     )
   }
@@ -210,11 +224,7 @@ const styles = StyleSheet.create({
     paddingBottom: 20
   },
   title: {
-    fontSize: 25,
-    fontFamily: 'MagmaWave',
     marginBottom: 10,
-    color: 'rgba(255,255,255,.8)',
-    fontWeight: "bold"
   },
   errMsg: {
     width: 300,
@@ -223,7 +233,6 @@ const styles = StyleSheet.create({
     color: '#ffffff',
     marginBottom: 12,
     fontSize: 18,
-    fontFamily: 'Roboto-Regular'
   },
   inputContainer: {
     backgroundColor: 'rgba(255,255,255, 0.5)',
@@ -234,7 +243,6 @@ const styles = StyleSheet.create({
     height: 40,
     paddingLeft: 15,
     paddingRight: 15,
-    fontFamily: 'Roboto-Bold',
     color: '#000000'
   },
   btnContainers: {
@@ -248,7 +256,6 @@ const styles = StyleSheet.create({
 
   },
   forgotBtn: {
-    fontFamily: 'Roboto-Bold',
     fontSize: 15,
     color: '#000000',
     fontWeight: "bold"
@@ -263,7 +270,6 @@ const styles = StyleSheet.create({
     alignItems: 'center'
   },
   submitBtn: {
-    fontFamily: 'Roboto-Bold',
     fontSize: 15,
     color: getColor(),
     fontWeight: "bold"

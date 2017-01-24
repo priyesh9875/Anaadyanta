@@ -9,7 +9,7 @@ import {
   Text
 
 } from "react-native";
-import { Actions} from "react-native-router-flux"
+import { Actions } from "react-native-router-flux"
 import Loading from "@components/general/Loading";
 
 
@@ -44,8 +44,8 @@ class RegisteredEventsContainer extends Component {
     if (Object.keys(events).length == 0) {
       return (
         <View style={{ flex: 1, justifyContent: "center", alignItems: "center", backgroundColor: 'white' }} >
-          <Text style={{ fontSize: 30 }} >No registered events.</Text>
-          <Text style={{ fontSize: 20 }} onPress={() => { Actions.events() } }>Browse all events</Text>
+          <Text style={{ fontSize: 30, flex: 1, textAlign: "çenter" }} >No registered events.</Text>
+          <Text style={{ fontSize: 20, flex: 1, textAlign: "çenter" }} onPress={() => { Actions.events() } }>Browse all events</Text>
         </View>
       );
     }

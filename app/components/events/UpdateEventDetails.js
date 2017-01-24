@@ -32,9 +32,8 @@ class Winners extends Component {
             description: props.eventDetails.description,
             startTime: moment.unix(props.eventDetails.startTime).format("hh:mm a DD-MMM-YY"),
             endTime: moment.unix(props.eventDetails.endTime).format("hh:mm a DD-MMM-YY"),
-            registeration:  props.eventDetails.registeration || "1500",
+            registeration: props.eventDetails.registeration ? props.eventDetails.registeration.toString() : "1500",
             prizes: props.eventDetails.prizes,
-            isGroup: props.eventDetails.isGroup,
             venue: props.eventDetails.venue || "Main Ground",
             isGroup: props.eventDetails.isGroup || false,
             isStartPickerVisible: false,
@@ -114,6 +113,8 @@ class Winners extends Component {
             let updates = {}
             updates[eventRef] = currentEvent
             firebaseApp.database().ref().update(updates).then(() => {
+                currentEvent.isFav = this.props.eventDetails.isFav;
+                currentEvent.isRegistered = this.props.eventDetails.isRegistered
                 this.props.updateEvent(eventKey, currentEvent)
                 this.setState({
                     updating: false,
@@ -131,8 +132,6 @@ class Winners extends Component {
     }
     onChangeValue(type, value, index) {
         let prizes = this.state.prizes;
-
-
         switch (type) {
             case 'amount':
                 prizes[index].amount = value
@@ -205,13 +204,13 @@ class Winners extends Component {
                     </ListItem>
                     {
                         this.state.prizes.map((prize, index) => {
-                            return <ListItem style={{ padding: 0, paddingBottom: 10, margin: 5 }}>
+                            return <ListItem key={index} style={{ padding: 0, paddingBottom: 10, margin: 5 }}>
                                 <InlineText label={"Prize " + (index + 1)} value={this.state.prizes[index].amount.toString()} onValueChange={(text) => this.onChangeValue('amount', text, index)} />
                             </ListItem>
 
                         })
                     }
-                
+
 
 
                     <ListItem onPress={this._showStartPicker} style={{ padding: 0, paddingBottom: 10, margin: 5 }}>

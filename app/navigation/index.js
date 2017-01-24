@@ -125,6 +125,22 @@ export default Actions.create(
             {...navbarProps}
 
             />
+
+        <Scene
+            key="setWinners"
+            title="Set winners"
+            component={SetWinners}
+            {...navbarProps}
+
+            />
+
+        <Scene
+            key="updateEventDetails"
+            title="Update Event"
+            component={UpdateEventDetails}
+            {...navbarProps}
+
+            />
         <Scene
             key="registeredEvents"
             title="Registered Events"
@@ -143,21 +159,6 @@ export default Actions.create(
 
 
         <Scene
-            key="setWinners"
-            title="Set winners"
-            component={SetWinners}
-            {...navbarProps}
-
-            />
-
-        <Scene
-            key="updateEventDetails"
-            title="Update Event"
-            component={UpdateEventDetails}
-            {...navbarProps}
-
-            />
-        <Scene
             key="makeAnnouncement"
             title="Make Announcement"
             component={MakeAnnouncement}
@@ -168,13 +169,6 @@ export default Actions.create(
             key="AddCoordinator"
             title=" AddCoordinator"
             component={AddCoordinatorContainer}
-            {...navbarProps}
-            />
-
-        <Scene
-            key="AddEvent"
-            title=" Add event"
-            component={AddEvent}
             {...navbarProps}
             />
 
@@ -194,6 +188,16 @@ export default Actions.create(
             {...navbarProps}
 
             />
+
+        
+        <Scene
+            key="AddEvent"
+            title=" Add event"
+            component={AddEvent}
+            {...navbarProps}
+            />
+
+
 
 
     </Scene>

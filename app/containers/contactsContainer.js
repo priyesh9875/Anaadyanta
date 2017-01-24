@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import { Container, Content, H1, Text, Card } from 'native-base';
 import {
     InteractionManager,
     UIManager,
@@ -7,14 +6,7 @@ import {
 } from 'react-native';
 
 import Contacts from "@components/contacts"
-
-
 class ContactsContainer extends Component {
-
-    constructor(props) {
-        super(props);
-
-    }
 
     render() {
         const { contacts, actions} = this.props

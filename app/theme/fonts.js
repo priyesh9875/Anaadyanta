@@ -12,7 +12,7 @@ function lineHeight(fontSize) {
 }
 
 const base = {
-  size: 18,
+  size: 16,
   lineHeight: lineHeight(14),
   ...Platform.select({
     ios: {

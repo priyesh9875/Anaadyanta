@@ -1,7 +1,6 @@
 import React, { Component } from 'react'
 import {
   View,
-  Text,
   TextInput,
   BackAndroid,
   TouchableOpacity,
@@ -16,6 +15,8 @@ import { signIn } from '@redux/user/action'
 import { getColor } from '@config/getColor'
 import { firebaseApp } from '@config/firebase'
 import * as Animatable from 'react-native-animatable'
+import { Text } from "@components/ui"
+import { Container, Content } from "native-base"
 
 class SignInForm extends Component {
   constructor(props) {
@@ -56,7 +57,10 @@ class SignInForm extends Component {
   render() {
     const animation = this.state.init ? 'bounceInUp' : 'bounceOutDown'
     const errorMessage = this.state.errMsg ? <Text style={styles.errMsg}>{this.state.errMsg}</Text> : null
-    const form = <View>
+    const form = <View style={{alignItems: "center", }}>
+      <Text p onPress={this.handleBackBtnPress} p>Go back</Text>
+      <Text style={styles.title} h1>Sign In</Text>
+      {errorMessage}
       <View style={[styles.inputContainer, { marginBottom: 10 }]}>
         <TextInput
           style={styles.inputField}
@@ -100,14 +104,20 @@ class SignInForm extends Component {
         animation={animation}
         style={styles.container}
         onAnimationEnd={this._handleAnimEnd.bind(this)}>
-        <Text style={styles.title}>Sign In</Text>
-        {errorMessage}
-        {
-          this.state.hideForm
-            ? <Text style={styles.successMsg}>Success, please wait a bit</Text>
-            : form
-        }
+        <Content
+          contentContainerStyle={{
+            justifyContent: "flex-end",
+            alignItems: "center", 
+            flex: 1
+          }}>
+          {
+            this.state.hideForm
+              ? <Text style={styles.successMsg} h3>Success, please wait a bit</Text>
+              : form
+          }
+        </Content>
       </Animatable.View >
+
     )
   }
 
@@ -120,7 +130,7 @@ class SignInForm extends Component {
     firebaseApp.auth().signInWithEmailAndPassword(this.state.email, this.state.password)
       .then(() => {
         if (this.state.isMounted) {
-          this.setState({  hideForm: true, errMsg: "" })
+          this.setState({ hideForm: true, errMsg: "" })
           this.props.goToHomeScreen()
         }
       })
@@ -131,10 +141,6 @@ class SignInForm extends Component {
 
   handleBackBtnPress() {
     this.setState({ init: false, isMounted: false })
-  }
-
-  handleBackBtnPress() {
-    this.handleBackBtnPress()
     return true
   }
 
@@ -158,32 +164,19 @@ const styles = StyleSheet.create({
     flex: 1,
     justifyContent: 'flex-end',
     alignItems: 'center',
-    paddingBottom: 20
+    paddingBottom: 20,
   },
   title: {
-    fontSize: 25,
-    fontFamily: 'MagmaWave',
-    marginBottom: 10,
-    color: 'rgba(255,255,255,.8)',
-    fontWeight: "bold"
+    paddingBottom: 10,
   },
   errMsg: {
-    width: 300,
-    textAlign: 'center',
-    alignSelf: 'center',
-    color: '#ffffff',
-    marginBottom: 10,
-    fontSize: 14,
-    fontFamily: 'Roboto-Regular'
+    marginBottom: 20,
+    textAlign: "center"
+    
   },
   successMsg: {
-    width: 300,
-    textAlign: 'center',
-    alignSelf: 'center',
-    color: '#ffffff',
     marginBottom: 10,
-    fontSize: 25,
-    fontFamily: 'Roboto-Regular'
+    textAlign: "center"
   },
   inputContainer: {
     backgroundColor: 'rgba(255,255,255, 0.5)',
@@ -194,7 +187,6 @@ const styles = StyleSheet.create({
     height: 40,
     paddingLeft: 15,
     paddingRight: 15,
-    fontFamily: 'Roboto-Bold',
     color: '#000000'
   },
   btnContainers: {
@@ -208,10 +200,7 @@ const styles = StyleSheet.create({
 
   },
   forgotBtn: {
-    fontFamily: 'Roboto-Bold',
-    fontSize: 15,
     color: '#000000',
-    fontWeight: "bold"
 
   },
   submitBtnContainer: {
@@ -223,7 +212,6 @@ const styles = StyleSheet.create({
     alignItems: 'center'
   },
   submitBtn: {
-    fontFamily: 'Roboto-Bold',
     fontSize: 15,
     color: getColor(),
     fontWeight: "bold"

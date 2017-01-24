@@ -8,13 +8,13 @@ import {
     InteractionManager,
     TextInput,
     UIManager,
-    LayoutAnimation
+    LayoutAnimation,
 } from 'react-native';
 
 import { Actions } from 'react-native-router-flux';
 import Loading from "@components/general/Loading"
-import { Container, Content, List, ListItem, Text, Badge, Card, CardItem, Icon } from 'native-base';
-
+import { Container, Content, List, ListItem, Badge, Card, CardItem, Icon } from 'native-base';
+import { Text } from "@components/ui"
 import { firebaseApp } from '@config/firebase'
 import { alertError } from "@config/errors"
 
@@ -30,6 +30,7 @@ class Profile extends Component {
             editing: false,
             saving: false
         };
+
     }
 
     componentDidMount = () => {
@@ -50,7 +51,7 @@ class Profile extends Component {
     renderFavCard() {
         return <Card style={{ margin: 10, flex: 1 }} >
             <CardItem onPress={() => { Actions.myEvents() } }>
-                <Text>Following events</Text>
+                <Text style={{ color: "black" }}>Following events</Text>
             </CardItem>
             <CardItem onPress={() => { Actions.myEvents() } }>
                 <Image style={{ height: 200, width: null }} source={require('@images/fav.jpg')} />
@@ -65,7 +66,7 @@ class Profile extends Component {
 
             return <Card style={{ margin: 10, flex: 1 }} >
                 <CardItem onPress={() => { Actions.coordEvents() } }>
-                    <Text>Coordinating events</Text>
+                    <Text style={{ color: "black" }}>Coordinating events</Text>
                 </CardItem>
                 <CardItem onPress={() => { Actions.coordEvents() } }>
                     <Image style={{ height: 200, width: null }} source={require('@images/eventCoord.jpg')} />
@@ -77,7 +78,7 @@ class Profile extends Component {
     renderRegisteredCard() {
         return <Card style={{ margin: 10, flex: 1 }} >
             <CardItem onPress={() => { Actions.registeredEvents() } }>
-                <Text>Registered events</Text>
+                <Text style={{ color: "black" }}>Registered events</Text>
             </CardItem>
             <CardItem onPress={() => { Actions.registeredEvents() } }>
                 <Image style={{ height: 200, width: null }} source={require('@images/registered.jpg')} />
@@ -164,13 +165,13 @@ class Profile extends Component {
         let {currentUser} = this.props
         return <Card style={{ margin: 10 }}>
             <CardItem style={{ flex: 1, flexDirection: 'row' }}>
-                <Text style={{ flex: 1 }}>Profile</Text>
+                <Text style={{ flex: 1, color: "black" }}>Profile</Text>
                 <TouchableOpacity onPress={this.handleEditClick} style={{ justifyContent: "flex-end" }}>
                     {
                         this.state.editing
                             ? <View>{
                                 this.state.saving
-                                    ? <Text>Saving</Text>
+                                    ? <Text style={{ color: "black" }}>Saving</Text>
                                     : <Text style={{ color: '#0A69FE' }} >Save</Text>
                             }
                             </View>
@@ -184,15 +185,15 @@ class Profile extends Component {
             <List>
                 <ListItem iconLeft style={{ flex: 1, flexDirection: 'row' }}>
                     <Icon name="ios-person" style={{ color: '#0A69FE' }} />
-                    <Text style={{ justifyContent: "flex-start", paddingTop: 2 }}>Name </Text>
+                    <Text style={{ justifyContent: "flex-start", paddingTop: 2, paddingLeft: 5, color: "black" }}>Name </Text>
                     <View style={{ flex: 1, justifyContent: "flex-end", }}>
                         {
                             !this.state.editing
-                                ? <Text>{currentUser.name}</Text>
+                                ? <Text style={{ color: "black" }}>{currentUser.name}</Text>
                                 : <TextInput value={this.state.name}
                                     onChangeText={(name) => this.setState({ name })}
                                     underlineColorAndroid='rgba(0,0,0,0)'
-                                    style={{ borderRadius: 5, padding: 3, paddingLeft: 5, paddingRight: 5, fontSize: 16, borderWidth: StyleSheet.hairlineWidth }}
+                                    style={{ height: 25, flex: 1, borderRadius: 5, padding: 3, paddingLeft: 5, paddingRight: 5, fontSize: 16, borderWidth: StyleSheet.hairlineWidth }}
                                     />
                         }
                     </View>
@@ -201,16 +202,17 @@ class Profile extends Component {
 
                 <ListItem iconLeft style={{ flex: 1, flexDirection: 'row' }}>
                     <Icon name="ios-call" style={{ color: '#0A69FE' }} />
-                    <Text style={{ justifyContent: "flex-start", paddingTop: 2 }}>Phone </Text>
+                    <Text style={{ justifyContent: "flex-start", paddingTop: 2, paddingLeft: 5, color: "black" }}>Phone </Text>
                     <View style={{ flex: 1, justifyContent: "flex-end", }}>
                         {
                             !this.state.editing
-                                ? <Text>{currentUser.phone}</Text>
+                                ? <Text style={{ color: "black" }}>{currentUser.phone}</Text>
                                 : <TextInput value={this.state.phone}
                                     onChangeText={(phone) => this.setState({ phone })}
                                     underlineColorAndroid='rgba(0,0,0,0)'
                                     keyboardType="numeric"
-                                    style={{ padding: 3, paddingLeft: 5, paddingRight: 5, fontSize: 16, borderWidth: StyleSheet.hairlineWidth }}
+                                    style={{ height: 25, flex: 1, borderRadius: 5, padding: 3, paddingLeft: 5, paddingRight: 5, fontSize: 16, borderWidth: StyleSheet.hairlineWidth }}
+
                                     />
                         }
                     </View>
@@ -218,7 +220,7 @@ class Profile extends Component {
                 </ListItem>
                 <ListItem iconLeft>
                     <Icon name="ios-mail" style={{ color: '#0A69FE' }} />
-                    <Text>Email {currentUser.email}</Text>
+                    <Text style={{ paddingLeft: 5, color: "black" }}>Email {currentUser.email}</Text>
                 </ListItem>
             </List>
 
@@ -284,7 +286,6 @@ const styles = StyleSheet.create({
     },
     profileName: {
         marginLeft: 20,
-        fontFamily: 'Roboto-Bold',
         fontSize: 20,
         color: '#ffffff',
     },
@@ -295,12 +296,10 @@ const styles = StyleSheet.create({
         paddingBottom: 5
     },
     profileCounts: {
-        fontFamily: 'Roboto-Regular',
         fontSize: 30,
         color: '#ffffff'
     },
     countsName: {
-        fontFamily: 'Roboto-Bold',
         fontSize: 12,
         color: '#ffffff'
     }

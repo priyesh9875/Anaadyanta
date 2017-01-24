@@ -4,10 +4,9 @@ import {
     UIManager,
     LayoutAnimation,
     View,
-    Text,
     Button
 } from 'react-native'
-
+import { Text } from "@components/ui"
 import { firebaseApp } from '@config/firebase'
 
 import AddCoordinator from "@components/dashboard/AddCoordinator"
@@ -37,19 +36,19 @@ class AddCoordinatorContainer extends Component {
         this.setState({
             fetchingData: true
         })
-        firebaseApp.database().ref('/users/').once('value', (snaphot) => {
+        firebaseApp.database().ref('/users/').orderByChild('management').equalTo(true).once('value', (snaphot) => {
             
             if(!snaphot.val()) {
                 alert("Fetch exception: SNAPSHOT NULL")
                 return
             }
-            let db = {}
-            Object.keys(snaphot.val()).map( key => {
-                if(snaphot.val()[key].role == 'coordinator' || snaphot.val()[key].role == 'admin')
-                db[key] = snaphot.val()[key]
-            })
+            // let db = {}
+            // Object.keys(snaphot.val()).map( key => {
+            //     if(snaphot.val()[key].role == 'coordinator' || snaphot.val()[key].role == 'admin')
+            //     db[key] = snaphot.val()[key]
+            // })
             this.setState({
-                db,
+                db: snaphot.val(),
                 fetchedDate: true
             })
         })
@@ -58,7 +57,7 @@ class AddCoordinatorContainer extends Component {
     renderView() {
         if (!this.state.fetchedDate) {
             return <View style={{ flex: 1, backgroundColor: 'white', justifyContent: "center", alignItems: "center" }}>
-                <Text style={{ textAlign: 'center' }}>This action requires good internet speed as it fetches all coordinators database from server</Text>
+                <Text  style={{ textAlign: 'center', color: "black" }}>This action requires good internet speed as it fetches all coordinators database from server</Text>
                 <Button title={this.state.fetchingData ? "Fetching" : "Fetch data"} onPress={() => { this.fetchUsers() } } />
             </View>
         }

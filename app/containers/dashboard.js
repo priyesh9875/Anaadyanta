@@ -6,7 +6,6 @@ import {
   LayoutAnimation,
   UIManager,
   StatusBar,
-  NetInfo,
   TouchableOpacity
 } from "react-native";
 
@@ -29,11 +28,6 @@ class Dashboard extends Component {
     }
   }
   componentDidMount() {
-    // NetInfo.isConnected.fetch().then(isConnected => {
-    //   // alert('First, is ' + (isConnected ? 'online' : 'offline'));
-    // }).catch(error => {
-    //   alert(JSON.stringify(error));
-    // });
 
     InteractionManager.runAfterInteractions(() => {
       UIManager.setLayoutAnimationEnabledExperimental && UIManager.setLayoutAnimationEnabledExperimental(true);
@@ -67,10 +61,12 @@ class Dashboard extends Component {
           style={{ backgroundColor: "white" }} >
           <ScrollView tabLabel="home">
             <Home eventsCount={eventsCount} sponsorsCount={sponsorsCount} />
+          
           </ScrollView>
 
           <ScrollView tabLabel="person" >
             <Profile currentUser={currentUser} cleanLogout={this.cleanLogout.bind(this)} favEventsCount={favEventsCount} registeredEventsCount={registeredEventsCount} {...userActions} />
+          
           </ScrollView>
         </ScrollableTabView>
 

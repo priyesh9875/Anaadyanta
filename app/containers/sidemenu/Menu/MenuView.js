@@ -14,9 +14,10 @@ import {
 
 import { Actions } from 'react-native-router-flux';
 import Loading from "@components/general/Loading"
-import { Container, Content, List, ListItem, Text, Badge, Icon } from 'native-base';
+import { Container, Content, List, ListItem, Badge, Icon } from 'native-base';
 import { AppStyles, AppSizes } from '@theme/';
 
+import { Text } from "@components/ui"
 
 const menuList = [
   { text: "Events", targetPage: "events", icon: "ios-aperture" },
@@ -56,26 +57,23 @@ class Menu extends Component {
     const mainView = <Container>
       <Content>
         <List>
-          <Image source={require("@images/banner3.jpg")} style={styles.profileInfoContainer}>
-            <View style={styles.profileNameContainer}>
-              <Text style={styles.profileName}>
+          <Image source={require("@images/banner3.jpg")} style={{ height: 200 }}>
+            <View style={{ flex: 1, justifyContent: "flex-end" }}>
+              <Text h3 style={{ padding: 10 }}>
                 {name}
               </Text>
-
             </View>
 
           </Image>
           {role === 'admin'
             ? <View>
-              <ListItem iconLeft onPress={() => { Actions.makeAnnouncement() } }>
+              <ListItem iconLeft onPress={() => { Actions.makeAnnouncement() } } >
                 <Icon name="ios-mic" style={{ color: '#0A69FE' }} />
-                <Text>Make Announcement</Text>
-                <Text note><Icon name="ios-arrow-forward" style={{ color: '#0A69FE' }} /></Text>
+                <Text  style={{ color: "#0A69FE", paddingLeft: 10 }}>Make Announcement</Text>
               </ListItem>
               <ListItem iconLeft onPress={() => { Actions.AddCoordinator() } }>
-                <Icon name="ios-mic" style={{ color: '#0A69FE' }} />
-                <Text>Add coordinator</Text>
-                <Text note><Icon name="ios-arrow-forward" style={{ color: '#0A69FE' }} /></Text>
+                <Icon name="ios-people" style={{ color: '#0A69FE' }} />
+                <Text  style={{ color: "#0A69FE", paddingLeft: 10 }}>Add coordinator</Text>
               </ListItem>
             </View>
             : null
@@ -91,11 +89,8 @@ class Menu extends Component {
                 }
               } }>
                 <Icon name={val.icon} style={{ color: '#0A69FE' }} />
-                <Text>{val.text}</Text>
-                <Text note><Icon name="ios-arrow-forward" style={{ color: '#0A69FE' }} /></Text>
+                <Text  style={{ color: "#0A69FE", paddingLeft: 10 }}>{val.text}</Text>
               </ListItem>
-
-
             })
           }
         </List>
@@ -108,69 +103,6 @@ class Menu extends Component {
     );
   }
 }
-
-const styles = StyleSheet.create({
-
-  profileInfoContainer: {
-    flexDirection: 'row',
-    height: 200,
-    backgroundColor: '#4285f4'
-  },
-  profileNameContainer: {
-    position: 'absolute',
-    bottom: 20,
-    flex: 3,
-    justifyContent: 'center',
-    alignItems: 'flex-start'
-  },
-  profileName: {
-    marginLeft: 20,
-    fontFamily: 'Roboto-Bold',
-    fontSize: 30,
-    color: '#ffffff',
-  },
-  menuContainer: {
-    padding: 5,
-    margin: 5,
-    borderWidth: StyleSheet.hairlineWidth,
-    borderColor: '#4285f4',
-    flexDirection: "row",
-    borderRadius: 5,
-    marginLeft: 12,
-    marginRight: 12,
-  },
-  menuText: {
-    flex: 1,
-    padding: 10,
-    fontSize: 20,
-    fontFamily: 'Roboto-Bold',
-    color: "black"
-  },
-  menuArrow: {
-    fontSize: 30,
-    paddingTop: 2,
-    paddingRight: 10,
-    fontFamily: 'Roboto-Bold'
-
-  },
-  profileCountsContainer: {
-    flex: 1,
-    justifyContent: 'center',
-    alignItems: 'center',
-    paddingBottom: 5
-  },
-  profileCounts: {
-    fontFamily: 'Roboto-Regular',
-    fontSize: 30,
-    color: '#ffffff'
-  },
-  countsName: {
-    fontFamily: 'Roboto-Bold',
-    fontSize: 12,
-    color: '#ffffff'
-  }
-})
-
 
 export default Menu
 

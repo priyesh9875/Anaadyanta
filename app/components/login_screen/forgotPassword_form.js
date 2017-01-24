@@ -5,7 +5,6 @@
 import React, { Component } from 'react'
 import {
   View,
-  Text,
   TextInput,
   BackAndroid,
   TouchableOpacity,
@@ -17,7 +16,8 @@ import {
 import { getColor } from '@config/getColor'
 import * as Animatable from 'react-native-animatable'
 import { firebaseApp } from '@config/firebase'
-
+import { Text } from "@components/ui"
+import { Container, Content } from "native-base"
 export default class ForgotPassForm extends Component {
   constructor(props) {
     super(props)
@@ -63,24 +63,35 @@ export default class ForgotPassForm extends Component {
         animation={animation}
         style={styles.container}
         onAnimationEnd={this._handleAnimEnd.bind(this)}>
-        <Text style={styles.title}>Forgot Password</Text>
-        {errorMessage}
-        <View style={[styles.inputContainer, { marginBottom: 10 }]}>
-          <TextInput
-            style={styles.inputField}
-            underlineColorAndroid='transparent'
-            placeholder='Enter Your Email'
-            placeholderTextColor='rgba(0,0,0,.6)'
-            onChangeText={(text) => this.setState({ email: text })}
-            />
-        </View>
-        <View style={styles.btnContainers}>
-          <TouchableOpacity onPress={this._handleForgotPass.bind(this)}>
-            <View style={styles.submitBtnContainer}>
-              <Text style={styles.submitBtn}>{'Recover My Password'.toUpperCase()}</Text>
-            </View>
-          </TouchableOpacity>
-        </View>
+
+        <Content
+          contentContainerStyle={{
+            justifyContent: "flex-end",
+            alignItems: "center",
+            flex: 1
+          }}>
+          <Text onPress={this._handleGoBack.bind(this)} p>Go back</Text>
+
+          <Text style={styles.title} h1>Forgot Password</Text>
+          {errorMessage}
+          <View style={[styles.inputContainer, { marginBottom: 10 }]}>
+            <TextInput
+              style={styles.inputField}
+              underlineColorAndroid='transparent'
+              placeholder='Enter Your Email'
+              placeholderTextColor='rgba(0,0,0,.6)'
+              onChangeText={(text) => this.setState({ email: text })}
+              />
+          </View>
+          <View style={styles.btnContainers}>
+            <TouchableOpacity onPress={this._handleForgotPass.bind(this)}>
+              <View style={styles.submitBtnContainer}>
+                <Text style={styles.submitBtn}>{'Recover My Password'.toUpperCase()}</Text>
+              </View>
+            </TouchableOpacity>
+          </View>
+        </Content>
+
       </Animatable.View>
     )
   }
@@ -120,17 +131,12 @@ const styles = StyleSheet.create({
     paddingBottom: 20
   },
   title: {
-    fontSize: 20,
-    fontFamily: 'MagmaWave',
     marginBottom: 10,
-    color: 'rgba(255,255,255,.8)',
-    fontWeight: "bold"
 
   },
   errMsg: {
     color: '#ffffff',
     fontSize: 14,
-    fontFamily: 'Roboto-Regular',
     marginBottom: 10,
     textAlign: 'center'
   },
@@ -143,7 +149,6 @@ const styles = StyleSheet.create({
     height: 40,
     paddingLeft: 15,
     paddingRight: 15,
-    fontFamily: 'Roboto-Bold',
     color: '#000000'
   },
   btnContainers: {
@@ -161,7 +166,6 @@ const styles = StyleSheet.create({
     alignItems: 'center'
   },
   submitBtn: {
-    fontFamily: 'Roboto-Bold',
     fontSize: 12,
     color: getColor(),
     fontWeight: "bold"

@@ -41,8 +41,7 @@ class MakeAnnoucement extends Component {
 
     postAnnounce() {
         let {  currentUser } = this.props;
-        this.props.userActions.saveUserDb({ "ann": "asdasds" });
-        return
+
         if (this.state.title == "") { alert("Title cannot be left blank"); return }
         if (this.state.description == "") { alert("Description cannot be left blank"); return }
 
@@ -102,7 +101,7 @@ class MakeAnnoucement extends Component {
                         <View >
                             <Text style={{ color: 'gray', fontSize: 16, marginBottom: 5 }}>Title</Text>
                             <TextInput
-                                style={{ flex: 1, borderRadius: 5, borderWidth: 1, padding: 5, margin: 0, borderColor: 'gray' }}
+                                style={{height: 25, flex: 1, borderRadius: 5, borderWidth: 1, padding: 5, margin: 0, borderColor: 'gray' }}
                                 underlineColorAndroid='rgba(0,0,0,0)'
 
                                 value={this.state.title} onChangeText={(title) => this.setState({ title })}

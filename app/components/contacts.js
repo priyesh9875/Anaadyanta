@@ -1,21 +1,19 @@
 import React, { Component } from 'react';
-import { Container, Content, H1, Text, Card, List, ListItem, Thumbnail } from 'native-base';
+import { ListItem, Thumbnail } from 'native-base';
 import Loading from "@components/general/Loading";
 import { AppSizes } from '@theme/';
 import {
     View,
-    Image,
     StyleSheet,
     InteractionManager,
     ListView,
     UIManager,
     LayoutAnimation,
     TouchableOpacity,
-    RefreshControl,
 } from 'react-native';
 import { Icon } from "react-native-elements"
 import { phonecall, text, email } from "react-native-communications"
-
+import { Text } from "@components/ui"
 
 var ds = new ListView.DataSource({ rowHasChanged: (r1, r2) => r1 !== r2 });
 
@@ -26,11 +24,10 @@ class Contacts extends Component {
         this.state = {
             loading: true,
             isRefreshing: false,
-            datasource: ds.cloneWithRows([1, 2, 3, 5, 6, 8, 4])
+            datasource: ds.cloneWithRows([])
         }
 
         this.renderView = this.renderView.bind(this);
-        this.refreshList = this.refreshList.bind(this)
     }
 
     componentDidMount() {
@@ -48,37 +45,15 @@ class Contacts extends Component {
         })
     }
 
-    refreshList() {
-        this.setState({
-            isRefreshing: true
-        })
-
-        setTimeout(() => {
-            this.setState({
-                isRefreshing: false
-            })
-        }, 3000)
-
-    }
-
     getMainView() {
 
         return <View style={{ backgroundColor: "white" }}>
-
-            <Text style={{ fontSize: 12, textAlign: "center" }}>Pull to refresh</Text>
             <ListView
                 dataSource={this.state.datasource}
                 renderRow={(rowData) =>
                     <Row row={rowData} />
                 }
-                refreshControl={
-                    <RefreshControl refreshing={this.state.isRefreshing}
-                        onRefresh={this.refreshList.bind(this)}
-                        />
-                }
-                >
-
-            </ListView>
+                />
         </View>
 
 
@@ -100,15 +75,15 @@ class Row extends Component {
             <ListItem >
                 <Thumbnail source={require('@images/robo.jpg')} />
                 <View style={{ flex: 1, flexDirection: "row" }}>
-                    <Text style={{ fontSize: 15, flex: 1 }} >
+                    <Text style={{ flex: 1, color: "black" }} >
                         {row.name}
                     </Text>
                     <View style={{ flexDirection: "row" }}>
-                        <TouchableOpacity onPress={() => { phonecall("+91" + row.phone, true) } }>
+                        <TouchableOpacity onPress={() => { phonecall(row.phone, true) } }>
                             <Icon name="call" size={20} color="blue" />
                         </TouchableOpacity>
 
-                        <TouchableOpacity onPress={() => { text("+91" + row.phone, true) } } style={{ paddingLeft: 20 }}  >
+                        <TouchableOpacity onPress={() => { text(row.phone, true) } } style={{ paddingLeft: 20 }}  >
                             <Icon name="sms" size={20} color="green" />
                         </TouchableOpacity>
 
@@ -117,7 +92,7 @@ class Row extends Component {
                         </TouchableOpacity>
                     </View>
                 </View>
-                <Text note>{row.type}</Text>
+                <Text style={{ fontSize: 12, color: "gray" }}>{row.type}</Text>
             </ListItem>
         );
     }

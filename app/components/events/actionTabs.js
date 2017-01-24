@@ -292,16 +292,40 @@ class ActionTab extends Component {
                 }
             }
 
-
             if (!eventDetails.isStarted) {
-                return <TouchableOpacity onPress={() => { this.startEvent(eventDetails, eventKey) } }>
+                return <TouchableOpacity
+                    onPress={
+                        () => {
+                            this.confirmAction(
+                                this.startEvent,
+                                null,
+                                `Start ${eventDetails.title} now!`,
+                                eventDetails,
+                                eventKey
+                            )
+                        }
+                    }
+                    >
                     <Icon name="play-arrow" size={30} color="green" />
                     <Text style={{ fontSize: 15 }}>{this.state.startEndEvent ? "Starting now" : "Start now"}</Text>
                 </TouchableOpacity>
             }
             if (!eventDetails.isEnded && eventDetails.isStarted) {
 
-                return <TouchableOpacity onPress={() => { this.endEvent(eventDetails, eventKey) } }>
+                return <TouchableOpacity 
+                onPress={
+                        () => {
+                            this.confirmAction(
+                                this.endEvent,
+                                null,
+                                `End ${eventDetails.title} now!`,
+                                eventDetails,
+                                eventKey
+                            )
+                        }
+                    }
+                
+                >
                     <Icon name="stop" size={30} color="red" />
                     <Text style={{ fontSize: 15 }}>{this.state.startEndEvent ? "Ending now" : "End now"}</Text>
                 </TouchableOpacity>
@@ -328,21 +352,32 @@ class ActionTab extends Component {
         )
     }
 
+    confirmAction(callback, title, message, param1, param2) {
+        Alert.alert(
+            title || "Confirm action",
+            message || "Press CONFIRM to continue",
+            [
+                { text: "Cancel", style: "cancel" },
+                { text: "CONFIRM", onPress: () => { callback(param1, param2) } },
+            ]
+        )
+
+    }
+
     renderRegisterButton() {
-        const { eventKey, eventDetails } = this.props
+        const { eventKey, eventDetails, currentUser } = this.props
         if (eventDetails.isRegistered || eventDetails.isMine) return
 
         if (!eventDetails.isStarted && (eventDetails.startTime - moment().unix() > 3600)) {
             return <TouchableOpacity
                 onPress={
                     () => {
-                        Alert.alert(
+                        this.confirmAction(
+                            this.registerForEvent,
                             'Confirm registeration',
-                            `If you are participating in team, only one member needs to register. Press CONFIRM to continue`,
-                            [
-                                { text: 'Cancel', style: 'cancel' },
-                                { text: 'Confirm', onPress: () => { this.registerForEvent(eventDetails, eventKey) } },
-                            ]
+                            `If you are participating in team, only one member needs to register. Check the following details. \nName: ${currentUser.name} \nPhone: ${currentUser.phone} \nPress CONFIRM to continue`,
+                            eventDetails,
+                            eventKey
                         )
                     }
                 }
@@ -372,14 +407,11 @@ class ActionTab extends Component {
             return <TouchableOpacity
                 onPress={
                     () => {
-                        Alert.alert(
-                            'Confirm Follow',
-                            'You will receive push notification for this event.',
-                            [
-
-                                { text: 'Cancel', style: 'cancel' },
-                                { text: 'Confirm', onPress: () => this.addToFav(eventKey) },
-                            ]
+                        this.confirmAction(
+                            this.addToFav,
+                            "Confirm Follow",
+                            "You will receive push notification for this event",
+                            eventKey
                         )
                     }
                 }
@@ -388,7 +420,16 @@ class ActionTab extends Component {
                 <Text style={{ fontSize: 15 }}>{this.state.addingFav ? "Working" : "Follow"}</Text>
             </TouchableOpacity>
         } else {
-            return <TouchableOpacity onPress={() => { this.deleteFav(eventKey) } }>
+            return <TouchableOpacity onPress={
+                () => {
+                    this.confirmAction(
+                        this.deleteFav,
+                        "Confirm action",
+                        null,
+                        eventKey
+                    )
+                }
+            }>
                 <Icon name="mood" size={30} color="red" />
                 <Text style={{ fontSize: 15 }}>{this.state.addingFav ? "Working" : "Unfollow"}</Text>
             </TouchableOpacity>

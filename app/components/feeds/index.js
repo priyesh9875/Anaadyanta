@@ -11,10 +11,9 @@ import {
     LayoutAnimation,
     TouchableOpacity,
     RefreshControl,
-    Text
 } from 'react-native';
 import { firebaseApp } from '@config/firebase'
-
+import { Text } from "@components/ui"
 import moment from "moment"
 var ds = new ListView.DataSource({ rowHasChanged: (r1, r2) => r1 !== r2 });
 
@@ -45,13 +44,18 @@ class Feeds extends Component {
     }
 
     renderView() {
-
+        this.setState({
+            isRefreshing: true
+        })
         firebaseApp.database().ref('/feeds/').once('value', (snapshot) => {
             if (!snapshot.val()) return
             let feeds = Object.keys(snapshot.val()).map((key, index) => {
                 return snapshot.val()[key]
             })
             this.props.saveFeeds(feeds)
+            this.setState({
+                isRefreshing: false
+            })
         })
 
 
@@ -73,9 +77,6 @@ class Feeds extends Component {
         }
     }
 
-
-
-
     refreshList() {
         this.setState({
             isRefreshing: true
@@ -88,7 +89,6 @@ class Feeds extends Component {
                 })
             }
             this.props.saveFeeds(feeds)
-
             this.setState({
                 isRefreshing: false,
                 isRefreshed: true,
@@ -103,7 +103,7 @@ class Feeds extends Component {
     getMainView() {
         if (this.props.feeds.length == 0) {
             return <View style={{ flex: 1, justifyContent: "center", alignItems: "center" }}>
-                <Text style={{ fontSize: 20 }} onPress={() => { this.refreshList() } } >No feeds available, click to refresh</Text>
+                <Text p style={{ color: "black" }} onPress={() => { this.refreshList() } } >No feeds available, click to refresh</Text>
             </View>
         }
 
@@ -124,6 +124,7 @@ class Feeds extends Component {
                         onRefresh={this.refreshList.bind(this)}
                         />
                 }
+                enableEmptySections
                 >
 
             </ListView>
@@ -149,7 +150,7 @@ class Row extends Component {
                 <CardItem style={{ padding: 10 }}>
                     <Thumbnail size={40} square source={{ uri: row.image }} />
                     <View style={{ flex: 1 }}>
-                        <Text style={styles.cardTitle}> {row.title}</Text>
+                        <Text style={{color: "black"}}> {row.title}</Text>
                         <View style={{ flexDirection: "row" }}>
                             <Text style={{ fontSize: 12, color: "gray", paddingLeft: 5 }}>{moment(moment.unix(row.time)).fromNow()}</Text>
                             <Text style={{ flex: 1, fontSize: 12, color: "gray", paddingRight: 5, textAlign: 'right' }}>{row.author}</Text>
@@ -158,15 +159,13 @@ class Row extends Component {
                 </CardItem>
 
                 <CardItem>
-
-
-                    <Text style={{ fontSize: 15, flex: 1 }} >{row.description}</Text>
+                    <Text style={{ fontSize: 14, color: "black" }} >{row.description}</Text>
                     {
                         row.extras
                             ?
 
                             row.extras.map((val, index) => {
-                                return <Text key={index}>{val.name}</Text>
+                                return <Text key={index} style={{color: "black", fontSize: 14}}>{val.name}</Text>
                             })
 
                             : null
@@ -180,7 +179,6 @@ class Row extends Component {
 
 const styles = StyleSheet.create({
     cardTitle: {
-        fontSize: 20,
         color: 'black',
     }
 })

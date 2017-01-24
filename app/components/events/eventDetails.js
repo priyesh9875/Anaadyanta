@@ -125,9 +125,6 @@ const styles = StyleSheet.create({
         flex: 1,
         backgroundColor: 'black',
     },
-
-
-
     parallaxHeader: {
         alignItems: 'center',
         flex: 1,

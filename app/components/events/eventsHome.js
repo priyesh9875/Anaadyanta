@@ -3,7 +3,6 @@ import React, { Component, PropTypes } from 'react';
 import {
   View,
   Image,
-  Text,
   StyleSheet,
   ScrollView,
   ListView,
@@ -13,16 +12,13 @@ import {
   LayoutAnimation,
 } from 'react-native';
 
-import { Actions, ActionConst } from 'react-native-router-flux';
-import { AppStyles, AppSizes } from '@theme/';
+import { Actions } from 'react-native-router-flux';
 import Loading from "@components/general/Loading";
-import { Card, Icon, Button } from 'react-native-elements'
+import { Card, Button } from 'react-native-elements'
 import Background from '@components/ui/background'
+import { Text } from "@components/ui"
 const backImages = [
   require("@images/launch/underwater1.jpeg"),
-  require("@images/launch/underwater2.jpeg"),
-  require("@images/launch/underwater3.png"),
-  require("@images/launch/underwater4.jpeg"),
 ]
 const styles = StyleSheet.create({
   categoryImage: {
@@ -78,7 +74,7 @@ class EventsHome extends Component {
   render() {
     const view = <View>
 
-      <Background imgSource={backImages[2]} />
+      <Background imgSource={backImages[0]} />
       <ScrollView style={{ paddingBottom: 20 }}>
 
         {category.map((item, index) => {
@@ -114,11 +110,10 @@ class EventCategory extends Component {
         containerStyle={{ backgroundColor: 'rgba(0, 0, 0, 0.5)' }}
         wrapperStyle={{ margin: 0 }}
         >
-        <Text numberOfLines={1} style={{ color: 'white', textAlign: "center", marginBottom: 10, fontSize: 15 }}>{this.props.item.description}</Text>
+        <Text p numberOfLines={1} style={{ textAlign: "center", marginBottom: 10, fontSize: 15 }}>{this.props.item.description}</Text>
         <Button
           icon={{ name: 'code' }}
           backgroundColor='#4285f4'
-          fontFamily='Lato'
           buttonStyle={{ borderRadius: 0, marginLeft: 0, marginRight: 0, marginBottom: 0 }}
           title='VIEW NOW'
           onPress={this.changeCategory.bind(this)}

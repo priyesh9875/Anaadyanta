@@ -1,13 +1,13 @@
 import React, { Component } from 'react'
 import {
   View,
-  Text,
   TouchableOpacity,
   StyleSheet
 } from 'react-native'
 import { getColor } from '@config/getColor'
 import { APP_NAME } from "@config/constants"
 import * as Animatable from 'react-native-animatable'
+import Text from "@components/general/Text"
 
 export default class InitialView extends Component {
   constructor(props) {
@@ -28,7 +28,8 @@ export default class InitialView extends Component {
         style={styles.container}
         delay={this.props.animDelay}
         onAnimationEnd={this._handleAnimEnd.bind(this)}>
-        <Text style={styles.title}>{APP_NAME}</Text>
+
+        <Text style={styles.title} h1>{APP_NAME}</Text>
         <View style={styles.btnBox}>
           <TouchableOpacity onPress={this._handleSignInPress.bind(this)}>
             <View style={styles.btnContainer}>
@@ -70,15 +71,10 @@ const styles = StyleSheet.create({
     flex: 1,
     alignItems: 'center',
     justifyContent: 'flex-end',
-    paddingBottom: 50
+    paddingBottom: 50,
   },
   title: {
-    fontSize: 40,
-    fontFamily: 'MagmaWave',
     marginBottom: 20,
-    color: '#ffffff',
-    fontFamily: "Roboto-Bold",
-
   },
   btnBox: {
     height: 40,
@@ -97,7 +93,6 @@ const styles = StyleSheet.create({
     elevation: 10
   },
   btnText: {
-    fontFamily: 'Roboto-Bold',
     fontSize: 15,
     color: "#ffffff",
     fontWeight: "bold"

@@ -1,6 +1,3 @@
-/*
- * This example demonstrates how to use ParallaxScrollView within a ScrollView component.
- */
 import React, { Component, PropTypes } from 'react';
 import {
     StyleSheet,
@@ -50,7 +47,7 @@ class AboutTab extends Component {
                             <IconText text={moment.unix(eventDetails.endTime).format("hh:mm a") || "9: 00 PM"} name="schedule" color="black" textStyle={{ fontSize: 15, color: 'black' }} size={25} />
 
                             {
-                                !eventDetails.isMine
+                                !eventDetails.isGroup
                                     ? <IconText text="Individual" name="person" textStyle={{ fontSize: 15, color: 'black' }} size={25} />
                                     : <IconText text="Group" name="people" textStyle={{ fontSize: 15, color: 'black' }} size={25} />
 

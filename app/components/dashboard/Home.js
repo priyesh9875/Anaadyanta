@@ -8,15 +8,16 @@ import {
     TouchableOpacity,
     ListView,
     InteractionManager,
-    Text
+    NetInfo
 } from 'react-native';
 
 import { Actions } from 'react-native-router-flux';
 import Loading from "@components/general/Loading"
 import CarouselView from "@components/dashboard/carouselView"
-import { Card,} from "native-base"
+import { Card, Container, Content } from "native-base"
+import { Text } from "@components/ui"
+
 class HomeView extends Component {
-    static componentName = 'AppLaunch';
     constructor(props) {
         super(props)
         this.state = {
@@ -36,40 +37,46 @@ class HomeView extends Component {
     }
     renderView() {
         const {eventsCount, sponsorsCount } = this.props
-        return <ScrollView style={styles.container}>
-            <CarouselView />
-            <View style={styles.aboutContainer} >
-                <Text style={styles.aboutHeading}>Anaadyanta 17</Text>
-                <Text >2, 3, 4 March 2017</Text>
-                <Text style={styles.aboutBody}>This Anaadyanta will take you inside the beautiful world of ocean. Welcome underwater</Text>
-            </View>
-            <Card style={{ margin: 10, padding: 20, }}>
-                <Text style={{ fontSize: 16, textAlign: 'center' }}>
-                    In this Anaadyanta
+        return <Container >
+            <Content>
 
-                    <Text style={{ fontSize: 30, color: "orange", fontWeight: "bold" }} > 10 million  </Text>
+                <CarouselView />
 
-                    worth of prizes to be won in
-                    <Text style={{ fontSize: 30, color: "green", fontWeight: "bold" }} onPress={() => { Actions.events() } }> {eventsCount} events </Text>
-                    in
-                    <Text style={{ fontSize: 20, color: "#4285f4", fontWeight: "bold" }} onPress={() => { Actions.schedule() } }> 3 days</Text> sponsored by
-                    <Text style={{ fontSize: 24, color: "#4285f4", fontWeight: "bold" }} onPress={() => { Actions.sponsors() } }> 11</Text> organizations
-                </Text>
-            </Card>
-
-            <Card>
-
-                <View style={{ flex: 1, alignItems: "center", padding: 10 }}>
-
-                    <Text>Nitte Meenakshi Institute of Technology</Text>
-                    <Text>P.O. Box 6429, Yelahanka, Bangalore 560064</Text>
-                    <Text>Ph: 080-22167800</Text>
-                    <Text>E-mail: admissions@nmit.ac.in, principal@nmit.ac.in</Text>
+                <View style={styles.aboutContainer} >
+                    <Text style={styles.aboutHeading} h1>Anaadyanta 17</Text>
+                    <Text style={{color: "gray", fontSize: 14 }}>9, 10, 11 March 2017</Text>
+                    <Text style={styles.aboutBody} p>This Anaadyanta will take you inside the beautiful world of ocean</Text>
+                    <Text style={{color: "#4285f4"}} p>DIVE! FEEL & COME ALIVE</Text>
                 </View>
-                <View style={{ height: 20 }}></View>
 
-            </Card>
-        </ScrollView>
+                <Card style={{ margin: 5, padding: 5, }}>
+                    <Text style={{ fontSize: 16, textAlign: 'center', color:"black" }}>
+                        In this Anaadyanta
+
+                    <Text style={{ color: "orange", fontWeight: "bold" }} h3> 10 million  </Text>
+
+                        worth of prizes to be won in  
+                    <Text style={{  color: "green", fontWeight: "bold" }} h3 onPress={() => { Actions.events() } }>{eventsCount} events </Text>
+                        in  
+                    <Text style={{  color: "#4285f4", fontWeight: "bold" }}h4 onPress={() => { Actions.schedule() } }> 3 days </Text> sponsored by
+                    <Text style={{  color: "#4285f4", fontWeight: "bold" }}h4 onPress={() => { Actions.sponsors() } }> 11 </Text> organizations
+                </Text>
+                </Card>
+
+                <Card>
+
+                    <View style={{ flex: 1, alignItems: "center", padding: 10 }}>
+
+                        <Text style={{color: "black"}}>Nitte Meenakshi Institute of Technology</Text>
+                        <Text style={{color: "gray", fontSize: 12}}>P.O. Box 6429, Yelahanka, Bangalore 560064</Text>
+                        <Text style={{color: "gray", fontSize: 12}}>Ph: 080-22167800</Text>
+                        <Text style={{color: "gray", fontSize: 12}}>E-mail: admissions@nmit.ac.in, principal@nmit.ac.in</Text>
+                    </View>
+                    <View style={{ height: 20 }}></View>
+
+                </Card>
+            </Content>
+        </Container>
     }
 
 
@@ -86,26 +93,18 @@ class HomeView extends Component {
 const styles = StyleSheet.create({
 
 
-    container: {
-        flex: 1,
-        backgroundColor: "white",
-        paddingBottom: 20
-    },
+ 
     aboutContainer: {
         alignItems: "center",
         paddingTop: 25,
-        padding: 5
+        padding: 5,
     },
     aboutHeading: {
-        fontSize: 30,
-        fontWeight: "bold",
         color: "black",
-        fontFamily: 'monospace'
-
     },
     aboutBody: {
-        fontSize: 16,
-        textAlign: "center"
+        textAlign: "center",
+        color: "black"
     },
     featureContainer: {
         flex: 1,

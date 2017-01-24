@@ -51,7 +51,6 @@ const styles = StyleSheet.create({
         paddingLeft: 10
     },
     title: {
-        fontFamily: 'MagmaWave',
         fontSize: 20,
         color: '#ffffff'
     },

@@ -1,20 +1,15 @@
 import React, { Component } from 'react';
-import { Container, Content, H1, Text, Card, List, ListItem, Thumbnail, } from 'native-base';
+import { Container, Content, H1, Card, List, ListItem, Thumbnail, } from 'native-base';
 import Loading from "@components/general/Loading";
 import {
     View,
-    Image,
-    StyleSheet,
     InteractionManager,
     UIManager,
     LayoutAnimation,
     TouchableOpacity
 } from 'react-native';
-
+import { Text } from "@components/ui"
 import { Icon } from "react-native-elements"
-const styles = StyleSheet.create({
-
-});
 
 const contributors = [
     {
@@ -87,7 +82,7 @@ class About extends Component {
     getMainView() {
         let shareOptions = {
             title: "Anaadyanta 2017",
-            message: "Check out latest Anaadyanta app on play store",
+            message: "Check out latest Anaadyanta app on github",
             url: "http://github.com/priyesh9875/",
             subject: "Anaadyanta 2017" //  for email
         };
@@ -95,13 +90,12 @@ class About extends Component {
         return <Container style={{ backgroundColor: "white" }}>
             <Content style={{ padding: 15 }}>
                 <View style={{ paddingBottom: 20 }}>
-                    <H1 style={{ textAlign: "center" }}>Anaadyanta</H1>
-                    
+                    <Text h1 style={{ textAlign: "center", fontWeight: "normal", color: "black" }}>Anaadyanta</Text>
+
                     <View style={{ flexDirection: 'row', justifyContent: "space-around", padding: 10 }}>
                         <SocialIcon onPress={() => { web("https://www.fb.com/anaadyantanmit/") } } type='facebook' size={30} />
                         <SocialIcon onPress={() => { web("https://github.com/priyesh9875") } } type='github' size={30} />
                         <SocialIcon onPress={() => { web("http://anaadyanta.org/") } } type='twitch' size={30} />
-
 
                         <TouchableOpacity
                             onPress={() => {
@@ -111,21 +105,21 @@ class About extends Component {
                         </TouchableOpacity>
                     </View>
 
-                    <Text style={{ color: 'black', textAlign: "center" }}>Is an cultural techincal sports fest of nmitIs an cultural techincal sports fest of nmitIs an cultural techincal sports fest of nmitIs an cultural techincal sports fest of nmitIs an cultural techincal sports fest of nmitIs an cultural techincal sports fest of nmit Is an cultural techincal sports fest of nmit</Text>
+                    <Text style={{ color: 'black', textAlign: "center" }}>Anaadyanta, the annual techno-cultural festival, a 3 day extravaganza, started in the year 2003 and over the years has been built to a platform which now hosts a national level festival. With over 80 colleges participating since the year 2013, Anaadyanta aims to grow bigger and better with more events, bigger line ups and interesting quirks with every passing year. We aim to bring a smile to your face :)</Text>
                 </View>
-
-
+                <Hr lineStyle={{backgroundColor: "gray", marginBottom: 10}}/>
                 <View style={{ flex: 1, alignItems: "center" }}>
-                    <H1 style={{ textAlign: "center", marginBottom: 10 }}>Contact</H1>
+                    <Text h1 style={{ fontWeight: "normal", color: "black" }}>Contact</Text>
 
-                    <Text>Nitte Meenakshi Institute of Technology</Text>
-                    <Text>P.O. Box 6429, Yelahanka, Bangalore 560064</Text>
-                    <Text>Ph: 080-22167800</Text>
-                    <Text>E-mail: admissions@nmit.ac.in, principal@nmit.ac.in</Text>
+                    <Text style={{ color: "black" }}>Nitte Meenakshi Institute of Technology</Text>
+                    <Text style={{ color: "gray" }}>P.O. Box 6429, Yelahanka, Bangalore 560064</Text>
+                    <Text style={{ color: "gray" }}>Ph: 080-22167800</Text>
+                    <Text style={{ color: "gray" }}>Email: principal@nmit.ac.in</Text>
                 </View>
                 <View style={{ height: 20 }}></View>
                 <View >
-                    <H1 style={{ textAlign: "center", marginBottom: 10 }}>Contributors</H1>
+
+                    <Text h1 style={{ textAlign: "center", fontWeight: "normal", color: "black" }}>Contributors</Text>
 
                     <List
                         dataArray={contributors}
@@ -134,7 +128,7 @@ class About extends Component {
 
                                 <View style={{ flex: 1, flexDirection: "row" }}>
                                     <View style={{ flex: 1 }}>
-                                        <Text style={{ fontSize: 15 }}>{row.name}</Text>
+                                        <Text style={{ color: "black" }}>{row.name}</Text>
                                         <Text style={{ fontSize: 12, color: "gray" }}>{row.type}</Text>
                                     </View>
                                     <View style={{ flexDirection: "row", justifyContent: "flex-end" }}>
@@ -155,7 +149,11 @@ class About extends Component {
                         />
                 </View>
 
-                <H1 style={{ textAlign: "center", margin: 10, paddingBottom: 30 }}>Third party license</H1>
+                <Text h1
+                    style={{ textAlign: "center", fontWeight: "normal", color: "black" }}
+                    onPress={() => { web("https://github.com/priyesh9875/Anaadyanta/blob/master/THIRD_PARTY_LICENSE.md") } }>
+                    Third party license
+                </Text>
 
             </Content>
         </Container >
@@ -169,10 +167,5 @@ class About extends Component {
     }
 }
 
-class Section extends Component {
-    constructor(props) {
-        super(props)
-    }
-}
 export default About;
 

@@ -17,7 +17,8 @@ export default class SyncServer extends Component {
 
         this.state = {
             updating: false,
-            isMounted: true
+            isMounted: true,
+            timeout: null
         }
 
         this.fetchEvents = this.fetchEvents.bind(this)
@@ -30,30 +31,45 @@ export default class SyncServer extends Component {
             message: "Default"
         })
 
-        NetInfo.isConnected.fetch().then(isConnected => {
-            if (isConnected) {
+        const netWork = (networkType) => {
+            NetInfo.removeEventListener(netWork)
+            // alert(networkType)
+            if (networkType) {
+                this.setState({
+                    timeout: setTimeout(() => {
+                        alert("Seems that your are on slow network. App will continue syncing with server in background")
+                        this.setState({
+                            isMounted: false
+                        }, () => {
+                            Actions.dashboard({ type: "reset" })
+                        })
+                    }, 10000)
+                })
                 this.fetchEvents()
             } else {
-                alert("No internet")
+                alert("No internet. Some functions of the ap may fail. Connect to internet and restart the app")
                 Actions.dashboard({ type: "reset" })
             }
-        }).catch(error => {
-            // alert("not error" + JSON.stringify(error))
+        }
+        if (this.props.isConnected) {
+            netWork('from login, so there must be internet :)')
+            // NetInfo.removeEventListener(netWork)
+            
+        } else {
+            NetInfo.addEventListener('change', netWork)
 
-            Actions.dashboard({ type: "reset" })
-
-        });
+        }
     }
 
     fetchEvents() {
         if (!this.props.currentUser || !this.props.currentUser.isLoggedIn) {
             Actions.login({ type: 'reset' })
         }
-        //alert(JSON.stringify(firebaseApp.auth().currentUser))
         const uid = this.props.currentUser.uid;
 
         firebaseApp.database().ref('/events/').once('value', (snapshot) => {
             firebaseApp.database().ref('/users/' + uid).once('value', (userSnap) => {
+                // alert("fetch done")
                 let favEventsSnap = userSnap.val().favEvents
                 let registeredEventsSnap = userSnap.val().registeredEvents
                 let coordinatingSnap = userSnap.val().coordinatingEvents
@@ -73,7 +89,6 @@ export default class SyncServer extends Component {
                     })
                 }
 
-                // alert(JSON.stringify(registeredEventsSnap))
                 if (registeredEventsSnap) {
                     Object.keys(registeredEventsSnap).map(key => {
                         let val = allEvents[registeredEventsSnap[key]]
@@ -86,7 +101,6 @@ export default class SyncServer extends Component {
                 }
 
 
-                // alert(JSON.stringify(registeredEventsSnap))
                 if (coordinatingSnap) {
                     Object.keys(coordinatingSnap).map(key => {
                         let val = allEvents[coordinatingSnap[key]]
@@ -97,9 +111,10 @@ export default class SyncServer extends Component {
                     })
                 }
 
-
-
                 this.props.saveEvents(allEvents, favEvents, registeredEvents, coordinatingEvents);
+                // alert("processing done ")
+                clearTimeout(this.state.timeout)
+
                 setTimeout(() => {
                     Actions.dashboard({ type: "reset" })
                 }, 500)
@@ -122,7 +137,7 @@ export default class SyncServer extends Component {
                         {
                             this.state.updating ?
                                 <View>
-                                    <Spinner color='red' style={{ alignSelf: "center" }} size={60} />
+                                    <Spinner color='red' style={{ alignSelf: "center" }} size={1} />
                                     <Text style={{ textAlign: "center" }}>Please wait while we are fetching latest data from the server {this.state.updating ? "YES" : "No"}</Text>
                                 </View>
                                 : <View>

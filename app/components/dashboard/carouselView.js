@@ -22,7 +22,7 @@ export default class CarouselView extends Component {
 
     _onLayoutDidChange = (e) => {
         const layout = e.nativeEvent.layout;
-        this.setState({ size: { width: layout.width, height: 250 } });
+        this.setState({ size: { width: layout.width, height: 230 } });
     }
 
     render() {
@@ -37,6 +37,8 @@ export default class CarouselView extends Component {
                     showsButtons={true}
                     loop
                     >
+                    <Image source={require('@images/banner5.jpg')} style={{ width: null, height: this.state.size.height }} />
+                    <Image source={require('@images/banner6.jpg')} style={{ width: null, height: this.state.size.height }} />
                     <Image source={require('@images/banner2.jpg')} style={{ width: null, height: this.state.size.height }} />
                     <Image source={require('@images/banner3.jpg')} style={{ width: null, height: this.state.size.height }} />
                     <Image source={require('@images/banner4.jpg')} style={{ width: null, height: this.state.size.height }} />

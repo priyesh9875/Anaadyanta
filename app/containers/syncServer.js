@@ -60,7 +60,7 @@ class SyncServer extends Component {
           />
 
         <Background imgSource={this.state.backPic} />
-        <SyncServerComponent {...actions} currentUser={currentUser} favEvents={events.favEvents} allEvents={events.allEvents} />
+        <SyncServerComponent {...actions} currentUser={currentUser} isConnected={true} favEvents={events.favEvents} allEvents={events.allEvents} />
       </View>
     )
   }
