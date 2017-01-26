@@ -25,6 +25,7 @@ import InitialView from '@components/login_screen/initial_view'
 import SignInForm from '@components/login_screen/signIn_form'
 import SignUpForm from '@components/login_screen/signUp_form'
 import ForgotPassForm from '@components/login_screen/forgotPassword_form'
+import FCM from 'react-native-fcm';
 
 const backImages = [
   require("@images/launch/underwater1.jpeg"),
@@ -157,6 +158,7 @@ class LoginScreen extends Component {
   _onSignInSuccess() {
     let listener = firebaseApp.auth().onAuthStateChanged(currentUser => {
       if (currentUser) {
+        FCM.subscribeToTopic(`/topics/all`);
         const uid = currentUser.uid
         const email = currentUser.email
         const name = currentUser.displayName

@@ -23,7 +23,7 @@ export default class CreatePDF extends Component {
             creating: false,
             created: false,
             options: {
-                html: this.parseEventDetails(),
+                html: "",
                 fileName: this.props.eventDetails.title.replace(/\s+/g, '-').toLowerCase(),          /* Optional: Custom Filename excluded extension */
                 directory: 'docs',         /* Optional: 'docs' will save the file in the `Documents` Default: Temp directory */
                 base64: true,
@@ -223,168 +223,6 @@ export default class CreatePDF extends Component {
 
     parseEventDetails() {
         let {eventDetails } = this.props;
-        if (!eventDetails) eventDetails = {
-            category: 3,
-            "description": "There will be isometric view of a dis-assembled model as well as assembled model is given in a sheet, the participants  need to crate the part and assembles it and take the draft of it with the help of CATIA or PRO-E",
-            "endTime": 1488443400,
-            "id": 0,
-            "image": "http://www.cmw.net.au/images/project/Manufacturing_BluescopeSteel_Web_2.jpg",
-            "isEnded": false,
-            "isGroup": true,
-            "isStarted": false,
-            "prizes": [{
-                "amount": 10000,
-                "position": 1
-            }, {
-                "amount": 1000,
-                "position": 2
-            }],
-            "registeration": 1506,
-            "rules": [
-                {
-                    name: "Rules", isHeader: true, hasSubItem: true,
-                    subContent: [
-                        { name: "Time limit : 90 minutes" },
-                        { name: "Number of people: Max 2" },
-                    ]
-                },
-                {
-                    name: "Judgement", isHeader: true, hasSubItem: true, description: "Judgment is based on the following factors",
-                    subContent: [
-                        { name: "Mass properties and the accuracy of the individual part models." },
-                        { name: "Distance and angle checking of the assembly." },
-                        { name: "Exactness of Dimensions." },
-                        { name: "Constraints given while assembling." },
-                        { name: "Time taken to finish." },
-                        { name: "Professional layout and presentation of the assembly drawing on a sheet of paper." },
-                    ]
-                },
-            ],
-
-            "startTime": 1488436200,
-            "title": "Draft it out",
-            "venue": "Back parking",
-
-        }
-        let rules = [
-            {
-                name: "Specifications", isHeader: true, hasSubItem: true,
-                subContent: [
-                    {
-                        name: "Dimensions and Fabrications", hasSubItem: true,
-                        subContent: [
-                            { name: "The machine should fit in a box of dimension 800mm x 800mm x 1000 mm (l x b x h) at any given point during the match. The external device used to control the machine or any external tank is not included in the size constraint." },
-                            { name: "The machine should not exceed 60 kg of weight including the weight of pneumatic source/tank. All pneumatic tanks/source and batteries should be onboard. Weight of remote controller will not be counted." }
-                        ]
-                    },
-                    {
-                        name: "Mobility", hasSubItem: true,
-                        subContent: [
-                            { name: "All robots must have easily visible and controlled mobility in order to compete. They includes following" },
-                            { name: "Rolling (wheels, tracks or the whole robot)." },
-                            { name: `Non-wheeled robots having no rolling elements in contact with the floor and no continuous rolling or cam operated motion in contact with the floor, either directly or via a linkage.Motion is "continuous" if continuous operation of the drive motor(s) produces continuous motion of the robot.Linear - actuated legs and novel non- wheeled drive systems come under this category.` },
-                            { name: `Flying (using airfoil, helium balloons, ornithopters, etc.) is not allowed.` },
-                        ]
-                    }, {
-                        name: "Robot Control Requirements", hasSubItem: true,
-                        subContent: [
-                            { name: "The machine can be controlled through wireless remote only. Power supply should be on board only. Refer below for further details on battery and power." },
-                            { name: "There should be binding capability between transmitters and receivers. The remote with such facility will only be allowed." },
-                            { name: `The team must have at least four frequency wireless remote control circuit or two dual control circuits which may be interchanged before the start of the race to avoid frequency interference with other teams.The case of any interference in the wireless systems will not be considered for rematch or results.` },
-                        ]
-                    },
-                    {
-                        name: "Battery and Power", hasSubItem: true,
-                        subContent: [
-                            { name: "The machine can be powered electrically only. Use of an IC engine in any form is not allowed. On board batteries must be sealed, immobilized-electrolyte types (such as gel cells, lithium, NiCad, NiMH, or dry cells)." },
-                            { name: "The electric voltage between 2 points anywhere in the machine should not be more than 36V DC at any point of time." },
-                        ]
-                    },
-                    {
-                        name: "Pneumatics", hasSubItem: true,
-                        subContent: [
-                            { name: "Robot can use pressurized non-inflammable gases to actuate pneumatic devices. Maximum allowed outlet nozzle pressure is 10 bar. The storage tank and pressure regulators used by teams need to be certified and teams using pneumatics are required to produce the Safety and Security letters at the Registration Desk at the venue. Failing to do so will lead to direct disqualification." },
-                            { name: "All hydraulic components on-board must be securely mounted. Special care must be taken while mounting pump, accumulator and armor to ensure that if ruptured direct fluid streams will not escape the robot." },
-                        ]
-                    }, {
-                        name: "Hydraulics", hasSubItem: true,
-                        subContent: [
-                            { name: "Robot can use non-inflammable liquid to actuate hydraulic devices e.g. cylinders." },
-                            { name: "The electric voltage between 2 points anywhere in the machine should not be more than 36V DC at any point of time." },
-                        ]
-                    }, {
-                        name: "Weapons system", hasSubItem: true, description: "Robots can have any kind of magnetic weapons, cutters, flippers, saws, lifting devices, spinning hammers etc. as weapons with following exceptions and limitations:",
-                        subContent: [
-                            { name: "Liquid projectiles." },
-                            { name: "Any kind of inflammable liquid." },
-                            { name: "Flame-based weapons." },
-                        ]
-                    },
-
-                ]
-            },
-
-            {
-                name: "Rules", isHeader: true, hasSubItem: true,
-                subContent: [
-                    {
-                        name: "Video and Abstract Submission", description: "Participants have to submit a portfolio of their machine, consisting of a written abstract and a video of the working model before the competition. This portfolio will be used to seed teams for the competition. Only the shortlisted teams will be eligible to participate in 'Robowars' at Geek Mayhem, Anaadyanta 2015. The teams can do an online submission, mailing us the soft copy of abstract (PDF format) and a video of your robot at nitte.tech@gmail.comwith subject Robowars. Offline submissions won't be entertained. Last date for portfolio submission is 19th February 2015.",
-                    },
-                    {
-                        name: "Abstract", hasSubItem: true, description: "The written abstract should be prepared on the following lines:",
-                        subContent: [
-                            { name: "The weapon systems and power supply method should be explained in detail, along with proper diagrams. Picture(s) showing these should be attached." },
-                            { name: "Rolling (wheels, tracks or the whole robot)." },
-                        ]
-                    },
-                    {
-                        name: "Video Abstract", hasSubItem: true,
-                        subContent: [
-                            { name: "The video should be of at least 1 minute with the unedited clip showing the machine performance to the fullest. All destructive mechanism(s) being used must be shown working." },
-                            { name: "All submission must be made online before the deadline." },
-                        ]
-                    },
-
-
-                ]
-            },
-
-            {
-                name: "Criteria for Victory", isHeader: true, hasSubItem: true,
-                subContent: [
-                    { name: "A robot is declared victorious if its opponent is immobilized." },
-                    { name: "A robot will be declared immobile if it cannot display linear motion of at least one inch in a timed period of 30 seconds. A bot with one side of its drivetrain disabled will not be counted out if it can demonstrate some degree of controlled movement. In case both the robots remain mobile after the end of the round then the winner will be decided subjectively." },
-                    { name: "A robot that is deemed unsafe by the judges after the match has begun will be disqualified and therefore declared the loser. The match will be immediately halted and the opponent will be awarded a win." },
-                    { name: "If a robot is thrown out of the arena the match will stop immediately, and the robot still inside the arena will automatically be declared as the winner." },
-                ]
-            },
-
-            {
-                name: "Safety Rules", isHeader: true, hasSubItem: true,
-                subContent: [
-                    { name: "Special care should be taken to protect the on-board batteries and pneumatics, robot without proper protection will not be allowed to compete." },
-                    { name: "If you have a robot or weapon design that does not fit within the categories set forth in these rules or is in some way ambiguous or borderline, please contact the event organizers. Safe innovation is always encouraged, but surprising the organizers with your brilliant exploitation of a loophole may cause your robot to be disqualified before it even competes." },
-                ]
-            },
-            {
-                name: "Team Specification", isHeader: true, hasSubItem: true,
-                subContent: [
-                    { name: "Any team can participate in Robowars, Geek Mayhem, Anaadyanta 2015. A team may consist of a maximum of 6 participants." },
-                    { name: "These participants can be from same or different institutes." },
-                    { name: "Team Name: Every team must have a name which must be unique. Geek Mayhem, Anaadyanta reserves the right to reject entries from any Team whose name it deems inappropriate, offensive or conflicting. Organizers must be notified during if a Team's name has been changed." },
-                ]
-            },
-            {
-                name: "Event specific Terminologies", isHeader: true, hasSubItem: true,
-                subContent: [
-                    { name: "Disabled", description: "A robot is not functioning correctly due to either an internal malfunction, or contact with the opposing robot or Arena Hazard." },
-                    { name: "Disqualification", description: "A Robot is no longer permitted to compete in the current Robowars Tournament." },
-                    { name: "Immobilized", description: "In Judge's opinion, a robot is not responsive for a specified period of time." },
-                    { name: "Knockout", description: "Occurs when the attack or deliberate actions of one robot causes its opponent to become immobilized." },
-                    { name: "Pinning", description: "Occurs when one robot, through sheer force, holds an opponent stationary in order to immobilize it." },
-                ]
-            },
-        ]
 
         let htmlString = `
 
@@ -434,11 +272,15 @@ export default class CreatePDF extends Component {
         this.setState({
             creating: true
         })
-        RNHTMLtoPDF.convert(this.state.options).then((data) => {
+
+        let options = { ...this.state.options }
+        options.html = this.parseEventDetails()
+
+        RNHTMLtoPDF.convert(options).then((data) => {
             if (typeof callback == 'function') {
                 callback()
             } else {
-                alert(`File saved at / Documents / ${this.state.options.fileName}.pdf`)
+                alert(`File saved in Documents/${options.fileName}.pdf`)
             }
 
             this.setState({

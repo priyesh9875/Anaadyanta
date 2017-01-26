@@ -117,10 +117,10 @@ const styles = StyleSheet.create({
         flexDirection: 'row',
     },
     slideUpArrow: {
-        marginBottom: -20,
+        marginBottom: -10,
     },
     slideUpText: {
-        padding: 10,
+        marginBottom: 30,
     },
 
 })

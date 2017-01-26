@@ -138,7 +138,7 @@ export default class SyncServer extends Component {
                             this.state.updating ?
                                 <View>
                                     <Spinner color='red' style={{ alignSelf: "center" }} size={1} />
-                                    <Text style={{ textAlign: "center" }}>Please wait while we are fetching latest data from the server {this.state.updating ? "YES" : "No"}</Text>
+                                    <Text style={{ textAlign: "center" }}>Please wait while we are fetching latest data from the server. Auto skip in 10 seconds</Text>
                                 </View>
                                 : <View>
                                     <H2 style={{ textAlign: "center" }}>All data synced! .....</H2>

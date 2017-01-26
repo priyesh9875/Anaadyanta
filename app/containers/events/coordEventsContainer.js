@@ -37,9 +37,9 @@ class CoordinatingEventsContainer extends Component {
     const { coordinatingEvents, actions } = this.props;
     if (Object.keys(coordinatingEvents).length == 0) {
       return (
-        <View style={{ flex: 1, justifyContent: "center", alignItems: "center", backgroundColor: 'white' }} >
-          <Text style={{ fontSize: 30, flex: 1, textAlign: "çenter" }} >Oops, you are not coordinating any events.</Text>
-          <Text style={{ fontSize: 20, flex: 1, textAlign: "çenter" }} >Ask admins to assign events</Text>
+        <View style={{ flex: 1, padding: 10,  justifyContent: "center", alignItems: "center", backgroundColor: 'white' }} >
+          <Text style={{ fontSize: 30, textAlign: "center" }} >Oops, you are not coordinating any events.</Text>
+          <Text style={{ fontSize: 20, textAlign: "center" }} >Ask admins to assign events</Text>
         </View>
       );
     }

@@ -18,6 +18,7 @@ import { SNAPSHOT_NULL, alertError } from "@config/errors"
 const IconColor = '#4285f4'
 import IconText from "@components/ui/IconText"
 import CreatePDF from "@components/createPDF";
+import FCM from 'react-native-fcm';
 
 
 class ActionTab extends Component {
@@ -58,6 +59,7 @@ class ActionTab extends Component {
             addingFav: true
         })
         const uid = this.props.currentUser.uid
+        FCM.unsubscribeFromTopic(`/topics/${this.props.eventDetails.title.replace(/\s+/g, '-').toLowerCase()}`);
         firebaseApp.database().ref('/users/' + uid + '/favEvents/').orderByValue().equalTo(eventKey).once('value', (snapshot) => {
             if (!snapshot.val()) {
                 this.props.deleteFav(eventKey)
@@ -86,6 +88,7 @@ class ActionTab extends Component {
         const newPostKey = firebaseApp.database().ref('/users/' + uid).child('/favEvents/').push().key
         let updates = {}
         updates['/users/' + uid + '/favEvents/' + newPostKey] = eventKey
+        FCM.subscribeToTopic(`/topics/${this.props.eventDetails.title.replace(/\s+/g, '-').toLowerCase()}`);
         firebaseApp.database().ref().update(updates).then(() => {
             this.props.markFav(eventKey)
             this.setState({
@@ -109,8 +112,7 @@ class ActionTab extends Component {
             title: `${eventDetails.title} has started`,
             image: eventDetails.image,
             description: `${eventDetails.title} has been started. All the best to all participants`,
-            type: "eventUpdate",
-            euid: eventKey
+            to: `/topics/${this.props.eventDetails.title.replace(/\s+/g, '-').toLowerCase()}`
         }
 
         let {currentUser } = this.props
@@ -172,8 +174,7 @@ class ActionTab extends Component {
             title: `${eventDetails.title} has finished`,
             image: eventDetails.image,
             description: `${eventDetails.title} has been concluded. Thankyou all participants for making this event a great success.`,
-            type: "eventUpdate",
-            euid: eventKey
+            to: `/topics/${this.props.eventDetails.title.replace(/\s+/g, '-').toLowerCase()}`
         }
 
         eventRef.once('value', (snapshot) => {
@@ -251,6 +252,7 @@ class ActionTab extends Component {
                         registering: false
                     })
                 } else {
+                    FCM.subscribeToTopic(`/topics/${this.props.eventDetails.title.replace(/\s+/g, '-').toLowerCase()}`);
                     firebaseApp.database().ref().update(updates).then(() => {
                         this.props.register(eventKey)
                         alert(`Successfully registered for ${eventDetails.title}.`)
@@ -312,8 +314,8 @@ class ActionTab extends Component {
             }
             if (!eventDetails.isEnded && eventDetails.isStarted) {
 
-                return <TouchableOpacity 
-                onPress={
+                return <TouchableOpacity
+                    onPress={
                         () => {
                             this.confirmAction(
                                 this.endEvent,
@@ -324,8 +326,8 @@ class ActionTab extends Component {
                             )
                         }
                     }
-                
-                >
+
+                    >
                     <Icon name="stop" size={30} color="red" />
                     <Text style={{ fontSize: 15 }}>{this.state.startEndEvent ? "Ending now" : "End now"}</Text>
                 </TouchableOpacity>

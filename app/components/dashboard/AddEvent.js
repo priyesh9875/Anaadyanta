@@ -3,7 +3,6 @@ import React, { Component } from 'react';
 import {
     View,
     Image,
-    StyleSheet,
     ScrollView,
     TouchableOpacity,
     ListView,
@@ -26,8 +25,7 @@ let events = [
         category: 3,
         "description": "There will be isometric view of a dis-assembled model as well as assembled model is given in a sheet, the participants  need to crate the part and assembles it and take the draft of it with the help of CATIA or PRO-E",
         "endTime": 1488443400,
-        "id": 0,
-        "image": "http://www.cmw.net.au/images/project/Manufacturing_BluescopeSteel_Web_2.jpg",
+        "image": "https://img1.cgtrader.com/items/41019/fc7969b9f6/photorealistic-commercial-building-collection-3d-model-max.jpg",
         "isEnded": false,
         "isGroup": true,
         "isStarted": false,
@@ -70,7 +68,6 @@ let events = [
         "category": 1,
         "description": "To dance is to be free. If you can communicate without words, if you can make the crowd go crazy with your moves this is the place to be. This event welcomes colleges to showcase their talent across all styles and genres and captivate the audience!",
         "endTime": 1488443400,
-        "id": 1,
         "image": "https://i.ytimg.com/vi/iExw1TD317o/maxresdefault.jpg",
         "isEnded": false,
         "isStarted": false,
@@ -113,7 +110,6 @@ let events = [
 
         "startTime": 1488436200,
         "title": "Choreo night",
-        "updatedBy": "Priyesh Kumar",
     },
 
 
@@ -121,9 +117,7 @@ let events = [
         "category": 1,
         "description": "Think less and feel more of the music. Pump your heart and let your dance do the talking. Show your rivals that this is your stage, and you are the ringmaster of this arena. Set the streets ablaze with your passion. Turn the opposition into a mere speck of dust as you weave your way through the patterns of space-time to rise above everyone else. Break free or die trying.",
         "endTime": 1488443400,
-        "euid": "-KaXe73wJrFRW7KLcvSB",
-        "id": 2,
-        "image": "http://www.eastlondondance.org/wp-contents/uploads/2014/06/class_streetdance_04.jpg",
+        "image": "https://images3.alphacoders.com/850/85097.jpg",
         "isEnded": false,
         "isGroup": true,
         "isStarted": false,
@@ -182,7 +176,6 @@ let events = [
         ],
         "startTime": 1488436200,
         "title": "Street Dance",
-        "updatedBy": "Priyesh Kumar",
         "venue": "Main Ground",
 
     },
@@ -193,7 +186,7 @@ let events = [
         "category": 2,
         "endTime": 1488443400,
         description: "Play soccer and enjoy",
-        "image": "http://www.footballfestivals.co.uk/wp-content/uploads/2015/09/5-a-side-youth-football.png",
+        "image": "https://static1.squarespace.com/static/54bf12efe4b0da9770953a83/t/54fce845e4b0edea648ddf84/1425860682249/Soccer-Stadium.jpg?format=1500w",
         "isEnded": false,
         "isStarted": false,
         "lastUpdated": 1484683111,
@@ -222,13 +215,12 @@ let events = [
         ],
         "startTime": 1488436200,
         "title": "Mini Soccer",
-        "updatedBy": "Priyesh Kumar"
     },
     {
         "category": 2,
         "endTime": 1488443400,
         description: "Think you are taller than me? Prove me :)>",
-        "image": "http://sports-961.com/wp-content/uploads/2014/07/3x3-Basketball-World-tour-Qualifiers-.jpg",
+        "image": "https://localtvwhotv.files.wordpress.com/2014/11/basketball_court_blue.jpg",
         "isEnded": false,
         "isStarted": false,
         "lastUpdated": 1484819395,
@@ -254,13 +246,12 @@ let events = [
 
         "startTime": 1488436200,
         "title": "3v3 basketBall",
-        "updatedBy": "Priyesh Kumarr"
     },
     {
         "category": 2,
         "description": "play counter strike and win exciting prizes like tank and Boeing 777",
         "endTime": 1488469020,
-        "image": "http://images.g4tv.com/ImageDb3/308087_LGST/counter-strike-global-offensive.jpg",
+        "image": "https://lh3.googleusercontent.com/eDknS7zEoARTogx0bSKFbuvQovUphrwsOtNMjcRSX9v2IQP4f2I9WJ_C5dCSzjSlTO0o_Jg=s630-fcrop64=1,31210310d32ca610",
         "isEnded": false,
         "isGroup": false,
         "isStarted": false,
@@ -288,7 +279,6 @@ let events = [
         "registeration": 99,
         "startTime": 1488458220,
         "title": "Counter Strike 1.6",
-        "updatedBy": "Priyesh Kumarr",
     },
     {
         "category": 2,
@@ -319,7 +309,6 @@ let events = [
         ],
         "startTime": 1488436200,
         "title": "DOTA 2",
-        "updatedBy": "Priyesh Kumar"
     },
     {
         "category": 2,
@@ -352,13 +341,12 @@ let events = [
         ],
         "startTime": 1488436200,
         "title": "NFS Most Wanted",
-        "updatedBy": "Priyesh Kumar",
     },
     {
         "category": 3,
         "endTime": 1488443400,
         description: "Design and construct a remote controlled robot capable of fighting a one on one tournament",
-        "image": "http://www.highreshdwallpapers.com/wp-content/uploads/2015/01/Battle-of-the-Robots-1920x1080.jpg",
+        "image": "https://i.ytimg.com/vi/G4s5ewM_-pw/maxresdefault.jpg",
         "isEnded": false,
         "isStarted": false,
         "lastUpdated": 1484926878,
@@ -490,13 +478,12 @@ let events = [
         ],
         "startTime": 1488436200,
         "title": "RoboWars",
-        "updatedBy": "RajNarayan Dutta"
     },
     {
         "category": 3,
         "endTime": 1488443400,
         description: "A solar powered boat race. Fight against high tides like jack sparrow",
-        "image": "http://www.classic-sailing.co.uk/sites/default/files/media/Vessels/Europa/605_395263027202718_1581462115_n.jpg",
+        "image": "https://s-media-cache-ak0.pinimg.com/originals/8f/c7/2e/8fc72e49544642d3885eb6f29c9d7a93.jpg",
         "isEnded": false,
         "isStarted": false,
         "lastUpdated": 1484823175,
@@ -527,7 +514,6 @@ let events = [
         ],
         "startTime": 1488436200,
         "title": "Jahazz",
-        "updatedBy": "Priyesh Kumarr"
     },
 
     {
@@ -535,7 +521,7 @@ let events = [
         "description": "Challenge you programming skill's",
         "endTime": 1488443400,
         description: "A contest to quench your coding thirst. We provide an opportunity to test your coding skills but not in the stereotypical way. We mean “on the spot” when we say “on the spot",
-        "image": "http://static4.businessinsider.com/image/5666fab484307658008b8371/if-youre-new-to-coding-this-is-the-programming-language-you-should-learn-first.jpg",
+        "image": "https://media.licdn.com/mpr/mpr/shrinknp_400_400/AAEAAQAAAAAAAAJvAAAAJDIwNTQ1YzVjLTVkMDQtNDQ3MC04MjMyLTg5ZGRjZDVhNzg3Ng.jpg",
         "isEnded": false,
         "isGroup": false,
         "isStarted": false,
@@ -567,7 +553,6 @@ let events = [
         "registeration": 4589,
         "startTime": 1488436200,
         "title": "OnSpot Programming",
-        "updatedBy": "RajNarayan Dutta",
         "venue": "CS lab 15",
 
     }
@@ -617,10 +602,7 @@ class AddEvent extends Component {
                     startTime: moment("2017-03-02 12:00", "YYYY-MM-DD h:m").unix(),
                     endTime: moment("2017-03-02 14:00", "YYYY-MM-DD h:m").unix(),
                     length: 2,
-                    prizes: [
-                        { position: 1, amount: 10000 },
-                        { position: 2, amount: 1000 },
-                    ],
+                    prizes
                 }
 
 
@@ -670,73 +652,6 @@ class AddEvent extends Component {
         );
     }
 }
-
-const styles = StyleSheet.create({
-    container: {
-        flex: 1
-    },
-    profileInfoContainer: {
-        flexDirection: 'row',
-        height: 65,
-        marginTop: 10,
-        marginBottom: 10,
-        marginLeft: 10,
-        marginRight: 10,
-        borderRadius: 2,
-        backgroundColor: '#4285f4'
-    },
-    profileNameContainer: {
-        flex: 3,
-        justifyContent: 'center',
-        alignItems: 'flex-start'
-    },
-    profileName: {
-        marginLeft: 20,
-        fontFamily: 'Roboto-Bold',
-        fontSize: 20,
-        color: '#ffffff',
-    },
-    menuContainer: {
-        padding: 5,
-        margin: 5,
-        borderWidth: StyleSheet.hairlineWidth,
-        borderColor: '#4285f4',
-        flexDirection: "row",
-        borderRadius: 5,
-        marginLeft: 12,
-        marginRight: 12,
-    },
-    menuText: {
-        flex: 1,
-        padding: 10,
-        fontSize: 20,
-        fontFamily: 'Roboto-Bold',
-        color: "black"
-    },
-    menuArrow: {
-        fontSize: 30,
-        paddingTop: 2,
-        paddingRight: 10,
-        fontFamily: 'Roboto-Bold'
-
-    },
-    profileCountsContainer: {
-        flex: 1,
-        justifyContent: 'center',
-        alignItems: 'center',
-        paddingBottom: 5
-    },
-    profileCounts: {
-        fontFamily: 'Roboto-Regular',
-        fontSize: 30,
-        color: '#ffffff'
-    },
-    countsName: {
-        fontFamily: 'Roboto-Bold',
-        fontSize: 12,
-        color: '#ffffff'
-    }
-})
 
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';

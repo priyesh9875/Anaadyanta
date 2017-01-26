@@ -57,8 +57,7 @@ class Winners extends Component {
             time: moment().unix(),
             title: `${eventDetails.title} Winners`,
             image: eventDetails.image,
-            type: "winners",
-            euid: eventKey
+            to: `/topics/${this.props.eventDetails.title.replace(/\s+/g, '-').toLowerCase()}`
         }
 
         if (winners[0].name) {

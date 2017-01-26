@@ -58,7 +58,7 @@ class MakeAnnoucement extends Component {
             title: this.state.title,
             image: "http://wfarm3.dataknet.com/static/resources/icons/set108/8ef19fce.png",
             description: this.state.description,
-            type: "annoucement",
+            to: "/topics/all",
         }
 
         let updates = {}

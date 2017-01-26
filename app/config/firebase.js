@@ -9,3 +9,4 @@ import * as firebase from 'firebase';
     messagingSenderId: "<SENDER_ID>"
   }
 export const firebaseApp = firebase.initializeApp(config)
+

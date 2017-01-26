@@ -49,7 +49,7 @@ class Profile extends Component {
     }
 
     renderFavCard() {
-        return <Card style={{ margin: 10, flex: 1 }} >
+        return <Card style={{ margin: 5, flex: 1 }} >
             <CardItem onPress={() => { Actions.myEvents() } }>
                 <Text style={{ color: "black" }}>Following events</Text>
             </CardItem>
@@ -64,7 +64,7 @@ class Profile extends Component {
         if (this.props.currentUser.role != 'user') {
 
 
-            return <Card style={{ margin: 10, flex: 1 }} >
+            return <Card style={{ margin: 5, flex: 1 }} >
                 <CardItem onPress={() => { Actions.coordEvents() } }>
                     <Text style={{ color: "black" }}>Coordinating events</Text>
                 </CardItem>
@@ -76,7 +76,7 @@ class Profile extends Component {
     }
 
     renderRegisteredCard() {
-        return <Card style={{ margin: 10, flex: 1 }} >
+        return <Card style={{ margin: 5, flex: 1 }} >
             <CardItem onPress={() => { Actions.registeredEvents() } }>
                 <Text style={{ color: "black" }}>Registered events</Text>
             </CardItem>
@@ -239,7 +239,7 @@ class Profile extends Component {
                         <Text style={styles.profileName}>
                             {name}
                         </Text>
-                        <View style={{ paddingLeft: 20, paddingTop: 2 }}>
+                        <View style={{ paddingLeft: 10, paddingTop: 4 }}>
                             <Badge success> {role || "user"}</Badge>
                         </View>
 
@@ -270,7 +270,7 @@ const styles = StyleSheet.create({
     },
     profileInfoContainer: {
         flexDirection: 'row',
-        height: 65,
+        height: 70,
         marginTop: 10,
         marginBottom: 10,
         marginLeft: 10,

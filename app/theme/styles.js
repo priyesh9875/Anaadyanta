@@ -40,14 +40,12 @@ export default {
   baseText: {
     fontFamily: Fonts.base.family,
     fontSize: Fonts.base.size,
-    lineHeight: Fonts.base.lineHeight,
     color: '#ffffff',
     backgroundColor: 'rgba(0, 0, 0, 0)',
   },
   p: {
     fontFamily: Fonts.base.family,
     fontSize: Fonts.base.size,
-    lineHeight: Fonts.base.lineHeight,
     fontWeight: '800',
     color: '#ffffff',
     backgroundColor: 'rgba(0, 0, 0, 0)',
@@ -56,7 +54,6 @@ export default {
   h1: {
     fontFamily: Fonts.h1.family,
     fontSize: Fonts.h1.size,
-    lineHeight: Fonts.h1.lineHeight,
     color: '#ffffff',
     backgroundColor: 'rgba(0, 0, 0, 0)',
     fontWeight: '800',
@@ -68,7 +65,6 @@ export default {
   h2: {
     fontFamily: Fonts.h2.family,
     fontSize: Fonts.h2.size,
-    lineHeight: Fonts.h2.lineHeight,
     color: '#ffffff',
     backgroundColor: 'rgba(0, 0, 0, 0)',
     fontWeight: '800',
@@ -80,7 +76,6 @@ export default {
   h3: {
     fontFamily: Fonts.h3.family,
     fontSize: Fonts.h3.size,
-    lineHeight: Fonts.h3.lineHeight,
     color: '#ffffff',
     backgroundColor: 'rgba(0, 0, 0, 0)',
     fontWeight: '500',
@@ -92,7 +87,6 @@ export default {
   h4: {
     fontFamily: Fonts.h4.family,
     fontSize: Fonts.h4.size,
-    lineHeight: Fonts.h4.lineHeight,
     color: '#ffffff',
     backgroundColor: 'rgba(0, 0, 0, 0)',
     fontWeight: '800',
@@ -104,7 +98,6 @@ export default {
   h5: {
     fontFamily: Fonts.h5.family,
     fontSize: Fonts.h5.size,
-    lineHeight: Fonts.h5.lineHeight,
     color: '#ffffff',
     backgroundColor: 'rgba(0, 0, 0, 0)',
     fontWeight: '800',
