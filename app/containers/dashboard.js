@@ -19,6 +19,7 @@ import Profile from "@components/dashboard/Profile"
 import AddEvent from "@components/dashboard/AddEvent"
 import { firebaseApp } from '@config/firebase'
 import FCM from 'react-native-fcm';
+import Background from '@components/ui/background'
 
 class Dashboard extends Component {
   constructor(props) {
@@ -35,21 +36,9 @@ class Dashboard extends Component {
 
       FCM.requestPermissions(); // for iOS
       FCM.getFCMToken().then(token => {
+        // console.log(token)
+        // eJJKSRD9jKQ:APA91bF_fvHepRruz0Vg3Kc9PPgdOREdnpBIe0L9B-Zk0lkSMAxwZD2Zlx3kimcPRfsflAaFqA3XU1GeAidusWkMYOPt041REaFIuaiaVc-uzmeicllr-sD4rlWXK9bhnQ1zeOIO3SlY
         // Store it  in server if necessary
-        // let updates = {}
-        // updates[`/users/${this.props.currentUser.uid}/fcmToken`] = token
-        // firebaseApp.database().ref().update(updates)
-      });
-      FCM.getInitialNotification().then(notif => {
-        // console.log("INITIAL NOTIFICATION", notif)
-      });
-
-      this.notificationUnsubscribe = FCM.on("notification", notif => {
-        // console.log("NOTIFICATION ", notif)
-        if (notif && notif.local) {
-          return;
-        }
-        this.sendRemote(notif);
       });
 
       this.setState({
@@ -57,35 +46,9 @@ class Dashboard extends Component {
       })
     })
   }
-  sendRemote(notif) {
-    FCM.presentLocalNotification({
-      title: notif.title,
-      body: notif.body,
-      priority: "high",
-      click_action: notif.click_action,
-      show_in_foreground: true,
-      sound: "default",
-      vibrate: true,
-    });
-  }
-
-
-  cleanLogout() {
-    firebaseApp.auth().signOut()
-     FCM.unsubscribeFromTopic(`/topics/all`);
-    this.props.userActions.logout();
-    Actions.login({ type: "reset" });
-  }
-
-  componentWillUnmount() {
-    // alert("unmount")
-    // console.log(this.notificationUnsubscribe());
-  }
-
-
 
   render() {
-    const { currentUser, userActions, eventsCount, sponsorsCount, favEventsCount, registeredEventsCount } = this.props;
+    const { currentUser, userActions, eventsCount, sponsorsCount, allEvents } = this.props;
     return (
       <View style={{ flex: 1 }}>
         <StatusBar
@@ -93,20 +56,10 @@ class Dashboard extends Component {
           animated={true}
           />
 
+        <Background imgSource={require("@images/launch/underwater2.jpeg")} />
 
-        <ScrollableTabView
-          renderTabBar={() => <NavTabBar toggleSideMenu={this.props.toggleSideMenu} />}
-          style={{ backgroundColor: "white" }} >
-          <ScrollView tabLabel="home">
-            <Home eventsCount={eventsCount} sponsorsCount={sponsorsCount} />
-
-          </ScrollView>
-
-          <ScrollView tabLabel="person" >
-            <Profile currentUser={currentUser} cleanLogout={this.cleanLogout.bind(this)} favEventsCount={favEventsCount} registeredEventsCount={registeredEventsCount} {...userActions} />
-
-          </ScrollView>
-        </ScrollableTabView>
+        <NavTabBar toggleSideMenu={this.props.toggleSideMenu} />
+        <Home eventsCount={eventsCount} sponsorsCount={sponsorsCount} allEvents={allEvents} />
 
       </View>
     );
@@ -122,8 +75,7 @@ const mapStateToProps = state => ({
   currentUser: state.currentUser,
   eventsCount: state.events.eventsCount,
   sponsorsCount: state.sponsors.length,
-  favEventsCount: state.events.favEventsCount,
-  registeredEventsCount: state.events.registeredEventsCount,
+  allEvents: state.events.allEvents
 
 })
 const mapActions = dispatch => ({

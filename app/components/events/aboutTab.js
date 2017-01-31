@@ -24,11 +24,16 @@ class AboutTab extends Component {
 
         return (
             <View>
-                <ListItem>
-                    <Text>
-                        {this.props.eventDetails.description || "Please tell me about this event in more precise and accurate english or hindi words Please tell me about this event in more precise and accurate english or hindi words Please tell me about this event in more precise and accurate english or hindi words"}
-                    </Text>
-                </ListItem>
+                {
+                    this.props.eventDetails.description
+                        ? <ListItem>
+                            <Text>
+                                {this.props.eventDetails.description}
+                            </Text>
+                        </ListItem>
+                        : null
+                }
+
                 <Card style={{ padding: 10 }}>
                     <View style={{ flex: 1, flexDirection: "row" }}>
                         <View style={{ flex: 1 }} >

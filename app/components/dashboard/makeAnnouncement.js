@@ -101,7 +101,7 @@ class MakeAnnoucement extends Component {
                         <View >
                             <Text style={{ color: 'gray', fontSize: 16, marginBottom: 5 }}>Title</Text>
                             <TextInput
-                                style={{height: 25, flex: 1, borderRadius: 5, borderWidth: 1, padding: 5, margin: 0, borderColor: 'gray' }}
+                                style={{height: 35, flex: 1, borderRadius: 5, borderWidth: 1, padding: 5, margin: 0, borderColor: 'gray' }}
                                 underlineColorAndroid='rgba(0,0,0,0)'
 
                                 value={this.state.title} onChangeText={(title) => this.setState({ title })}

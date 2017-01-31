@@ -57,10 +57,6 @@ class Drawer extends Component {
     }
   }
 
-  closeSideMenu() {
-    this.props.closeSideMenu()
-  }
-
   render() {
     const state = this.props.navigationState;
     const children = state.children;
@@ -68,12 +64,11 @@ class Drawer extends Component {
     return (
       <SideMenu
         ref={(a) => { this.rootSidebarMenu = a; } }
-        openMenuOffset={AppSizes.screen.width * 0.75}
+        openMenuOffset={AppSizes.screen.width * 0.80}
+        disableGestures={true}
         menu={
           <Menu
-            closeSideMenu={this.closeSideMenu.bind(this)}
             ref={(b) => { this.rootSidebarMenuMenu = b; } }
-            ns={() => { alert("ns") } }
             currentUser={this.props.currentUser}
             />
         }

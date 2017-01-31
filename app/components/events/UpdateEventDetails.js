@@ -33,7 +33,7 @@ class Winners extends Component {
             startTime: moment.unix(props.eventDetails.startTime).format("hh:mm a DD-MMM-YY"),
             endTime: moment.unix(props.eventDetails.endTime).format("hh:mm a DD-MMM-YY"),
             registeration: props.eventDetails.registeration ? props.eventDetails.registeration.toString() : "1500",
-            prizes: props.eventDetails.prizes,
+            prizes: props.eventDetails.prizes || [],
             venue: props.eventDetails.venue || "Main Ground",
             isGroup: props.eventDetails.isGroup || false,
             isStartPickerVisible: false,
@@ -80,7 +80,7 @@ class Winners extends Component {
         let { eventDetails, currentUser, eventKey} = this.props;
 
         if (this.state.title == "") { alert("Title cannot be left blank"); return }
-        if (this.state.description == "") { alert("Description cannot be left blank"); return }
+        // if (this.state.description == "") { alert("Description cannot be left blank"); return }
 
 
         this.setState({
@@ -102,7 +102,6 @@ class Winners extends Component {
             currentEvent.description = this.state.description
             currentEvent.registeration = parseInt(this.state.registeration)
             currentEvent.prizes = this.state.prizes
-            // currentEvent.prizes[1].amount = parseInt(this.state.secondPrize)
             currentEvent.startTime = moment(this.state.startTime, "hh:mm a DD-MMM-YY").unix()
             currentEvent.endTime = moment(this.state.endTime, "hh:mm a DD-MMM-YY").unix()
             currentEvent.lastUpdated = moment().unix()
@@ -115,6 +114,7 @@ class Winners extends Component {
             firebaseApp.database().ref().update(updates).then(() => {
                 currentEvent.isFav = this.props.eventDetails.isFav;
                 currentEvent.isRegistered = this.props.eventDetails.isRegistered
+                currentEvent.isMine = this.props.eventDetails.isMine
                 this.props.updateEvent(eventKey, currentEvent)
                 this.setState({
                     updating: false,

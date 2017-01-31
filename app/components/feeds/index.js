@@ -63,6 +63,7 @@ class Feeds extends Component {
             loading: false,
             datasource: ds.cloneWithRows(this.props.feeds),
             isMounted: true,
+            isRefreshing: false
         })
     }
 
@@ -107,7 +108,7 @@ class Feeds extends Component {
             </View>
         }
 
-        return <View style={{ backgroundColor: "white", padding: 5 }}>
+        return <View style={{ padding: 5, paddingLeft: 10, paddingRight: 10 }}>
 
             {
                 this.state.isRefreshed
@@ -147,32 +148,32 @@ class Row extends Component {
 
         return (
             <Card >
-                <CardItem style={{ padding: 10 }}>
-                    <Thumbnail size={40} square source={{ uri: row.image }} />
-                    <View style={{ flex: 1 }}>
-                        <Text style={{color: "black"}}> {row.title}</Text>
-                        <View style={{ flexDirection: "row" }}>
-                            <Text style={{ fontSize: 12, color: "gray", paddingLeft: 5 }}>{moment(moment.unix(row.time)).fromNow()}</Text>
-                            <Text style={{ flex: 1, fontSize: 12, color: "gray", paddingRight: 5, textAlign: 'right' }}>{row.author}</Text>
+                    <CardItem style={{ padding: 10 }}>
+                        <Thumbnail size={40} square source={{ uri: row.image }} />
+                        <View style={{ flex: 1 }}>
+                            <Text style={{ color: "black" }}> {row.title}</Text>
+                            <View style={{ flexDirection: "row" }}>
+                                <Text style={{ fontSize: 12, color: "gray", paddingLeft: 5 }}>{moment(moment.unix(row.time)).fromNow()}</Text>
+                                <Text style={{ flex: 1, fontSize: 12, color: "gray", paddingRight: 5, textAlign: 'right' }}>{row.author}</Text>
+                            </View>
                         </View>
-                    </View>
-                </CardItem>
+                    </CardItem>
 
-                <CardItem>
-                    <Text style={{ fontSize: 14, color: "black" }} >{row.description}</Text>
-                    {
-                        row.extras
-                            ?
+                    <CardItem>
+                        <Text style={{ fontSize: 14, color: "black" }} >{row.description}</Text>
+                        {
+                            row.extras
+                                ?
 
-                            row.extras.map((val, index) => {
-                                return <Text key={index} style={{color: "black", fontSize: 14}}>{val.name}</Text>
-                            })
+                                row.extras.map((val, index) => {
+                                    return <Text key={index} style={{ color: "black", fontSize: 14 }}>{val.name}</Text>
+                                })
 
-                            : null
-                    }
+                                : null
+                        }
 
-                </CardItem>
-            </Card>
+                    </CardItem>
+                </Card>
         );
     }
 }

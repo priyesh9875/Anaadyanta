@@ -3,6 +3,7 @@ import React from 'react';
 import { Actions, Scene, ActionConst } from "react-native-router-flux";
 
 import Dashboard from "@containers/dashboard";
+import Profile from "@containers/ProfileContainer";
 import Auth from "@containers/auth";
 import SyncServer from "@containers/syncServer";
 
@@ -71,6 +72,14 @@ export default Actions.create(
             component={About}
             {...navbarProps}
             />
+
+        <Scene
+            key="profile"
+            title="Profile"
+            component={Profile}
+            {...navbarProps}
+            />
+
         <Scene
             key="contacts"
             title="Contacts"
@@ -189,7 +198,7 @@ export default Actions.create(
 
             />
 
-        
+
         <Scene
             key="AddEvent"
             title=" Add event"

@@ -54,7 +54,7 @@ export default class SyncServer extends Component {
         if (this.props.isConnected) {
             netWork('from login, so there must be internet :)')
             // NetInfo.removeEventListener(netWork)
-            
+
         } else {
             NetInfo.addEventListener('change', netWork)
 
@@ -115,10 +115,14 @@ export default class SyncServer extends Component {
                 // alert("processing done ")
                 clearTimeout(this.state.timeout)
 
-                setTimeout(() => {
-                    Actions.dashboard({ type: "reset" })
-                }, 500)
+                // Fix re render dashboard when user quickly hit another url after 10 sec timeout
+                if (this.state.isMounted) {
+                    setTimeout(() => {
+                        Actions.dashboard({ type: "reset" })
+                    }, 500)
+                }
             })
+
 
         })
 

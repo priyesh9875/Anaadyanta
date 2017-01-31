@@ -1,49 +1,74 @@
 import React, { Component } from "react";
-import { View, Text, StyleSheet, ScrollView, Image, Dimensions, TouchableHighlight } from "react-native";
+import { View, Text, StyleSheet, ScrollView, Image, Dimensions, TouchableWithoutFeedback } from "react-native";
 import { Actions } from "react-native-router-flux";
-
-import Carousel from 'react-native-looped-carousel';
 
 const { width, height } = Dimensions.get('window');
 import Swiper from 'react-native-swiper';
-
-
-
+import * as Animatable from "react-native-animatable"
 
 export default class CarouselView extends Component {
 
     constructor(props) {
         super(props);
         this.state = {
-            size: { width, height: 230 },
+            size: { width, height: 330 },
+            featuredEvents: []
         };
 
     }
 
+    componentWillReceiveProps(nextProps) {
+        let featuredEvents = []
+        Object.keys(nextProps.allEvents).map(key => {
+            let e = nextProps.allEvents[key]
+            if (e.isFeatured) {
+                featuredEvents.push(e)
+            }
+        })
+
+        this.setState({
+            featuredEvents
+        })
+    }
+
     _onLayoutDidChange = (e) => {
         const layout = e.nativeEvent.layout;
-        this.setState({ size: { width: layout.width, height: 230 } });
+        this.setState({ size: { width: layout.width, height: 330 } });
     }
 
     render() {
         return (
 
 
-            <View onLayout={this._onLayoutDidChange}>
+            <Animatable.View
+                onLayout={this._onLayoutDidChange}
+                style={{ flex: 1, justifyContent: "center", alignSelf: "center" }}
+                animation="bounceInUp"
+                duration={3000}
+                >
                 <Swiper
-                    autoplay
-                    width={this.state.size.width}
+                    width={330}
                     height={this.state.size.height}
-                    showsButtons={true}
-                    loop
+                    style={{ overflow: 'visible', width: 300, }}
                     >
-                    <Image source={require('@images/banner5.jpg')} style={{ width: null, height: this.state.size.height }} />
-                    <Image source={require('@images/banner6.jpg')} style={{ width: null, height: this.state.size.height }} />
-                    <Image source={require('@images/banner2.jpg')} style={{ width: null, height: this.state.size.height }} />
-                    <Image source={require('@images/banner3.jpg')} style={{ width: null, height: this.state.size.height }} />
-                    <Image source={require('@images/banner4.jpg')} style={{ width: null, height: this.state.size.height }} />
+
+                    {
+                        this.state.featuredEvents.map(e => {
+                            return <TouchableWithoutFeedback
+                                key={e.euid}
+                                onPress={() => { Actions.eventDetails({ eventKey: e.euid, title: e.title }) } }
+                                >
+                                <Image
+                                    source={{ uri: e.image }} style={{ width: null, height: this.state.size.height }}
+
+                                    />
+                            </TouchableWithoutFeedback>
+                        })
+                    }
+
+
                 </Swiper>
-            </View>
+            </Animatable.View>
 
         );
     }

@@ -7,6 +7,6 @@ import * as firebase from 'firebase';
     databaseURL: "https://<APP_NAME>.firebaseio.com",
     storageBucket: "<APP_NAME>.appspot.com",
     messagingSenderId: "<SENDER_ID>"
-  }
+}
 export const firebaseApp = firebase.initializeApp(config)
 

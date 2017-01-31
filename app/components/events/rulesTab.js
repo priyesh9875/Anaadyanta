@@ -23,9 +23,9 @@ class RulesTab extends Component {
             <List>
                 {
                     this.props.rules.slice(0, 2).map((val, index) => {
-                        return <View style={{ padding: 10 }} key={index} >
+                        return <ListItem style={{ padding: 10 }} key={index} >
                             <RulesRow rule={val} />
-                        </View>
+                        </ListItem>
                     })
                 }
             </List>
@@ -42,8 +42,11 @@ class RulesRow extends Component {
         let rulesView = null
         let { rule } = this.props
         if (rule.hasSubItem) {
-            let subContent = rule.subContent.splice(0, 2)
+            let subContent = rule.subContent.splice(0, 3)
             rulesView = <List>
+                <Text style={{ color: 'black' }} >
+                    {this.props.rule.name}
+                </Text>
                 {
                     subContent.map((val, index) => {
                         return <ListItem style={{ padding: 10, marginLeft: 0, paddingLeft: 10 }} key={index}>
@@ -53,7 +56,7 @@ class RulesRow extends Component {
                 }
             </List>
         } else {
-            rulesView = <Text style={{color: 'black'}} >
+            rulesView = <Text style={{ color: 'black' }} >
                 {this.props.rule.name}
             </Text>
         }

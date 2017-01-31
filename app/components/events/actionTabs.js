@@ -59,7 +59,7 @@ class ActionTab extends Component {
             addingFav: true
         })
         const uid = this.props.currentUser.uid
-        FCM.unsubscribeFromTopic(`/topics/${this.props.eventDetails.title.replace(/\s+/g, '-').toLowerCase()}`);
+        FCM.unsubscribeFromTopic(`/topics/${this.props.eventDetails.title.replace(/[^a-zA-Z0-9-_.~%]+/g, '-').toLowerCase()}`);
         firebaseApp.database().ref('/users/' + uid + '/favEvents/').orderByValue().equalTo(eventKey).once('value', (snapshot) => {
             if (!snapshot.val()) {
                 this.props.deleteFav(eventKey)
@@ -88,7 +88,7 @@ class ActionTab extends Component {
         const newPostKey = firebaseApp.database().ref('/users/' + uid).child('/favEvents/').push().key
         let updates = {}
         updates['/users/' + uid + '/favEvents/' + newPostKey] = eventKey
-        FCM.subscribeToTopic(`/topics/${this.props.eventDetails.title.replace(/\s+/g, '-').toLowerCase()}`);
+        FCM.subscribeToTopic(`/topics/${this.props.eventDetails.title.replace(/[^a-zA-Z0-9-_.~%]+/g, '-').toLowerCase()}`);
         firebaseApp.database().ref().update(updates).then(() => {
             this.props.markFav(eventKey)
             this.setState({
@@ -112,7 +112,7 @@ class ActionTab extends Component {
             title: `${eventDetails.title} has started`,
             image: eventDetails.image,
             description: `${eventDetails.title} has been started. All the best to all participants`,
-            to: `/topics/${this.props.eventDetails.title.replace(/\s+/g, '-').toLowerCase()}`
+            to: `/topics/${this.props.eventDetails.title.replace(/[^a-zA-Z0-9-_.~%]+/g, '-').toLowerCase()}`
         }
 
         let {currentUser } = this.props
@@ -174,7 +174,7 @@ class ActionTab extends Component {
             title: `${eventDetails.title} has finished`,
             image: eventDetails.image,
             description: `${eventDetails.title} has been concluded. Thankyou all participants for making this event a great success.`,
-            to: `/topics/${this.props.eventDetails.title.replace(/\s+/g, '-').toLowerCase()}`
+            to: `/topics/${this.props.eventDetails.title.replace(/[^a-zA-Z0-9-_.~%]+/g, '-').toLowerCase()}`
         }
 
         eventRef.once('value', (snapshot) => {
@@ -236,6 +236,9 @@ class ActionTab extends Component {
             uid: this.props.currentUser.uid,
             event: eventDetails.title,
             date: moment().unix(),
+            name: this.props.currentUser.name,
+            phone: this.props.currentUser.phone,
+            email: this.props.currentUser.email,
             eventKey
         }
         let x = '/users/' + currentUser.uid + '/registeredEvents/' + profileKey
@@ -252,7 +255,7 @@ class ActionTab extends Component {
                         registering: false
                     })
                 } else {
-                    FCM.subscribeToTopic(`/topics/${this.props.eventDetails.title.replace(/\s+/g, '-').toLowerCase()}`);
+                    FCM.subscribeToTopic(`/topics/${this.props.eventDetails.title.replace(/[^a-zA-Z0-9-_.~%]+/g, '-').toLowerCase()}`);
                     firebaseApp.database().ref().update(updates).then(() => {
                         this.props.register(eventKey)
                         alert(`Successfully registered for ${eventDetails.title}.`)
@@ -370,10 +373,15 @@ class ActionTab extends Component {
         const { eventKey, eventDetails, currentUser } = this.props
         if (eventDetails.isRegistered || eventDetails.isMine) return
 
-        if (!eventDetails.isStarted && (eventDetails.startTime - moment().unix() > 3600)) {
+        // Registeration closes 2 Hrs prior scheduled start time
+        if (!eventDetails.isStarted && (eventDetails.startTime - moment().unix() > 7200)) {
             return <TouchableOpacity
                 onPress={
                     () => {
+                        if (eventDetails.offlineReg) {
+                            alert("This event has require offline registeration.")
+                            return
+                        }
                         this.confirmAction(
                             this.registerForEvent,
                             'Confirm registeration',

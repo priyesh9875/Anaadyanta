@@ -9,22 +9,21 @@ import { Icon } from 'react-native-elements';
 class NavTab extends Component {
 
     render() {
-        return <View style={styles.tabs}>
+        return <View style={[styles.tabs]}>
             <TouchableOpacity style={styles.titleContainer} onPress={this.props.toggleSideMenu}>
                 <Icon name="view-headline" size={30} />
             </TouchableOpacity>
-
-            {this.props.tabs.map((tab, i) => {
-                return (
-                    <TouchableOpacity key={tab} onPress={() => this.props.goToPage(i)} style={styles.tab}>
-                        <Icon
-                            name={tab}
-                            size={30}
-                            color={this.props.activeTab === i ? 'black' : 'red'}
-                            />
-                    </TouchableOpacity>
-                )
-            })}
+            <View style={{
+                flex: 1,
+                justifyContent: "center",
+                paddingLeft: 20
+            }}>
+                <Text style={{
+                    fontSize: 20,
+                    color: "black",
+                    fontWeight: "bold"
+                }}>Anaadyanta 17</Text>
+            </View>
         </View>
     }
 }
@@ -41,11 +40,10 @@ const styles = StyleSheet.create({
     tabs: {
         height: 50,
         flexDirection: 'row',
-        backgroundColor: '#4285f4',
+        backgroundColor: '#0E4EF8',
         elevation: 5
     },
     titleContainer: {
-        flex: 3,
         justifyContent: 'center',
         alignItems: 'flex-start',
         paddingLeft: 10

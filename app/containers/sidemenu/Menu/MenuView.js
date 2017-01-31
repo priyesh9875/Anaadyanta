@@ -6,6 +6,7 @@ import {
   StyleSheet,
   ScrollView,
   TouchableOpacity,
+  TouchableWithoutFeedback,
   ListView,
   InteractionManager,
   Platform,
@@ -14,17 +15,17 @@ import {
 
 import { Actions } from 'react-native-router-flux';
 import Loading from "@components/general/Loading"
-import { Container, Content, List, ListItem, Badge, Icon } from 'native-base';
+import { Container, Content, List, ListItem, Badge, Icon, Thumbnail } from 'native-base';
 import { AppStyles, AppSizes } from '@theme/';
 
 import { Text } from "@components/ui"
 
 const menuList = [
+  { text: "Profile", targetPage: "profile", icon: "ios-people" },
   { text: "Events", targetPage: "events", icon: "ios-aperture" },
   { text: "Feeds", targetPage: "feeds", icon: "ios-pulse" },
   { text: "Locate Us", icon: "ios-navigate" },
   { text: "Sponsors", targetPage: "sponsors", icon: "ios-people" },
-  { text: "Contacts", targetPage: "contacts", icon: "ios-contacts" },
   { text: "About", targetPage: "about", icon: "ios-clipboard" }
 ]
 
@@ -37,7 +38,6 @@ if (Platform.OS == 'ios') {
 
 class Menu extends Component {
   static propTypes = {
-    closeSideMenu: PropTypes.func.isRequired,
     currentUser: PropTypes.shape({
       name: PropTypes.string,
     }),
@@ -56,25 +56,32 @@ class Menu extends Component {
     const { name, role } = this.props.currentUser
     const mainView = <Container>
       <Content>
-        <List>
-          <Image source={require("@images/banner3.jpg")} style={{ height: 200 }}>
-            <View style={{ flex: 1, justifyContent: "flex-end" }}>
-              <Text h3 style={{ padding: 10 }}>
-                {name}
-              </Text>
-            </View>
+        <Image source={require("@images/launch/underwater5.jpg")} style={{  height: 700, width: null }}>
 
-          </Image>
+          <View style={{ height: 150,flexDirection: "row", justifyContent: "center", alignItems: "center" }}>
+            <Thumbnail size={60} source={require("@images/user.png")} />
+
+            <Text h3 style={{ padding: 10, color: 'black' }}>
+              {name}
+            </Text>
+          </View>
+
           {role === 'admin'
             ? <View>
-              <ListItem iconLeft onPress={() => { Actions.makeAnnouncement() } } >
-                <Icon name="ios-mic" style={{ color: '#0A69FE' }} />
-                <Text  style={{ color: "#0A69FE", paddingLeft: 10 }}>Make Announcement</Text>
-              </ListItem>
-              <ListItem iconLeft onPress={() => { Actions.AddCoordinator() } }>
-                <Icon name="ios-people" style={{ color: '#0A69FE' }} />
-                <Text  style={{ color: "#0A69FE", paddingLeft: 10 }}>Add coordinator</Text>
-              </ListItem>
+              <TouchableOpacity
+                style={{  flexDirection: 'row', padding: 5, paddingTop: 10, paddingLeft: 35 }}
+                onPress={() => { Actions.makeAnnouncement() } } >
+                <Icon name="ios-mic" style={{ width: 35, color: 'green' }} />
+                <Text p style={{ flex: 1, color: "green", paddingLeft: 10 }}>Make Announcement</Text>
+              </TouchableOpacity>
+
+              <TouchableOpacity
+                style={{  flexDirection: 'row', padding: 5, paddingTop: 10, paddingLeft: 35 }}
+                onPress={() => { Actions.AddCoordinator() } } >
+                <Icon name="ios-people" style={{ width: 35, color: 'green' }} />
+                <Text p style={{ flex: 1, color: "green", paddingLeft: 10 }}>Add coordinator</Text>
+              </TouchableOpacity>
+
             </View>
             : null
           }
@@ -82,18 +89,26 @@ class Menu extends Component {
           {
             menuList.map((val, index) => {
 
-              return <ListItem iconLeft key={index} onPress={() => {
-                if (val.targetPage) Actions[val.targetPage]()
-                else {
-                  Linking.openURL(mapUrl)
-                }
-              } }>
-                <Icon name={val.icon} style={{ color: '#0A69FE' }} />
-                <Text  style={{ color: "#0A69FE", paddingLeft: 10 }}>{val.text}</Text>
-              </ListItem>
+              return <TouchableOpacity
+                key={index}
+                style={{flexDirection: 'row', padding: 5, paddingTop: 20, paddingLeft: 35}}
+                onPress={() => {
+                  if (val.targetPage) Actions[val.targetPage]()
+                  else {
+                    Linking.openURL(mapUrl)
+                  }
+                } } >
+                <Icon name={val.icon} style={{ width: 35, color: 'black' }} />
+                <Text p style={{  color: "black", paddingLeft: 10 }}>{val.text}</Text>
+              </TouchableOpacity>
+
+
+
             })
           }
-        </List>
+
+        </Image>
+
       </Content>
     </Container>
 

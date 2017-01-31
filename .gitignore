@@ -1,5 +1,6 @@
 # Private files
 android/app/google-services.json
+app/config/firebase.js.bak
 
 # OSX
 #

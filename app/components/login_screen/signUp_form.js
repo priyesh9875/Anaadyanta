@@ -63,7 +63,7 @@ export default class SignUpForm extends Component {
       : null
 
     const signUpForm = this.state.signUpSuccess ?
-      { errorMessage }
+      null
       :
       <View
         style={{
@@ -143,6 +143,7 @@ export default class SignUpForm extends Component {
           <Text onPress={this._handleGoBack.bind(this)} p>Go back</Text>
 
           <Text style={styles.title} h1>Sign Up</Text>
+          {errorMessage}
 
           {signUpForm}
 

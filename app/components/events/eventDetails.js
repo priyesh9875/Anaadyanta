@@ -149,66 +149,35 @@ const styles = StyleSheet.create({
 
 EventDetails.defaultProps = {
     eventDetails: {
-        "category": 3,
-        "coordinators": [{
-            "email": "rxdsrex@gmail.com",
-            "name": "RajNarayan Dutta ",
-            "phone": "88618496646555",
-            "uid": "50OpBWFjWXQmEL85uPT8Se9W1MR2"
-        }, {
-            "email": "priyesh9875@gmail.com",
-            "name": "Priyesh kumarr",
-            "phone": "7795778808",
-            "uid": "CgojMzKnJGcUw8aDHN2eZwZ2EFY2"
-        }],
-        "description": "There will be isometric view of a dis-assembled model as well as assembled model is given in a sheet, the participants  need to crate the part and assembles it and take the draft of it with the help of CATIA or PRO-E",
+        category: 1,
+        "description": "Use many fragments of different pictures and put them all together to form one beautiful photomontage.",
         "endTime": 1488443400,
-        "euid": "-Kb22dWX26wSqEQk7c0i",
-        "id": 0,
-        "image": "http://www.cmw.net.au/images/project/Manufacturing_BluescopeSteel_Web_2.jpg",
-        "isEnded": true,
+        "image": "http://www.planwallpaper.com/static/images/high-definition-wallpaper-3-798x350.jpg?1",
         "isGroup": true,
-        "isStarted": true,
-        "lastUpdated": 1485076812,
-        "length": 2,
         "prizes": [{
-            "amount": 10000,
+            "amount": 40000,
             "position": 1
-        }],
-        "registeration": 1506,
-        "rules": [{
-            "hasSubItem": true,
-            "isHeader": true,
-            "name": "Rules",
-            "subContent": [{
-                "name": "Time limit : 90 minutes"
-            }, {
-                "name": "Number of people: Max 2"
-            }]
         }, {
-            "description": "Judgment is based on the following factors",
-            "hasSubItem": true,
-            "isHeader": true,
-            "name": "Judgement",
-            "subContent": [{
-                "name": "Mass properties and the accuracy of the individual part models."
-            }, {
-                "name": "Distance and angle checking of the assembly."
-            }, {
-                "name": "Exactness of Dimensions."
-            }, {
-                "name": "Constraints given while assembling."
-            }, {
-                "name": "Time taken to finish."
-            }, {
-                "name": "Professional layout and presentation of the assembly drawing on a sheet of paper."
-            }]
+            "amount": 10000,
+            "position": 2
         }],
+        "registeration": 2000,
+        "rules": [
+            {
+                name: "Rules", isHeader: true, hasSubItem: true,
+                subContent: [
+                    { name: "It's a team event. Two member team." },
+                    { name: "All required materials will be provided." },
+                    { name: "Participants are not allowed to use their own materials." },
+                    { name: "Time duration is 3 hours." },
+                    { name: "Specific instructions regarding the event and theme/ topic will be given on the spot." },
+                ]
+            },
+        ],
+
         "startTime": 1488436200,
-        "title": "Draft it out",
-        "updatedBy": "Priyesh kumar",
+        "title": "Collage",
         "venue": "Back parking",
-        isMine: true
         // },
         // "-Kb23UNaFRH0Y2oyu6aA" : {
         //   "category" : 1,

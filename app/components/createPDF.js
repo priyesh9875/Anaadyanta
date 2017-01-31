@@ -295,7 +295,7 @@ export default class CreatePDF extends Component {
         return (
             <TouchableOpacity onPress={this.convert}>
                 <Icon name="file-download" size={30} color={IconColor} />
-                <Text style={{ fontSize: 15 }}>{this.state.creating ? "Saving" : "Save"}</Text>
+                <Text style={{ fontSize: 15 }}>{this.state.creating ? "Saving" : "PDF"}</Text>
             </TouchableOpacity>
         );
     }

@@ -54,6 +54,8 @@ const IconColor = '#4285f4'
 import { SocialIcon } from 'react-native-elements'
 import { web, email } from "react-native-communications"
 import Hr from "@libs/Hr"
+import Background from "@components/ui/background"
+
 class About extends Component {
 
     constructor(props) {
@@ -87,76 +89,81 @@ class About extends Component {
             subject: "Anaadyanta 2017" //  for email
         };
 
-        return <Container style={{ backgroundColor: "white" }}>
-            <Content style={{ padding: 15 }}>
-                <View style={{ paddingBottom: 20 }}>
-                    <Text h1 style={{ textAlign: "center", fontWeight: "normal", color: "black" }}>Anaadyanta</Text>
+        return <View style={{ flex: 1, paddingBottom: 20 }}>
+                <Background imgSource={require("@images/launch/underwater2.jpeg")} />
 
-                    <View style={{ flexDirection: 'row', justifyContent: "space-around", padding: 10 }}>
-                        <SocialIcon onPress={() => { web("https://www.fb.com/anaadyantanmit/") } } type='facebook' size={30} />
-                        <SocialIcon onPress={() => { web("https://github.com/priyesh9875") } } type='github' size={30} />
-                        <SocialIcon onPress={() => { web("http://anaadyanta.org/") } } type='twitch' size={30} />
+                <Container >
+                    <Content >
 
-                        <TouchableOpacity
-                            onPress={() => {
-                                Share.open(shareOptions);
-                            } }>
-                            <Icon name="share" size={25} reverse color={IconColor} />
-                        </TouchableOpacity>
-                    </View>
+                        <View style={{ paddingBottom: 20 }}>
+                            <Text h1 style={{ textAlign: "center", fontWeight: "normal", color: "black" }}>Anaadyanta</Text>
 
-                    <Text style={{ color: 'black', textAlign: "center" }}>Anaadyanta, the annual techno-cultural festival, a 3 day extravaganza, started in the year 2003 and over the years has been built to a platform which now hosts a national level festival. With over 80 colleges participating since the year 2013, Anaadyanta aims to grow bigger and better with more events, bigger line ups and interesting quirks with every passing year. We aim to bring a smile to your face :)</Text>
-                </View>
-                <Hr lineStyle={{backgroundColor: "gray", marginBottom: 10}}/>
-                <View style={{ flex: 1, alignItems: "center" }}>
-                    <Text h1 style={{ fontWeight: "normal", color: "black" }}>Contact</Text>
+                            <View style={{ flexDirection: 'row', justifyContent: "space-around", padding: 10 }}>
+                                <SocialIcon onPress={() => { web("https://www.fb.com/anaadyantanmit/") } } type='facebook' size={30} />
+                                <SocialIcon onPress={() => { web("https://github.com/priyesh9875") } } type='github' size={30} />
+                                <SocialIcon onPress={() => { web("http://anaadyanta.org/") } } type='twitch' size={30} />
 
-                    <Text style={{ color: "black" }}>Nitte Meenakshi Institute of Technology</Text>
-                    <Text style={{ color: "gray" }}>P.O. Box 6429, Yelahanka, Bangalore 560064</Text>
-                    <Text style={{ color: "gray" }}>Ph: 080-22167800</Text>
-                    <Text style={{ color: "gray" }}>Email: principal@nmit.ac.in</Text>
-                </View>
-                <View style={{ height: 20 }}></View>
-                <View >
+                                <TouchableOpacity
+                                    onPress={() => {
+                                        Share.open(shareOptions);
+                                    } }>
+                                    <Icon name="share" size={25} reverse color={IconColor} />
+                                </TouchableOpacity>
+                            </View>
 
-                    <Text h1 style={{ textAlign: "center", fontWeight: "normal", color: "black" }}>Contributors</Text>
+                            <Text style={{ color: 'black', textAlign: "center" }}>Anaadyanta, the annual techno-cultural festival, a 3 day extravaganza, started in the year 2003 and over the years has been built to a platform which now hosts a national level festival. With over 80 colleges participating since the year 2013, Anaadyanta aims to grow bigger and better with more events, bigger line ups and interesting quirks with every passing year. We aim to bring a smile to your face :)</Text>
+                        </View>
+                        <Hr lineStyle={{ backgroundColor: "gray", marginBottom: 10 }} />
+                        <View style={{ flex: 1, alignItems: "center" }}>
+                            <Text h1 style={{ fontWeight: "normal", color: "black" }}>Contact</Text>
 
-                    <List
-                        dataArray={contributors}
-                        renderRow={(row) => {
-                            return <ListItem>
+                            <Text style={{ color: "black" }}>Nitte Meenakshi Institute of Technology</Text>
+                            <Text style={{ color: "gray" }}>P.O. Box 6429, Yelahanka, Bangalore 560064</Text>
+                            <Text style={{ color: "gray" }}>Ph: 080-22167800</Text>
+                            <Text style={{ color: "gray" }}>Email: principal@nmit.ac.in</Text>
+                        </View>
+                        <View style={{ height: 20 }}></View>
+                        <View >
 
-                                <View style={{ flex: 1, flexDirection: "row" }}>
-                                    <View style={{ flex: 1 }}>
-                                        <Text style={{ color: "black" }}>{row.name}</Text>
-                                        <Text style={{ fontSize: 12, color: "gray" }}>{row.type}</Text>
-                                    </View>
-                                    <View style={{ flexDirection: "row", justifyContent: "flex-end" }}>
-                                        <TouchableOpacity onPress={() => { email(row.email, null, null, "Anaadyanta 17", null) } } style={{ paddingLeft: 30 }}  >
-                                            <Icon name="email" size={25} color="red" />
-                                        </TouchableOpacity>
-                                        <TouchableOpacity onPress={() => { web(row.linkedin) } } style={{ paddingLeft: 30 }}  >
-                                            <Icon name="linkedin-square" type="font-awesome" size={25} color="blue" />
-                                        </TouchableOpacity>
-                                        <TouchableOpacity onPress={() => { web(row.github) } } style={{ paddingLeft: 30 }}  >
-                                            <Icon name="github-square" type="font-awesome" size={25} color="black" />
-                                        </TouchableOpacity>
-                                    </View>
-                                </View>
-                            </ListItem>
-                        } }
+                            <Text h1 style={{ textAlign: "center", fontWeight: "normal", color: "black" }}>Contributors</Text>
 
-                        />
-                </View>
+                            <List
+                                dataArray={contributors}
+                                renderRow={(row) => {
+                                    return <ListItem>
 
-                <Text h1
-                    style={{ textAlign: "center", fontWeight: "normal", color: "black" }}
-                    onPress={() => { web("https://github.com/priyesh9875/Anaadyanta/blob/master/THIRD_PARTY_LICENSE.md") } }>
-                    Third party license
+                                        <View style={{ flex: 1, flexDirection: "row" }}>
+                                            <View style={{ flex: 1 }}>
+                                                <Text style={{ color: "black" }}>{row.name}</Text>
+                                                <Text style={{ fontSize: 12, color: "gray" }}>{row.type}</Text>
+                                            </View>
+                                            <View style={{ flexDirection: "row", justifyContent: "flex-end" }}>
+                                                <TouchableOpacity onPress={() => { email(row.email, null, null, "Anaadyanta 17", null) } } style={{ paddingLeft: 30 }}  >
+                                                    <Icon name="email" size={25} color="red" />
+                                                </TouchableOpacity>
+                                                <TouchableOpacity onPress={() => { web(row.linkedin) } } style={{ paddingLeft: 30 }}  >
+                                                    <Icon name="linkedin-square" type="font-awesome" size={25} color="blue" />
+                                                </TouchableOpacity>
+                                                <TouchableOpacity onPress={() => { web(row.github) } } style={{ paddingLeft: 30 }}  >
+                                                    <Icon name="github-square" type="font-awesome" size={25} color="black" />
+                                                </TouchableOpacity>
+                                            </View>
+                                        </View>
+                                    </ListItem>
+                                } }
+
+                                />
+                        </View>
+
+                        <Text h1
+                            style={{ textAlign: "center", fontWeight: "normal", color: "black" }}
+                            onPress={() => { web("https://github.com/priyesh9875/Anaadyanta/blob/master/THIRD_PARTY_LICENSE.md") } }>
+                            Third party license
                 </Text>
 
-            </Content>
-        </Container >
+                    </Content>
+                </Container >
+            </View>
     }
 
     render() {

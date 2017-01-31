@@ -55,6 +55,8 @@ class allEventsList extends Component {
             showsButtons={true}
             loadMinimal
             loadMinimalSize={2}
+            nextButton={<Icon name="keyboard-arrow-right" size={50} color="white" />}
+            prevButton={<Icon name="keyboard-arrow-left" size={50} color="white" />}
             >
             {
                 Object.keys(allEvents).map((key) => {
@@ -103,7 +105,7 @@ class allEventsList extends Component {
 
 const styles = StyleSheet.create({
     wrapper: {
-        width, 
+        width,
         height: height - AppSizes.navbarHeight
     },
 
@@ -112,7 +114,6 @@ const styles = StyleSheet.create({
         textAlign: "center"
     },
     eventInfoBox: {
-        padding: 10,
         justifyContent: "space-around",
         flexDirection: 'row',
     },

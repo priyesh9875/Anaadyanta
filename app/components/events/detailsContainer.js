@@ -84,7 +84,7 @@ class DetailsContainer extends Component {
             <View tabLabel="Coordinators" >
                 <CoordinatorTab coordinators={this.props.eventDetails.coordinators} />
             </View>
-            <View tabLabel="Rules">
+            <View tabLabel="Details">
                 <RulesTab rules={this.props.eventDetails.rules} />
             </View>
         </ScrollableTabView>
