@@ -1,14 +1,7 @@
 # Anaadyanta
 App for Anaadyanta 2017
 
-## Tested only in android
-#### Screens
-![](https://github.com/priyesh9875/Anaadyanta/blob/master/Screen/Screenshot_1485108411.png )
-![](https://github.com/priyesh9875/Anaadyanta/blob/master/Screen/Screenshot_1485108422.png )
-![](https://github.com/priyesh9875/Anaadyanta/blob/master/Screen/Screenshot_1485108635.png )
-![](https://github.com/priyesh9875/Anaadyanta/blob/master/Screen/Screenshot_1485108651.png )
-
-
+## Tested on Android 5, 6, 7 real and emulator. iOS 10.2 simulator
 ## Run project
 ```
 git clone https://github.com/priyesh9875/Anaadyanta.git
