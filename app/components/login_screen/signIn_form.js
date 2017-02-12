@@ -118,8 +118,14 @@ class SignInForm extends Component {
           {
             this.state.hideForm
               ? this.state.emailVerified
-                ? < Text style={styles.successMsg} >Success, please wait a bit</Text>
-                : < Text style={styles.successMsg} >You need to verify your account. <Text p style={{ color: "blue" }} onPress={this.sendEmailVerificationLink}>Click here</Text> to send verification link again</Text>
+                ? < Text style={[styles.successMsg, { color: "black" }]} >Success, please wait a bit</Text>
+                : <View style={styles.successMsg}>
+                  < Text style={{ color: "black" }}>
+                    You need to verify your account.</Text>
+                  <TouchableOpacity onPress={this.sendEmailVerificationLink}>
+                    <Text style={{ color: "blue" }} >Click here to send verification link again</Text>
+                  </TouchableOpacity>
+                </View>
               : form
           }
         </Content>
@@ -130,13 +136,12 @@ class SignInForm extends Component {
 
   sendEmailVerificationLink() {
     this.state.user.sendEmailVerification()
-    .then( ()=> {
-    alert("Email sent. Check your inbox/spam")
+      .then(() => {
+        alert("Email sent. Check your inbox/spam")
 
-    }).catch( err => {
-    alert("Error in sending verification email. Please try again later or contact appteam17@anaadyanta.org")
-      
-    })
+      }).catch(err => {
+        alert("Error in sending verification email. Please try again later or contact appteam17@anaadyanta.org")
+      })
   }
 
   handleForgotPassword() {
@@ -207,14 +212,13 @@ const styles = StyleSheet.create({
   },
   successMsg: {
     marginBottom: 10,
-    color: "black",
-    marginLeft: 10, 
-    marginRight: 10, 
-    borderRadius: 10, 
-    borderWidth: 1, 
-    backgroundColor: "white", 
-    padding: 10, 
-    textAlign: "center"
+    marginLeft: 10,
+    marginRight: 10,
+    borderRadius: 10,
+    borderWidth: 1,
+    backgroundColor: "white",
+    padding: 10,
+    alignItems: "center",
   },
   inputContainer: {
     backgroundColor: 'rgba(255,255,255, 0.5)',

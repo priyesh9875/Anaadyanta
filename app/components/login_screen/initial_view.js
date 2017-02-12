@@ -2,7 +2,8 @@ import React, { Component } from 'react'
 import {
   View,
   TouchableOpacity,
-  StyleSheet
+  StyleSheet,
+  Image
 } from 'react-native'
 import { getColor } from '@config/getColor'
 import { APP_NAME } from "@config/constants"
@@ -29,7 +30,15 @@ export default class InitialView extends Component {
         delay={this.props.animDelay}
         onAnimationEnd={this._handleAnimEnd.bind(this)}>
 
-        <Text style={styles.title} h1>{APP_NAME}</Text>
+          <Animatable.Image
+            animation="bounceInDown"
+            duration={3000}
+            source={require("@images/logo.png")}
+            style={{ height: 150, width: 150, marginTop: 20, paddingBottom: 10, alignSelf: "center", }} />
+
+          <Image source={require("@images/l.png")} style={{ height: 35, width: 295, alignSelf: "center", paddingBottom: 10 }} />
+          <Image source={require("@images/date.png")} style={{ height: 20, width: 205, marginLeft: 50, alignSelf: "center", marginTop: 20, marginBottom: 20 }} />
+
         <View style={styles.btnBox}>
           <TouchableOpacity onPress={this._handleSignInPress.bind(this)}>
             <View style={styles.btnContainer}>
