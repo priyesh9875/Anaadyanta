@@ -35,7 +35,9 @@ class SignInForm extends Component {
       email: '',
       password: '',
       hideForm: false,
-      isMounted: true
+      isMounted: true,
+      emailVerified: true,
+      user: null
     }
   }
 
@@ -44,6 +46,7 @@ class SignInForm extends Component {
       isMounted: true
     })
     BackAndroid.addEventListener('backBtnPressed', this.handleBackBtnPress)
+    this.sendEmailVerificationLink = this.sendEmailVerificationLink.bind(this)
   }
 
   componentDidUpdate() {
@@ -57,10 +60,7 @@ class SignInForm extends Component {
   render() {
     const animation = this.state.init ? 'bounceInUp' : 'bounceOutDown'
     const errorMessage = this.state.errMsg ? <Text style={styles.errMsg}>{this.state.errMsg}</Text> : null
-    const form = <View style={{alignItems: "center", }}>
-      <Text p onPress={this.handleBackBtnPress} p>Go back</Text>
-      <Text style={styles.title} h1>Sign In</Text>
-      {errorMessage}
+    const form = <View style={{ alignItems: "center", }}>
       <View style={[styles.inputContainer, { marginBottom: 10 }]}>
         <TextInput
           style={styles.inputField}
@@ -107,18 +107,36 @@ class SignInForm extends Component {
         <Content
           contentContainerStyle={{
             justifyContent: "flex-end",
-            alignItems: "center", 
+            alignItems: "center",
             flex: 1
           }}>
+          <Text p onPress={this.handleBackBtnPress} style={{ textAlign: 'center' }}>Go back</Text>
+
+          <Text style={styles.title} h1>Sign In</Text>
+          {errorMessage}
+
           {
             this.state.hideForm
-              ? <Text style={styles.successMsg} h3>Success, please wait a bit</Text>
+              ? this.state.emailVerified
+                ? < Text style={styles.successMsg} >Success, please wait a bit</Text>
+                : < Text style={styles.successMsg} >You need to verify your account. <Text p style={{ color: "blue" }} onPress={this.sendEmailVerificationLink}>Click here</Text> to send verification link again</Text>
               : form
           }
         </Content>
       </Animatable.View >
 
     )
+  }
+
+  sendEmailVerificationLink() {
+    this.state.user.sendEmailVerification()
+    .then( ()=> {
+    alert("Email sent. Check your inbox/spam")
+
+    }).catch( err => {
+    alert("Error in sending verification email. Please try again later or contact appteam17@anaadyanta.org")
+      
+    })
   }
 
   handleForgotPassword() {
@@ -128,10 +146,23 @@ class SignInForm extends Component {
   _handleSignIn() {
     this.setState({ errMsg: 'Signing In...' })
     firebaseApp.auth().signInWithEmailAndPassword(this.state.email, this.state.password)
-      .then(() => {
-        if (this.state.isMounted) {
-          this.setState({ hideForm: true, errMsg: "" })
-          this.props.goToHomeScreen()
+      .then((user) => {
+        if (user) {
+          if (user.emailVerified) {
+            if (this.state.isMounted) {
+              this.setState({ hideForm: true, errMsg: "" })
+              this.props.goToHomeScreen()
+            }
+          } else {
+            this.setState({
+              hideForm: true,
+              emailVerified: false,
+              user,
+              errMsg: ""
+            })
+          }
+        } else {
+          alert("An unknow error occured. Please try again later")
         }
       })
       .catch((error) => {
@@ -172,10 +203,17 @@ const styles = StyleSheet.create({
   errMsg: {
     marginBottom: 20,
     textAlign: "center"
-    
+
   },
   successMsg: {
     marginBottom: 10,
+    color: "black",
+    marginLeft: 10, 
+    marginRight: 10, 
+    borderRadius: 10, 
+    borderWidth: 1, 
+    backgroundColor: "white", 
+    padding: 10, 
     textAlign: "center"
   },
   inputContainer: {

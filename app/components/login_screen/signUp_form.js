@@ -31,6 +31,7 @@ export default class SignUpForm extends Component {
     this.state = {
       init: true,
       errMsg: null,
+      successMessage: null,
       signUpSuccess: false,
       displayName: '',
       email: '',
@@ -60,6 +61,9 @@ export default class SignUpForm extends Component {
 
     const errorMessage = this.state.errMsg ?
       <Text style={styles.errMsg}>{this.state.errMsg}</Text>
+      : null
+    const successMessage = this.state.successMessage ?
+      <Text style={styles.successMsg}>{this.state.successMessage}</Text>
       : null
 
     const signUpForm = this.state.signUpSuccess ?
@@ -144,6 +148,7 @@ export default class SignUpForm extends Component {
 
           <Text style={styles.title} h1>Sign Up</Text>
           {errorMessage}
+          {successMessage}
 
           {signUpForm}
 
@@ -179,12 +184,13 @@ export default class SignUpForm extends Component {
               phone,
             })
 
-            if (this.state.isMounted) this.setState({ errMsg: 'Thank you for signing up, wait for a bit to let us sign in into your account.', signUpSuccess: true })
-            setTimeout(() => {
-              if (firebaseApp.auth().currentUser) {
-                this.props.goToHomeScreen()
-              }
-            }, 1000)
+            firebaseApp.auth().currentUser.sendEmailVerification()
+              .then(() => {
+                if (this.state.isMounted) this.setState({ errMsg: null, successMessage: 'Thank you for signing up. Please check you email for confirmation link.', signUpSuccess: true })
+              }).catch(err => {
+                alert("Error in signing up: ERROR_EMAIL_VERIFY")
+              })
+
           })
           .catch((error) => {
             if (this.state.isMounted) this.setState({ errMsg: error.errorMessage })
@@ -274,5 +280,16 @@ const styles = StyleSheet.create({
     fontSize: 15,
     color: getColor(),
     fontWeight: "bold"
-  }
+  },
+  successMsg: {
+    marginBottom: 10,
+    color: "black",
+    marginLeft: 10, 
+    marginRight: 10, 
+    borderRadius: 10, 
+    borderWidth: 1, 
+    backgroundColor: "white", 
+    padding: 10, 
+    textAlign: "center"
+  },
 })
