@@ -165,9 +165,10 @@ class LoginScreen extends Component {
           const role = snapshot.val().role
           const phone = snapshot.val().phone
           const coordinatingEvents = snapshot.val().coordinatingEvents
+          const college = snapshot.val().college || "World"
           listener()
-         this.props.actions.login(email, uid, name, role, phone, coordinatingEvents)
-         Actions.syncServer({ type: "reset", isConnected: true })
+          this.props.actions.login(email, uid, name, role, phone, coordinatingEvents, college)
+          Actions.syncServer({ type: "reset", isConnected: true })
         }, (err) => {
           listener()
           alert("Error in fetching account details. Check you internet connection and try again later")

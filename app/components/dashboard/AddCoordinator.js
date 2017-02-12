@@ -144,7 +144,6 @@ class AddCoordinator extends Component {
         }
         let eventKey = `/events/${this.state.currentEvent.euid}/coordinators/`
         let profileKey = `/users/${currentCoordinator.uid}/events/coordinatingEvents/`
-        alert(profileKey)
         let pushKey = firebaseApp.database().ref(profileKey).push().key
         let updatedCoordinators = this.state.currentEvent.coordinators
         if (!currentEvent.coordinators) {

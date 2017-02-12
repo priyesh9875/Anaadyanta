@@ -63,10 +63,10 @@ class HomeView extends Component {
                         style={{ height: 150, width: 150, paddingTop: 20, paddingBottom: 10, alignSelf: "center", transform: [{ rotate: "35 deg" }] }} />
 
 
-                    <Image source={require("@images/l.png")} style={{ opacity: 0.2, height: 40, width: 345, marginLeft: 50 }} />
-                    <Image source={require("@images/date.png")} style={{ height: 20, width: 245, marginLeft: 50 }} />
+                    <Image source={require("@images/l.png")} style={{ height: 35 }} />
+                    <Image source={require("@images/date.png")} style={{ height: 15, width: 150 }} />
                     <Animatable.Text animation="bounceInUp"
-                        style={{ fontSize: 20, color: "black", fontWeight: "bold", paddingBottom: 30 }}
+                        style={{ fontSize: 20, color: "white", fontWeight: "bold", paddingBottom: 30, paddingTop: 30 }}
                         delay={1000}
                         duration={3000}
                         >DIVE! FEEL & COME ALIVE</Animatable.Text>
@@ -78,9 +78,9 @@ class HomeView extends Component {
                         flexDirection: "row"
                     }}
                     >
-                    <TabText text="Events" name="grid" type="simple-line-icon" size={30} color="white" onPress={() => { Actions.events() } } />
+                    <TabText text="Events" name="grid" type="simple-line-icon"  color="white" onPress={() => { Actions.events() } } />
 
-                    <TabText text="Feeds" name="feed" type="simple-line-icon" size={30} color="white" onPress={() => { Actions.feeds() } } />
+                    <TabText text="Feeds" name="feed" type="simple-line-icon"  color="white" onPress={() => { Actions.feeds() } } />
 
                 </View>
                 <View
@@ -90,9 +90,9 @@ class HomeView extends Component {
                     }}
                     >
 
-                    <TabText text="Sponsors" name="people" type="simple-line-icon" size={30} color="white" onPress={() => { Actions.sponsors() } } />
+                    <TabText text="Sponsors" name="people" type="simple-line-icon"  color="white" onPress={() => { Actions.sponsors() } } />
 
-                    <TabText text="Find us" name="location-pin" type="simple-line-icon" size={30} color="white" onPress={() => { Actions.locateUs() } } />
+                    <TabText text="Find us" name="location-pin" type="simple-line-icon"  color="white" onPress={() => { Actions.locateUs() } } />
 
                 </View>
                 <CarouselView allEvents={this.props.allEvents} />
@@ -113,7 +113,7 @@ class TabText extends Component {
         return (
             <TouchableOpacity style={{ flex: 1, alignItems: "center", padding: 10, backgroundColor: "rgba(225, 0, 0, 0.2)" }} onPress={this.props.onPress}>
                 <Icon name={this.props.name} type={this.props.type} size={this.props.size} color={this.props.color} />
-                <Text style={{ fontSize: 25, paddingTop: 5 }}>{this.props.text}</Text>
+                <Text style={{ fontSize: 20, paddingTop: 5 }}>{this.props.text}</Text>
             </TouchableOpacity>
         )
     }
@@ -121,7 +121,7 @@ class TabText extends Component {
 TabText.defaultProps = {
     name: "feed",
     type: "simple-line-icon",
-    size: 30,
+    size: 25,
     text: "Text",
     color: "white",
     onPress: function () { }

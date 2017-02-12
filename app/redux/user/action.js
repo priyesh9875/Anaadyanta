@@ -11,7 +11,7 @@ export function updateProfile(name, phone) {
     }
 }
 
-export function login(email, uid, name, role, phone, coordinatingEvents) {
+export function login(email, uid, name, role, phone, coordinatingEvents, college) {
     return {
         type: LOGIN,
         data: {
@@ -20,7 +20,8 @@ export function login(email, uid, name, role, phone, coordinatingEvents) {
             role,
             uid,
             phone,
-            coordinatingEvents
+            coordinatingEvents,
+            college
         }
     }
 }

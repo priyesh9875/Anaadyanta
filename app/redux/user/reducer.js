@@ -17,7 +17,7 @@ export default function (state = initialState, action = {}) {
     switch (action.type) {
 
         case LOGIN:
-            var {email, uid, name, role, phone, coordinatingEvents} = action.data;
+            var {email, uid, name, role, phone, coordinatingEvents, college} = action.data;
             var user = {
                 email,
                 name,
@@ -25,6 +25,7 @@ export default function (state = initialState, action = {}) {
                 role,
                 phone,
                 coordinatingEvents,
+                college,
                 isLoggedIn: true
             }
             return {

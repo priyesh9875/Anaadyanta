@@ -34,12 +34,12 @@ class AboutTab extends Component {
                         : null
                 }
 
-                <Card style={{ padding: 10 }}>
+                <Card style={{ padding: 5 }}>
                     <View style={{ flex: 1, flexDirection: "row" }}>
                         <View style={{ flex: 1 }} >
 
                             <IconText text={eventDetails.venue || "Main Ground"} name="place" textStyle={{ fontSize: 15, color: 'black' }} size={25} />
-                            <IconText text={"Reg fees: " + eventDetails.registration} name="money" type="font-awesome" color="green" textStyle={{ fontSize: 15, color: 'black' }} size={20} />
+                            <IconText text={"Reg fees: " + (eventDetails.registration ? eventDetails.registration : "FREE")} name="money" type="font-awesome" color="green" textStyle={{ fontSize: 15, color: 'black' }} size={20} />
                             {
                                 eventDetails.prizes.map(prize => {
                                     return <IconText key={prize.position} text={`Prize ${prize.position}: ${prize.amount}`} name="trophy" type="font-awesome" color="orange" textStyle={{ fontSize: 15, color: 'black' }} size={25} />
@@ -49,7 +49,6 @@ class AboutTab extends Component {
                         <View style={{ flex: 1 }} >
                             <IconText text={moment.unix(eventDetails.startTime).format("DD MMM YY") || "1 Jan 17"} name="date-range" textStyle={{ fontSize: 15, color: 'black' }} size={25} />
                             <IconText text={moment.unix(eventDetails.startTime).format("hh:mm a") || "9: 00 PM"} name="schedule" color="black" textStyle={{ fontSize: 15, color: 'black' }} size={25} />
-                            <IconText text={moment.unix(eventDetails.endTime).format("hh:mm a") || "9: 00 PM"} name="schedule" color="black" textStyle={{ fontSize: 15, color: 'black' }} size={25} />
 
                             {
                                 !eventDetails.isGroup

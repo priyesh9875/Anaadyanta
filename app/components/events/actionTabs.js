@@ -229,16 +229,18 @@ class ActionTab extends Component {
             registering: true
         })
         let {currentUser} = this.props
-        const registerKey = firebaseApp.database().ref('/registeration/').push().key
+        const registerKey = firebaseApp.database().ref('/registration/').push().key
         const profileKey = firebaseApp.database().ref('/users/' + this.props.currentUser.uid + '/events/registeredEvents/').push().key
         let updates = {}
-        updates['/registeration/' + registerKey] = {
+        updates['/registration/' + registerKey] = {
             uid: this.props.currentUser.uid,
             event: eventDetails.title,
             date: moment().unix(),
             name: this.props.currentUser.name,
             phone: this.props.currentUser.phone,
             email: this.props.currentUser.email,
+            college: this.props.currentUser.college || "World",
+            agent: "app",
             eventKey
         }
         let x = '/users/' + currentUser.uid + '/events/registeredEvents/' + profileKey

@@ -107,7 +107,6 @@ export default class SyncServer extends Component {
         let favEventsSnap = this.state.userData.favEvents
         let registeredEventsSnap = this.state.userData.registeredEvents
         let coordinatingSnap = this.state.userData.coordinatingEvents
-
         let allEvents = this.state.eventsData
         let favEvents = {}
         let registeredEvents = {}

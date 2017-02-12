@@ -37,6 +37,7 @@ export default class SignUpForm extends Component {
       email: '',
       password: '',
       phone: '',
+      college: '',
       isMounted: true
     }
   }
@@ -121,6 +122,17 @@ export default class SignUpForm extends Component {
             placeholderTextColor='rgba(0,0,0,.6)'
             />
         </View>
+        <View style={[styles.inputContainer, { marginBottom: 10 }]}>
+          <TextInput
+            style={styles.inputField}
+            value={this.state.college}
+            onChangeText={(text) => this.setState({ college: text })}
+            autoCorrect={false}
+            underlineColorAndroid='transparent'
+            placeholder='College'
+            placeholderTextColor='rgba(0,0,0,.6)'
+            />
+        </View>
 
 
 
@@ -158,11 +170,28 @@ export default class SignUpForm extends Component {
   }
 
   _handleSignUp() {
-
-    if (!this.state.displayName || !this.state.email || !this.state.password || !this.state.phone) {
-      this.setState({ errMsg: 'Please fill out the form correctly' })
+    if (! /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/.test(this.state.email)) {
+      this.setState({ errMsg: 'Bad email address' })
       return
     }
+    if (!this.state.displayName) {
+      this.setState({ errMsg: 'Name required' })
+      return
+    }
+    if (this.state.phone.length != 10) {
+      this.setState({ errMsg: 'Phone number required exact 10 digits' })
+      return
+    }
+    if (!this.state.password || this.state.password.length < 6) {
+      this.setState({ errMsg: 'Password required. Min length: 6' })
+      return
+    }
+
+    if (!this.state.college) {
+      this.setState({ errMsg: 'College name required. You can enter your organizational name also' })
+      return
+    }
+
 
     this.setState({ errMsg: 'Signing Up...' })
     firebaseApp.auth().createUserWithEmailAndPassword(this.state.email, this.state.password)
@@ -176,12 +205,14 @@ export default class SignUpForm extends Component {
             const email = firebaseApp.auth().currentUser.email
             const role = 'user'
             const phone = this.state.phone
+            const college = this.state.college
             firebaseApp.database().ref('users/' + uid).set({
               name,
               email,
               uid,
               role,
               phone,
+              college
             })
 
             firebaseApp.auth().currentUser.sendEmailVerification()
@@ -284,12 +315,12 @@ const styles = StyleSheet.create({
   successMsg: {
     marginBottom: 10,
     color: "black",
-    marginLeft: 10, 
-    marginRight: 10, 
-    borderRadius: 10, 
-    borderWidth: 1, 
-    backgroundColor: "white", 
-    padding: 10, 
+    marginLeft: 10,
+    marginRight: 10,
+    borderRadius: 10,
+    borderWidth: 1,
+    backgroundColor: "white",
+    padding: 10,
     textAlign: "center"
   },
 })
