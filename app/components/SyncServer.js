@@ -21,81 +21,86 @@ export default class SyncServer extends Component {
     }
 
     componentDidMount() {
+
+        if (!this.props.currentUser || !this.props.currentUser.isLoggedIn) {
+            Actions.login({ type: 'reset' })
+        }
+
         this.setState({
             updating: true,
             isMounted: true,
-            message: "Default",
             userData: null,
             eventsData: null
         })
         this.updateData = this.updateData.bind(this);
 
-        this.fetchEvents()
+        // Testing internet connection
+        fetch("https://httpbin.org/ip")
+            .then(response => response.json())
+            .then(responseJson => {
+                // Internet is available, set timeout to suspend sync after 10 seconds
+                this.setState({
+                    timeout: setTimeout(() => {
+                        alert("Seems that your are on slow network. Please try again when network is good")
+                        this.setState({
+                            isMounted: false
+                        }, () => {
+                            Actions.dashboard({ type: "reset" })
+                        })
+                    }, 10000)
+                }, () => {
+                    // Update database
+                    this.fetchEvents()
+                })
+            }).catch(err => {
+                // No internet, skip sync
+                Actions.dashboard({ type: "reset" })
+            })
 
-        // const netWork = (networkType) => {
-        //     NetInfo.removeEventListener(netWork)
-        //     if (networkType) {
-        //         this.setState({
-        //             timeout: setTimeout(() => {
-        //                 alert("Seems that your are on slow network. App will continue syncing with server in background")
-        //                 this.setState({
-        //                     isMounted: false
-        //                 }, () => {
-        //                     Actions.dashboard({ type: "reset" })
-        //                 })
-        //             }, 10000)
-        //         })
-        //         this.fetchEvents()
-        //     } else {
-        //         alert("No internet. Some functions of the ap may fail. Connect to internet and restart the app")
-        //         Actions.dashboard({ type: "reset" })
-        //     }
-        // }
-        // if (this.props.isConnected) {
-        //     netWork('from login, so there must be internet :)')
-        //     NetInfo.removeEventListener(netWork)
-        // } else {
-        //     if (Platform.OS == "android") {
-        //         NetInfo.fetch().then((status) => {
-        //             netWork(status)
-        //         })
-        //     } else {
-        //         /// IOS
-        //         NetInfo.addEventListener('change', netWork)
-        //     }
-        // }
     }
 
     fetchEvents() {
-        if (!this.props.currentUser || !this.props.currentUser.isLoggedIn) {
-            Actions.login({ type: 'reset' })
-        }
+
         const uid = this.props.currentUser.uid;
+
+        // Fetch user events data
         fetch(urlBuilder('users/' + uid + '/events')).then((response) => response.json())
             .then((responseJson) => {
                 this.setState({
                     userData: responseJson || {}
                 }, () => {
+                    // Try updating database
                     this.updateData()
-
                 })
+            }).catch((err) => {
+                // No internet, or some errors. Skip sync
+                // alert("1===" + JSON.stringify(err))
+                clearTimeout(this.state.timeout)
+                Actions.dashboard({ type: "reset" })
             })
 
+        // Fetch all events data
         fetch(urlBuilder('events'))
             .then((response) => response.json())
             .then((responseJson) => {
                 this.setState({
                     eventsData: responseJson || {}
                 }, () => {
+                    // Try updating database
                     this.updateData()
                 })
+            }).catch((err) => {
+                // No internet, or some errors. Skip sync                
+                // alert("2===" + JSON.stringify(err))
+                clearTimeout(this.state.timeout)
+                Actions.dashboard({ type: "reset" })
             })
 
     }
 
     updateData() {
+        // Update only when both data are available
         if (!this.state.userData || !this.state.eventsData) {
-            alert("waiting")
             return
         }
 
@@ -108,6 +113,7 @@ export default class SyncServer extends Component {
         let registeredEvents = {}
         let coordinatingEvents = {}
 
+        // Updating favourite/Following events
         if (favEventsSnap) {
             Object.keys(favEventsSnap).map(key => {
                 let val = allEvents[favEventsSnap[key]]
@@ -118,6 +124,7 @@ export default class SyncServer extends Component {
             })
         }
 
+        // Updating registered events
         if (registeredEventsSnap) {
             Object.keys(registeredEventsSnap).map(key => {
                 let val = allEvents[registeredEventsSnap[key]]
@@ -129,7 +136,7 @@ export default class SyncServer extends Component {
             })
         }
 
-
+        // Updating coordinating events
         if (coordinatingSnap) {
             Object.keys(coordinatingSnap).map(key => {
                 let val = allEvents[coordinatingSnap[key]]
@@ -140,12 +147,19 @@ export default class SyncServer extends Component {
             })
         }
 
+        // Save to local storage
         this.props.saveEvents(allEvents, favEvents, registeredEvents, coordinatingEvents);
-        Actions.dashboard({ type: "reset" })
-    }
-
-
-    componentDidUpdate() {
+        if (this.state.isMounted) {
+            clearTimeout(this.state.timeout)
+            this.setState({
+                updating: false,
+                isMounted: false
+            }, () => {
+                setTimeout(() => {
+                    Actions.dashboard({ type: "reset" })
+                }, 500)
+            })
+        }
     }
 
     render() {

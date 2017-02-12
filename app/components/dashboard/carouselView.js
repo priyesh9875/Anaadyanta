@@ -68,6 +68,7 @@ export default class CarouselView extends Component {
     }
 
     render() {
+        if (this.state.featuredEvents.length == 0) return null
         return (
             <Swiper
                 height={this.state.size.height}
