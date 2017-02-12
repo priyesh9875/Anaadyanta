@@ -1,7 +1,7 @@
 // import and configure firebase
 import * as firebase from 'firebase';
 
-  var config = {
+var config = {
     apiKey: "<API_KEY>",
     authDomain: "<APP_NAME>.firebaseapp.com",
     databaseURL: "https://<APP_NAME>.firebaseio.com",
@@ -9,4 +9,8 @@ import * as firebase from 'firebase';
     messagingSenderId: "<SENDER_ID>"
 }
 export const firebaseApp = firebase.initializeApp(config)
+
+export function urlBuilder(ref) {
+  return `<databaseURL>/${ref}/.json`
+}
 

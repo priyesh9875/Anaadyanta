@@ -33,7 +33,6 @@ class Feeds extends Component {
         }
 
         this.renderView = this.renderView.bind(this);
-        this.refreshList = this.refreshList.bind(this)
     }
 
     componentDidMount() {
@@ -78,28 +77,6 @@ class Feeds extends Component {
         }
     }
 
-    refreshList() {
-        this.setState({
-            isRefreshing: true
-        })
-        firebaseApp.database().ref('/feeds/').once('value', (snapshot) => {
-            let feeds = []
-            if (snapshot.val()) {
-                feeds = Object.keys(snapshot.val()).map((key, index) => {
-                    return snapshot.val()[key]
-                })
-            }
-            this.props.saveFeeds(feeds)
-            this.setState({
-                isRefreshing: false,
-                isRefreshed: true,
-            })
-
-        })
-
-
-
-    }
 
     getMainView() {
         if (this.props.feeds.length == 0) {
@@ -119,11 +96,6 @@ class Feeds extends Component {
                 dataSource={this.state.datasource}
                 renderRow={(rowData) =>
                     <Row row={rowData} />
-                }
-                refreshControl={
-                    <RefreshControl refreshing={this.state.isRefreshing}
-                        onRefresh={this.refreshList.bind(this)}
-                        />
                 }
                 enableEmptySections
                 >

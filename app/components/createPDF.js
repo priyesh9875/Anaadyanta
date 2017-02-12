@@ -84,7 +84,7 @@ export default class CreatePDF extends Component {
                 </tr>
                 <tr>
                     <th>Registeration fees</th>
-                    <td>Rs. ${eventDetails.registeration || "Yet to be decided"} </td>
+                    <td>${eventDetails.registration ? "Rs. " + eventDetails.registration : "Yet to be decided"} </td>
                 </tr>
                 ${this.generatePrizesTableRow(eventDetails.prizes)}    
             </tbody>
@@ -238,7 +238,7 @@ export default class CreatePDF extends Component {
 
         </style >
             <h1 style="color: #5e9ca0; text-align: center; padding-bottom: 0px; margin-bottom: 10px; font-size: 50px;"><strong>Anaadyanta</strong></h1>
-            <p style="text-align: center; padding-top: 0px; margin-top: 0px;">2, 3 and 4 March 2017</p>
+            <p style="text-align: center; padding-top: 0px; margin-top: 0px;">9, 10, 11 March 2017</p>
             <p>&nbsp;</p>
 
             <h1 style="color: #2e6c80;">${eventDetails.title}</h1>
@@ -255,7 +255,7 @@ export default class CreatePDF extends Component {
 
 
         <h3 style="color: #2e6c80;">Coordinators/Contacts</h3>
-        ${this.coordinatorTable(eventDetails.coordinators)}
+        ${this.coordinatorTable(eventDetails.coordinators || eventDetails.coords)}
         <br />
             <br />
 

@@ -18,6 +18,8 @@ import CarouselView from "@components/dashboard/carouselView"
 import { Card, Container, Content } from "native-base"
 import { Text } from "@components/ui"
 import * as Animatable from 'react-native-animatable';
+import { Icon } from "react-native-elements"
+import { firebaseApp } from "@config/firebase"
 class HomeView extends Component {
     constructor(props) {
         super(props)
@@ -33,6 +35,16 @@ class HomeView extends Component {
             this.setState({
                 loading: false,
             })
+
+            let listner = firebaseApp.auth().onAuthStateChanged((user) => {
+                user.getToken().then((token) => {
+                    console.log(token)
+                })
+                listner()
+            }, (err) => {
+                console.log(err)
+                listner()
+            })
         })
 
     }
@@ -43,30 +55,47 @@ class HomeView extends Component {
 
 
                 <View style={styles.aboutContainer} >
-                    <Animatable.Text animation="bounceInDown" style={{ fontSize: 45, color: "black", fontWeight: "bold" }} duration={3000} >Anaadyanta 17</Animatable.Text>
-                    <Animatable.Text animation="bounceInDown" style={{ marginTop: 20, fontSize: 20, color: "black", fontWeight: "bold" }} delay={500} duration={3000} >9, 10, 11 March 2017</Animatable.Text>
-                    <Animatable.Text animation="bounceInDown"
-                        style={{ fontSize: 20, color: "black", fontWeight: "bold" }}
+                    <Animatable.Image
+                        animation="bounceInDown"
+                        delay={500}
+                        duration={3000}
+                        source={require("@images/logo.png")}
+                        style={{ height: 150, width: 150, paddingTop: 20, paddingBottom: 10, alignSelf: "center", transform: [{ rotate: "35 deg" }] }} />
+
+
+                    <Image source={require("@images/l.png")} style={{ opacity: 0.2, height: 40, width: 345, marginLeft: 50 }} />
+                    <Image source={require("@images/date.png")} style={{ height: 20, width: 245, marginLeft: 50 }} />
+                    <Animatable.Text animation="bounceInUp"
+                        style={{ fontSize: 20, color: "black", fontWeight: "bold", paddingBottom: 30 }}
                         delay={1000}
-                        duration={3000} >DIVE! FEEL & COME ALIVE</Animatable.Text>
-
-                    <Animatable.Text animation="fadeInDown"
-                        style={{ marginTop: 20, fontSize: 20, color: "black", textAlign: "center" }}
-                        duration={3000} >This Anaadyanta will take you inside the beautiful world of ocean</Animatable.Text>
+                        duration={3000}
+                        >DIVE! FEEL & COME ALIVE</Animatable.Text>
                 </View>
 
+                <View
+                    style={{
+                        flex: 1,
+                        flexDirection: "row"
+                    }}
+                    >
+                    <TabText text="Events" name="grid" type="simple-line-icon" size={30} color="white" onPress={() => { Actions.events() } } />
 
+                    <TabText text="Feeds" name="feed" type="simple-line-icon" size={30} color="white" onPress={() => { Actions.feeds() } } />
+
+                </View>
+                <View
+                    style={{
+                        flex: 1,
+                        flexDirection: "row"
+                    }}
+                    >
+
+                    <TabText text="Sponsors" name="people" type="simple-line-icon" size={30} color="white" onPress={() => { Actions.sponsors() } } />
+
+                    <TabText text="Find us" name="location-pin" type="simple-line-icon" size={30} color="white" onPress={() => { Actions.locateUs() } } />
+
+                </View>
                 <CarouselView allEvents={this.props.allEvents} />
-
-                <View style={{ flex: 1, alignItems: "center", padding: 10 }}>
-
-                    <Text style={{ color: "black" }}>Nitte Meenakshi Institute of Technology</Text>
-                    <Text style={{ color: "gray", fontSize: 12 }}>P.O. Box 6429, Yelahanka, Bangalore 560064</Text>
-                    <Text style={{ color: "gray", fontSize: 12 }}>Ph: 080-22167800</Text>
-                    <Text style={{ color: "gray", fontSize: 12 }}>E-mail: admissions@nmit.ac.in, principal@nmit.ac.in</Text>
-                </View>
-                <View style={{ height: 20 }}></View>
-
             </Content>
         </Container>
     }
@@ -79,20 +108,23 @@ class HomeView extends Component {
         );
     }
 }
-class Texting extends Component {
-    constructor(props) {
-        super(props)
-        this.state = {
-            length: 4
-        }
-    }
-
+class TabText extends Component {
     render() {
         return (
-            <View >
-            </View>
+            <TouchableOpacity style={{ flex: 1, alignItems: "center", padding: 10, backgroundColor: "rgba(225, 0, 0, 0.2)" }} onPress={this.props.onPress}>
+                <Icon name={this.props.name} type={this.props.type} size={this.props.size} color={this.props.color} />
+                <Text style={{ fontSize: 25, paddingTop: 5 }}>{this.props.text}</Text>
+            </TouchableOpacity>
         )
     }
+}
+TabText.defaultProps = {
+    name: "feed",
+    type: "simple-line-icon",
+    size: 30,
+    text: "Text",
+    color: "white",
+    onPress: function () { }
 }
 
 

@@ -95,8 +95,8 @@ class AddCoordinator extends Component {
 
     removeCoordinator(coord) {
         let u = {}
-        u[`/users/${coord.uid}/coordinatingEvents/${this.state.currentEvent.euid}`] = null
-        firebaseApp.database().ref(`/users/${coord.uid}/coordinatingEvents/`).once('value', (snapshot) => {
+        u[`/users/${coord.uid}/events/coordinatingEvents/${this.state.currentEvent.euid}`] = null
+        firebaseApp.database().ref(`/users/${coord.uid}/events/coordinatingEvents/`).once('value', (snapshot) => {
             if (!snapshot.val()) return
             let profileKey = ""
             Object.keys(snapshot.val()).map(key => {
@@ -106,7 +106,7 @@ class AddCoordinator extends Component {
             let updates = {}
 
             if (profileKey !== "") {
-                profileKey = `/users/${coord.uid}/coordinatingEvents/` + profileKey
+                profileKey = `/users/${coord.uid}/events/coordinatingEvents/` + profileKey
                 updates[profileKey] = null
             }
 
@@ -143,7 +143,8 @@ class AddCoordinator extends Component {
             uid: currentCoordinator.uid,
         }
         let eventKey = `/events/${this.state.currentEvent.euid}/coordinators/`
-        let profileKey = `/users/${currentCoordinator.uid}/coordinatingEvents/`
+        let profileKey = `/users/${currentCoordinator.uid}/events/coordinatingEvents/`
+        alert(profileKey)
         let pushKey = firebaseApp.database().ref(profileKey).push().key
         let updatedCoordinators = this.state.currentEvent.coordinators
         if (!currentEvent.coordinators) {

@@ -60,12 +60,12 @@ class ActionTab extends Component {
         })
         const uid = this.props.currentUser.uid
         FCM.unsubscribeFromTopic(`/topics/${this.props.eventDetails.title.replace(/[^a-zA-Z0-9-_.~%]+/g, '-').toLowerCase()}`);
-        firebaseApp.database().ref('/users/' + uid + '/favEvents/').orderByValue().equalTo(eventKey).once('value', (snapshot) => {
+        firebaseApp.database().ref('/users/' + uid + '/events/favEvents/').orderByValue().equalTo(eventKey).once('value', (snapshot) => {
             if (!snapshot.val()) {
                 this.props.deleteFav(eventKey)
             } else {
                 Object.keys(snapshot.val()).map(key => {
-                    firebaseApp.database().ref('/users/' + uid + '/favEvents/' + key).remove()
+                    firebaseApp.database().ref('/users/' + uid + '/events/favEvents/' + key).remove()
                     this.props.deleteFav(eventKey)
                 })
             }
@@ -85,9 +85,9 @@ class ActionTab extends Component {
             addingFav: true
         })
         const uid = this.props.currentUser.uid;
-        const newPostKey = firebaseApp.database().ref('/users/' + uid).child('/favEvents/').push().key
+        const newPostKey = firebaseApp.database().ref('/users/' + uid).child('/events/favEvents/').push().key
         let updates = {}
-        updates['/users/' + uid + '/favEvents/' + newPostKey] = eventKey
+        updates['/users/' + uid + '/events/favEvents/' + newPostKey] = eventKey
         FCM.subscribeToTopic(`/topics/${this.props.eventDetails.title.replace(/[^a-zA-Z0-9-_.~%]+/g, '-').toLowerCase()}`);
         firebaseApp.database().ref().update(updates).then(() => {
             this.props.markFav(eventKey)
@@ -230,7 +230,7 @@ class ActionTab extends Component {
         })
         let {currentUser} = this.props
         const registerKey = firebaseApp.database().ref('/registeration/').push().key
-        const profileKey = firebaseApp.database().ref('/users/' + this.props.currentUser.uid + '/registeredEvents/').push().key
+        const profileKey = firebaseApp.database().ref('/users/' + this.props.currentUser.uid + '/events/registeredEvents/').push().key
         let updates = {}
         updates['/registeration/' + registerKey] = {
             uid: this.props.currentUser.uid,
@@ -241,10 +241,10 @@ class ActionTab extends Component {
             email: this.props.currentUser.email,
             eventKey
         }
-        let x = '/users/' + currentUser.uid + '/registeredEvents/' + profileKey
+        let x = '/users/' + currentUser.uid + '/events/registeredEvents/' + profileKey
         updates[x] = eventKey
 
-        firebaseApp.database().ref('/users/' + currentUser.uid + '/registeredEvents/')
+        firebaseApp.database().ref('/users/' + currentUser.uid + '/events/registeredEvents/')
             .orderByValue()
             .equalTo(eventKey)
             .once('value', (snapshot) => {
@@ -410,7 +410,7 @@ class ActionTab extends Component {
             </TouchableOpacity>
         }
 
-        if (eventDetails.isStarted || eventDetails.isEnded) return
+        // if (eventDetails.isStarted || eventDetails.isEnded) return
 
         if (!eventDetails.isFav) {
 

@@ -39,7 +39,7 @@ class AboutTab extends Component {
                         <View style={{ flex: 1 }} >
 
                             <IconText text={eventDetails.venue || "Main Ground"} name="place" textStyle={{ fontSize: 15, color: 'black' }} size={25} />
-                            <IconText text={"Reg fees: " + eventDetails.registeration} name="money" type="font-awesome" color="green" textStyle={{ fontSize: 15, color: 'black' }} size={25} />
+                            <IconText text={"Reg fees: " + eventDetails.registration} name="money" type="font-awesome" color="green" textStyle={{ fontSize: 15, color: 'black' }} size={20} />
                             {
                                 eventDetails.prizes.map(prize => {
                                     return <IconText key={prize.position} text={`Prize ${prize.position}: ${prize.amount}`} name="trophy" type="font-awesome" color="orange" textStyle={{ fontSize: 15, color: 'black' }} size={25} />

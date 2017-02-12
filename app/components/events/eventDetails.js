@@ -152,7 +152,7 @@ EventDetails.defaultProps = {
         category: 1,
         "description": "Use many fragments of different pictures and put them all together to form one beautiful photomontage.",
         "endTime": 1488443400,
-        "image": "http://www.planwallpaper.com/static/images/high-definition-wallpaper-3-798x350.jpg?1",
+        "image": "https://i.ytimg.com/vi/TRNZzrl9KgE/maxresdefault.jpg",
         "isGroup": true,
         "prizes": [{
             "amount": 40000,

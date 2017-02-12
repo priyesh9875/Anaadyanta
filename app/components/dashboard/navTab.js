@@ -6,12 +6,13 @@ import {
     TouchableOpacity,
 } from 'react-native';
 import { Icon } from 'react-native-elements';
+import { AppSizes } from '@theme/';
 class NavTab extends Component {
 
     render() {
         return <View style={[styles.tabs]}>
             <TouchableOpacity style={styles.titleContainer} onPress={this.props.toggleSideMenu}>
-                <Icon name="view-headline" size={30} />
+                <Icon name="view-headline" size={30} color='white' />
             </TouchableOpacity>
             <View style={{
                 flex: 1,
@@ -21,7 +22,7 @@ class NavTab extends Component {
                 <Text style={{
                     fontSize: 20,
                     color: "black",
-                    fontWeight: "bold"
+                    fontWeight: "bold",
                 }}>Anaadyanta 17</Text>
             </View>
         </View>
@@ -38,7 +39,7 @@ NavTab.PropTypes = {
 
 const styles = StyleSheet.create({
     tabs: {
-        height: 50,
+        height: AppSizes.navbarHeight,
         flexDirection: 'row',
         backgroundColor: '#0E4EF8',
         elevation: 5
@@ -46,7 +47,8 @@ const styles = StyleSheet.create({
     titleContainer: {
         justifyContent: 'center',
         alignItems: 'flex-start',
-        paddingLeft: 10
+        paddingLeft: 10,
+        width: 50
     },
     title: {
         fontSize: 20,

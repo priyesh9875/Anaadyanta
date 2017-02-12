@@ -7,7 +7,7 @@ import React, { Component } from 'react'
 import {
   Image,
   View,
-  StyleSheet
+  StyleSheet,
 } from 'react-native'
 
 export default class Background extends Component {
@@ -17,24 +17,24 @@ export default class Background extends Component {
 
   render() {
     return (
-      <View style={styles.backgroundContainer}>
-        <Image
-        source={this.props.imgSource}
-        style={styles.background}/>
+      <View style={styles.backgroundContainer} >
+        <Image source={this.props.imgSource}
+          style={styles.background}
+          />
       </View>
     )
   }
 }
 
 const styles = StyleSheet.create({
-  backgroundContainer : {
+  backgroundContainer: {
     position: 'absolute',
     top: 0,
     bottom: 0,
     left: 0,
     right: 0
   },
-  background : {
+  background: {
     flex: 1,
     height: null,
     width: null

@@ -32,7 +32,7 @@ class Winners extends Component {
             description: props.eventDetails.description,
             startTime: moment.unix(props.eventDetails.startTime).format("hh:mm a DD-MMM-YY"),
             endTime: moment.unix(props.eventDetails.endTime).format("hh:mm a DD-MMM-YY"),
-            registeration: props.eventDetails.registeration ? props.eventDetails.registeration.toString() : "1500",
+            registration: props.eventDetails.registration ? props.eventDetails.registration.toString() : "0",
             prizes: props.eventDetails.prizes || [],
             venue: props.eventDetails.venue || "Main Ground",
             isGroup: props.eventDetails.isGroup || false,
@@ -79,7 +79,7 @@ class Winners extends Component {
     updateEventDetails() {
         let { eventDetails, currentUser, eventKey} = this.props;
 
-        if (this.state.title == "") { alert("Title cannot be left blank"); return }
+        // if (this.state.title == "") { alert("Title cannot be left blank"); return }
         // if (this.state.description == "") { alert("Description cannot be left blank"); return }
 
 
@@ -100,7 +100,7 @@ class Winners extends Component {
             let currentEvent = snapshot.val();
             currentEvent.title = this.state.title
             currentEvent.description = this.state.description
-            currentEvent.registeration = parseInt(this.state.registeration)
+            currentEvent.registration = parseInt(this.state.registration)
             currentEvent.prizes = this.state.prizes
             currentEvent.startTime = moment(this.state.startTime, "hh:mm a DD-MMM-YY").unix()
             currentEvent.endTime = moment(this.state.endTime, "hh:mm a DD-MMM-YY").unix()
@@ -200,7 +200,7 @@ class Winners extends Component {
 
 
                     <ListItem style={{ padding: 0, paddingBottom: 10, margin: 5 }}>
-                        <InlineText label="Reg fees" value={this.state.registeration} onValueChange={(registeration) => this.setState({ registeration })} />
+                        <InlineText label="Reg fees" value={this.state.registration} onValueChange={(registration) => this.setState({ registration })} />
                     </ListItem>
                     {
                         this.state.prizes.map((prize, index) => {

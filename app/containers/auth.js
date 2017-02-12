@@ -31,7 +31,6 @@ const backImages = [
   require("@images/launch/underwater1.jpeg"),
   require("@images/launch/underwater2.jpeg"),
   require("@images/launch/underwater3.png"),
-  require("@images/launch/underwater4.jpeg"),
 ]
 
 class LoginScreen extends Component {

@@ -29,14 +29,15 @@ export default function (state = initialState, action = {}) {
     switch (action.type) {
         case SAVE_EVENTS:
             var {allEvents, favEvents, registeredEvents, coordinatingEvents} = action.data;
+            if (!allEvents) allEvents = {}
             return {
                 ...state,
                 allEvents,
                 favEvents,
                 registeredEvents,
                 coordinatingEvents,
-                favEventsCount: Object.keys(favEvents).length || 0,
-                registeredEventsCount: Object.keys(registeredEvents).length || 0,
+                // favEventsCount: Object.keys(favEvents).length || 0,
+                // registeredEventsCount: Object.keys(registeredEvents).length || 0,
                 eventsCount: Object.keys(allEvents).length || 0
             }
 

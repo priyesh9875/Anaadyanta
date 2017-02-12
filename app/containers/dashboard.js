@@ -37,7 +37,6 @@ class Dashboard extends Component {
       FCM.requestPermissions(); // for iOS
       FCM.getFCMToken().then(token => {
         // console.log(token)
-        // eJJKSRD9jKQ:APA91bF_fvHepRruz0Vg3Kc9PPgdOREdnpBIe0L9B-Zk0lkSMAxwZD2Zlx3kimcPRfsflAaFqA3XU1GeAidusWkMYOPt041REaFIuaiaVc-uzmeicllr-sD4rlWXK9bhnQ1zeOIO3SlY
         // Store it  in server if necessary
       });
 
@@ -50,13 +49,13 @@ class Dashboard extends Component {
   render() {
     const { currentUser, userActions, eventsCount, sponsorsCount, allEvents } = this.props;
     return (
-      <View style={{ flex: 1 }}>
+      <View style={{ flex: 1, backgroundColor: "white" }}>
         <StatusBar
           backgroundColor={getColor('googleBlue700')}
           animated={true}
           />
 
-        <Background imgSource={require("@images/launch/underwater2.jpeg")} />
+        <Background imgSource={require("@images/home2.jpg")} />
 
         <NavTabBar toggleSideMenu={this.props.toggleSideMenu} />
         <Home eventsCount={eventsCount} sponsorsCount={sponsorsCount} allEvents={allEvents} />

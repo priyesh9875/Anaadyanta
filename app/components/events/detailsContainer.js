@@ -74,6 +74,15 @@ class DetailsContainer extends Component {
 
 
     renderDetails() {
+        let coordinators = []
+        if (this.props.eventDetails.coordinators) {
+            coordinators = this.props.eventDetails.coordinators
+        } else if (this.props.eventDetails.coords) {
+            coordinators = this.props.eventDetails.coords
+        }
+
+
+
         return <ScrollableTabView
             style={{ backgroundColor: "white" }} >
 
@@ -82,7 +91,7 @@ class DetailsContainer extends Component {
             </View>
 
             <View tabLabel="Coordinators" >
-                <CoordinatorTab coordinators={this.props.eventDetails.coordinators} />
+                <CoordinatorTab coordinators={coordinators} />
             </View>
             <View tabLabel="Details">
                 <RulesTab rules={this.props.eventDetails.rules} />

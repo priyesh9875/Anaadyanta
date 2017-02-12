@@ -57,6 +57,10 @@ class allEventsList extends Component {
             loadMinimalSize={2}
             nextButton={<Icon name="keyboard-arrow-right" size={50} color="white" />}
             prevButton={<Icon name="keyboard-arrow-left" size={50} color="white" />}
+            renderPagination={renderPagination}
+            paginationStyle={{
+                top: 23, left: null, right: 10
+            }}
             >
             {
                 Object.keys(allEvents).map((key) => {
@@ -74,8 +78,8 @@ class allEventsList extends Component {
                     }
                     return <Image key={key} source={{ uri: val.image }} style={styles.wrapper} >
                         <View style={{ flex: 1, justifyContent: "flex-end", alignItems: "center" }} >
-                            <Text h1 >{val.title.toUpperCase()}</Text>
-                            <Text p numberOfLines={2} style={styles.description}>{val.description || "Beautiful event ".repeat(10)}</Text>
+                            <Text h1 style={{ textAlign: "center" }}>{val.title.toUpperCase()}</Text>
+                            <Text p numberOfLines={2} style={styles.description}>{val.description || ""}</Text>
                             <View style={styles.eventInfoBox}>
                                 {infoBox}
                             </View>
@@ -102,6 +106,24 @@ class allEventsList extends Component {
         );
     }
 }
+
+const renderPagination = (index, total, context) => {
+    return (
+        <View style={{
+            position: 'absolute',
+            top: 10,
+            right: 10
+        }}>
+            <Text style={{ color: 'grey' }}>
+                <Text style={{
+                    color: 'white',
+                    fontSize: 20
+                }}>{index + 1}</Text>/{total}
+            </Text>
+        </View>
+    )
+}
+
 
 const styles = StyleSheet.create({
     wrapper: {

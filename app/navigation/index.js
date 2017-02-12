@@ -12,6 +12,8 @@ import AppConfig from '@config/constants';
 import { AppStyles, AppSizes } from '@theme/';
 
 import Placeholder from '@components/general/Placeholder';
+import LocateUs from '@containers/locateUs';
+import FAQ from '@containers/faq';
 import SetWinners from '@components/events/SetWinners';
 import UpdateEventDetails from '@components/events/UpdateEventDetails';
 import MakeAnnouncement from '@components/dashboard/makeAnnouncement';
@@ -91,9 +93,14 @@ export default Actions.create(
         <Scene
             key="locateUs"
             title="Locate Us"
-            component={Placeholder}
+            component={LocateUs}
             {...navbarProps}
-
+            />
+        <Scene
+            key="faq"
+            title="FAQ"
+            component={FAQ}
+            {...navbarProps}
             />
 
         <Scene

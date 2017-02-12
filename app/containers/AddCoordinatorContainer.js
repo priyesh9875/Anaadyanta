@@ -28,6 +28,7 @@ class AddCoordinatorContainer extends Component {
             this.setState({
                 loading: false,
             })
+
         })
     }
 
