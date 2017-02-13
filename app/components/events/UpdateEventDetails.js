@@ -32,9 +32,9 @@ class Winners extends Component {
             description: props.eventDetails.description,
             startTime: moment.unix(props.eventDetails.startTime).format("hh:mm a DD-MMM-YY"),
             endTime: moment.unix(props.eventDetails.endTime).format("hh:mm a DD-MMM-YY"),
-            registration: props.eventDetails.registration ? props.eventDetails.registration.toString() : "0",
+            registration: props.eventDetails.registration ? props.eventDetails.registration.toString() : "FREE",
             prizes: props.eventDetails.prizes || [],
-            venue: props.eventDetails.venue || "Main Ground",
+            venue: props.eventDetails.venue || "",
             isGroup: props.eventDetails.isGroup || false,
             isStartPickerVisible: false,
             isEndPickerVisible: false,
@@ -100,7 +100,7 @@ class Winners extends Component {
             let currentEvent = snapshot.val();
             currentEvent.title = this.state.title
             currentEvent.description = this.state.description
-            currentEvent.registration = parseInt(this.state.registration)
+            currentEvent.registration = this.state.registration
             currentEvent.prizes = this.state.prizes
             currentEvent.startTime = moment(this.state.startTime, "hh:mm a DD-MMM-YY").unix()
             currentEvent.endTime = moment(this.state.endTime, "hh:mm a DD-MMM-YY").unix()

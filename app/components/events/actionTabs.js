@@ -464,7 +464,7 @@ class ActionTab extends Component {
 
     renderActionIcons() {
         let { eventDetails, eventKey, currentUser } = this.props
-        let message = `Check out ${this.props.eventDetails.title} event at Anaadyanta 17 and win ${this.props.eventDetails.prizes[0].amount}`
+        let message = `Check out ${this.props.eventDetails.title} event at Anaadyanta 17 and win exciting prizes`
         if (eventDetails.winners) {
             message = `${eventDetails.winners[0].name} and ${eventDetails.winners[0].name} won ${eventDetails.title} at Anaadyanta 17.`
         }

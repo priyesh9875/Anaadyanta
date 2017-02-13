@@ -10,6 +10,7 @@ import {
 import { Card, List, ListItem } from "native-base"
 import { Icon, } from "react-native-elements";
 import Hr from "@libs/Hr";
+import CreatePDF from "@components/createPDF";
 
 class RulesTab extends Component {
 
@@ -21,8 +22,9 @@ class RulesTab extends Component {
 
         return (
             <List>
+                <CreatePDF eventDetails={this.props.eventDetails} />
                 {
-                    this.props.rules.slice(0, 2).map((val, index) => {
+                    this.props.eventDetails.rules.slice(0, 3).map((val, index) => {
                         return <ListItem style={{ padding: 10 }} key={index} >
                             <RulesRow rule={val} />
                         </ListItem>
@@ -56,7 +58,7 @@ class RulesRow extends Component {
                 }
             </List>
         } else {
-            rulesView = <Text style={{ color: 'black' }} >
+            rulesView = <Text  >
                 {this.props.rule.name}
             </Text>
         }

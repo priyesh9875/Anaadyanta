@@ -10,11 +10,12 @@ import {
 } from 'react-native';
 
 import { phonecall, text, email } from 'react-native-communications';
-import { Card, List, ListItem } from "native-base"
+import { Card, CardItem, List, ListItem } from "native-base"
 import Loading from "@components/general/Loading";
 import IconText from "@components/ui/IconText"
 import ScrollableTabView from "react-native-scrollable-tab-view";
 import moment from "moment"
+import { Icon } from "react-native-elements"
 
 
 
@@ -35,31 +36,63 @@ class AboutTab extends Component {
                 }
 
                 <Card style={{ padding: 5 }}>
-                    <View style={{ flex: 1, flexDirection: "row" }}>
-                        <View style={{ flex: 1 }} >
-
-                            <IconText text={eventDetails.venue || "Main Ground"} name="place" textStyle={{ fontSize: 15, color: 'black' }} size={25} />
-                            <IconText text={"Reg fees: " + (eventDetails.registration ? eventDetails.registration : "FREE")} name="money" type="font-awesome" color="green" textStyle={{ fontSize: 15, color: 'black' }} size={20} />
-                            {
-                                eventDetails.prizes.map(prize => {
-                                    return <IconText key={prize.position} text={`Prize ${prize.position}: ${prize.amount}`} name="trophy" type="font-awesome" color="orange" textStyle={{ fontSize: 15, color: 'black' }} size={25} />
-                                })
-                            }
+                    <ListItem>
+                        <Icon name="place" color="blue" size={35} />
+                        <View style={{ paddingLeft: 10 }}>
+                            <Text style={{ color: "black" }}>Venue</Text>
+                            <Text >{eventDetails.venue ? eventDetails.venue : "Will be updated soon"}</Text>
                         </View>
-                        <View style={{ flex: 1 }} >
-                            <IconText text={moment.unix(eventDetails.startTime).format("DD MMM YY") || "1 Jan 17"} name="date-range" textStyle={{ fontSize: 15, color: 'black' }} size={25} />
-                            <IconText text={moment.unix(eventDetails.startTime).format("hh:mm a") || "9: 00 PM"} name="schedule" color="black" textStyle={{ fontSize: 15, color: 'black' }} size={25} />
+                    </ListItem>
+
+                    <ListItem>
+                        <Icon name="schedule" color="black" size={35} />
+                        <View style={{ paddingLeft: 10 }}>
+                            <Text style={{ color: "black" }}>Schedule</Text>
 
                             {
-                                !eventDetails.isGroup
-                                    ? <IconText text="Individual" name="person" textStyle={{ fontSize: 15, color: 'black' }} size={25} />
-                                    : <IconText text="Group" name="people" textStyle={{ fontSize: 15, color: 'black' }} size={25} />
-
+                                eventDetails.startTime && (parseInt(eventDetails.startTime) > 1488911400)
+                                    ? <View>
+                                        <Text>
+                                            {moment.unix(eventDetails.startTime).format("hh:mm a")}
+                                            {
+                                                eventDetails.endTime && eventDetails.endTime > eventDetails.startTime
+                                                    ? moment.unix(eventDetails.endTime).format(" - hh:mm a")
+                                                    : null
+                                            }
+                                            {moment.unix(eventDetails.startTime).format(", ddd DD MMM YYYY")}
+                                        </Text>
+                                    </View>
+                                    : <Text>Will be updated soon</Text>
                             }
-
-
                         </View>
-                    </View>
+                    </ListItem>
+
+                    <ListItem>
+                        <Icon name="money" type="font-awesome" color="green" size={35} />
+                        <View style={{ paddingLeft: 10 }}>
+                            <Text style={{ color: "black" }}>Registration</Text>
+                            <Text>{eventDetails.registration ? eventDetails.registration : "FREE"}</Text>
+                        </View>
+                    </ListItem>
+
+                    <ListItem>
+                        <Icon name="trophy" type="font-awesome" color="orange" size={35} />
+                        <View style={{ paddingLeft: 10 }}>
+                            <Text style={{ color: "black" }}>Prizes</Text>
+
+                            {
+                                (eventDetails.prizes && eventDetails.prizes.length > 0)
+                                    ? <View>
+                                        {
+                                            eventDetails.prizes.map(prize => {
+                                                return <Text key={prize.position}>{`${prize.position}: ${prize.amount}`}</Text>
+                                            })
+                                        }
+                                    </View>
+                                    : <Text>Will be updated soon</Text>
+                            }
+                        </View>
+                    </ListItem>
                 </Card>
             </View>
 

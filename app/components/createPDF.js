@@ -67,24 +67,29 @@ export default class CreatePDF extends Component {
     }
 
     generateImpDetails(eventDetails) {
+        let dateTime = "Will be updated soon";
+        if (eventDetails.startTime && (parseInt(eventDetails.startTime) > 1488911400)) {
+            dateTime += moment.unix(eventDetails.startTime).format("hh:mm a");
+            if (eventDetails.endTime && eventDetails.endTime > eventDetails.startTime) {
+                dateTime += moment.unix(eventDetails.endTime).format(" - hh:mm a")
+            }
+            dateTime += moment.unix(eventDetails.startTime).format(", ddd DD MMM YYYY");
+        }
         let content = `
         <table >
             <tbody>
                 <tr>
                     <th>Venue</th>
-                    <td>${eventDetails.venue || "Yet to be finalized"} </td>
+                    <td>${eventDetails.venue ? eventDetails.venue : "Will be updated soon"}</td>
                 </tr>
                 <tr>
-                    <th>Date</th>
-                    <td>${moment.unix(eventDetails.startTime).format("DD MMM YYYY") || "Yet to be decided"}</td>
+                    <th>Schedule</th>
+                    <td>${dateTime}</td>
                 </tr>
+                
                 <tr>
-                    <th>Time</th>
-                    <td>${moment.unix(eventDetails.startTime).format("hh:mm a") || "Yet to be decided"} - ${moment.unix(eventDetails.endTime).format("hh:mm a") || "Yet to be decided"} </td>
-                </tr>
-                <tr>
-                    <th>Registeration fees</th>
-                    <td>${eventDetails.registration ? "Rs. " + eventDetails.registration : "Yet to be decided"} </td>
+                    <th>Registeration</th>
+                    <td>${eventDetails.registration ? (isNaN(eventDetails.registration) ? eventDetails.registration : "Rs. " + eventDetails.registration) : "Will be updated soon"} </td>
                 </tr>
                 ${this.generatePrizesTableRow(eventDetails.prizes)}    
             </tbody>
@@ -97,8 +102,9 @@ export default class CreatePDF extends Component {
     }
 
     generatePrizesTableRow(prizes) {
-        let content = "";
+        let content = "<tr><th>Prizes</th> <td>Will be updated soon</td></tr>";
         if (prizes && prizes.length > 0) {
+            content = "";
             prizes.map(prize => {
                 content += `
                     <tr>
@@ -114,7 +120,7 @@ export default class CreatePDF extends Component {
     generateRulesSection(rules) {
 
         if (!rules || rules.length < 1) {
-            return "<p>Yet to be decided</p>"
+            return "<p>Will be updated soon</p>"
         }
 
         let content = ""
@@ -242,7 +248,7 @@ export default class CreatePDF extends Component {
             <p>&nbsp;</p>
 
             <h1 style="color: #2e6c80;">${eventDetails.title}</h1>
-            <p>${eventDetails.description || "Please tell me about this event in more precise english or hindi word coz you are lazy to give me description. ".repeat(4)}</p>
+            <p>${eventDetails.description || ""}</p>
 
             <br />
             ${this.generateImpDetails(eventDetails)}
@@ -295,7 +301,7 @@ export default class CreatePDF extends Component {
         return (
             <TouchableOpacity onPress={this.convert}>
                 <Icon name="file-download" size={30} color={IconColor} />
-                <Text style={{ fontSize: 15 }}>{this.state.creating ? "Saving" : "PDF"}</Text>
+                <Text style={{ fontSize: 15, alignSelf: "center" }}>{this.state.creating ? "Saving" : "PDF"}</Text>
             </TouchableOpacity>
         );
     }
