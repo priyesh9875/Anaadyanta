@@ -256,12 +256,59 @@ let events = [
 
     },
 
-    // ground zero
+    // ground zero Eastern
     {
         "category": 1,
         "description": "The ocean of Rock music has always been commodious to versatile expression be it transcendental chord progressions or heavy guitar riffs. Feel the anticipation and the electricity as bands fight it out, reaching for the zenith of the genre as they hope to be crowned victors of this prestigious title.",
         "endTime": 1488443400,
         "image": "http://cdn.bandmix.com/bandmix_us/media/342/342523/471133-l.jpg",
+        "coords": [
+            { name: "Lohit A.M", phone: "+91 8147995391" },
+            { name: "Deepak JE", phone: "+91 8123384359" },
+        ],
+        "isGroup": true,
+        "prizes": [{
+            "amount": 30000,
+            "position": 1
+        }, {
+            "amount": 10000,
+            "position": 2
+        }],
+        "registration": 1000,
+        "rules": [
+            {
+                name: "Rules", isHeader: true, hasSubItem: true,
+                subContent: [
+                    { name: "This is a band competition open to any college or semi-pro band with three or more members with any genre." },
+                    { name: "It’s a 2 round competition, Eliminations and Finals" },
+                    { name: "All songs performed by the band must be in ENGLISH only." },
+                    { name: "The time given per band- (10+2) mins (15+5) mins for the Finals. This includes the time taken for sound-check and the performance. Strictly no extra time would be given on stage." },
+                    { name: "Tuning of instruments should be done beforehand." },
+                    { name: "Bands will be disqualified with immediate effect for misconduct, obscenity or intentional use of foul language." },
+                    { name: "Bands have to bring their own equipment (apart from the ones mentioned below) and special effects. However, programmed music isn’t allowed." },
+                    { name: "The judge’s decision will be final and binding." },
+                    { name: "The event coordinators and the Anaadyanta committee reserves the right to make any last minute changes in the rules." },
+                ]
+            }, {
+                name: "Equipment provided will be", isHeader: true, hasSubItem: true,
+                subContent: [
+                    { name: "One bass amplifier speaker" },
+                    { name: "One lead amplifier speaker" },
+                    { name: "Adequate microphones" },
+                    { name: "Drum set with double base setup (you can bring your own cymbals and chokes/high hats)" },
+                ]
+            },
+        ],
+        "startTime": 1488436200,
+        "title": "Ground Zero (Eastern)",
+    },
+
+    // ground_zero_western
+    {
+        "category": 1,
+        "description": "The ocean of Rock music has always been commodious to versatile expression be it transcendental chord progressions or heavy guitar riffs. Feel the anticipation and the electricity as bands fight it out, reaching for the zenith of the genre as they hope to be crowned victors of this prestigious title.",
+        "endTime": 1488443400,
+        "image": "https://res.cloudinary.com/dep8pxurn/image/upload/v1487025158/cultural/ground_zero_western.jpg",
         "coords": [
             { name: "Aditya Joshi", phone: "+91 8095870862" },
             { name: "Ishant Shekhar", phone: "+91 9008697197" },
@@ -300,7 +347,7 @@ let events = [
             },
         ],
         "startTime": 1488436200,
-        "title": "Ground Zero",
+        "title": "Ground Zero (Western)",
     },
 
     //acoustic
@@ -1229,6 +1276,216 @@ let events = [
         "title": "Badminton",
     },
 
+    // Hunger games
+    {
+        "category": 2,
+        "endTime": 1488443400,
+        description: "",
+        "image": "https://res.cloudinary.com/dep8pxurn/image/upload/v1487025583/hunger_games.jpg",
+        "coords": [
+            { name: "Dheeraj Singh", phone: "+91 8884329319" },
+        ],
+        "prizes": [{
+            "amount": 1500,
+            "position": 1
+        }],
+        "registration": 150,
+        "rules": [
+            {
+                name: "Rules", isHeader: true, hasSubItem: true,
+                subContent: [
+                    { name: "College ID is mandatory." },
+                    { name: "Decision of the organizing committee would be final." },
+                ]
+            },
+        ],
+
+        "startTime": 1488436200,
+        "title": "Hunger Games",
+    },
+
+    // General Quiz
+    {
+        "category": 2,
+        "endTime": 1488443400,
+        description: "",
+        "image": "https://res.cloudinary.com/dep8pxurn/image/upload/v1487025813/general_quiz.jpg",
+        "coords": [
+            { name: "Tejus Rao", phone: "+91 9845530857" },
+        ],
+        "prizes": [{
+            "amount": 4000,
+            "position": 1
+        }, {
+            "amount": 2000,
+            "position": 2
+        }],
+        "registration": 200,
+        "rules": [
+            {
+                name: "Rules", isHeader: true, hasSubItem: true,
+                subContent: [
+                    { name: "College ID is mandatory." },
+                    { name: "Decision of the organizing committee would be final." },
+                ]
+            },
+        ],
+
+        "startTime": 1488436200,
+        "title": "General Quiz",
+    },
+
+    // Pot Pourri
+    {
+        "category": 2,
+        "endTime": 1488443400,
+        description: "",
+        "image": "https://res.cloudinary.com/dep8pxurn/image/upload/v1487025979/pot_pourri.jpg",
+        "coords": [
+            { name: "Sadiya Ameem", phone: "+91 9739357539" },
+        ],
+        "prizes": [{
+            "amount": 4000,
+            "position": 1
+        }, {
+            "amount": 2000,
+            "position": 2
+        }],
+        "registration": 200,
+        "rules": [
+            {
+                name: "Rules", isHeader: true, hasSubItem: true,
+                subContent: [
+                    { name: "College ID is mandatory." },
+                    { name: "Decision of the organizing committee would be final." },
+                ]
+            },
+        ],
+
+        "startTime": 1488436200,
+        "title": "Pot Pourri",
+    },
+
+    // JAM
+    {
+        "category": 2,
+        "endTime": 1488443400,
+        description: "",
+        "image": "https://res.cloudinary.com/dep8pxurn/image/upload/v1487025979/pot_pourri.jpg",
+        "coords": [
+            { name: "Arjun Kini", phone: "+91 9901279266" },
+        ],
+        "prizes": [{
+            "amount": 4000,
+            "position": 1
+        }, {
+            "amount": 2000,
+            "position": 2
+        }],
+        "registration": 200,
+        "rules": [
+            {
+                name: "Rules", isHeader: true, hasSubItem: true,
+                subContent: [
+                    { name: "College ID is mandatory." },
+                    { name: "Decision of the organizing committee would be final." },
+                ]
+            },
+        ],
+
+        "startTime": 1488436200,
+        "title": "JAM",
+    },
+
+
+    // Message In A Bottle (Creative Writing)
+    {
+        "category": 2,
+        "endTime": 1488443400,
+        description: "",
+        "image": "https://res.cloudinary.com/dep8pxurn/image/upload/c_scale,w_1049/v1487026227/creative_writing.jpg",
+        "coords": [
+            { name: "Aishwarya Rao", phone: "+91 9591529314" },
+        ],
+        "prizes": [{
+            "amount": 3000,
+            "position": 1
+        }],
+        "registration": 100,
+        "rules": [
+            {
+                name: "Rules", isHeader: true, hasSubItem: true,
+                subContent: [
+                    { name: "College ID is mandatory." },
+                    { name: "Decision of the organizing committee would be final." },
+                ]
+            },
+        ],
+
+        "startTime": 1488436200,
+        "title": "Message In A Bottle (Creative Writing)",
+    },
+    // The Contention (Debate)
+    {
+        "category": 2,
+        "endTime": 1488443400,
+        description: "",
+        "image": "https://res.cloudinary.com/dep8pxurn/image/upload/v1487026430/debate.jpg",
+        "coords": [
+            { name: "Suraj Chowdary", phone: "+91 8884870490" },
+        ],
+        "prizes": [{
+            "amount": 8000,
+            "position": 1
+        }, {
+            "amount": 3500,
+            "position": 2
+        }],
+        "registration": 200,
+        "rules": [
+            {
+                name: "Rules", isHeader: true, hasSubItem: true,
+                subContent: [
+                    { name: "College ID is mandatory." },
+                    { name: "Decision of the organizing committee would be final." },
+                ]
+            },
+        ],
+
+        "startTime": 1488436200,
+        "title": "The Contention (Debate)",
+    },
+
+    // Vices Quiz
+    {
+        "category": 2,
+        "endTime": 1488443400,
+        description: "",
+        "image": "https://res.cloudinary.com/dep8pxurn/image/upload/v1487026584/vices_quiz.jpg",
+        "coords": [
+            { name: "Gaurav Simha", phone: "+91 9108519953" },
+        ],
+        "prizes": [{
+            "amount": 4000,
+            "position": 1
+        }, {
+            "amount": 2000,
+            "position": 2
+        }],
+        "registration": 200,
+        "rules": [
+            {
+                name: "Rules", isHeader: true, hasSubItem: true,
+                subContent: [
+                    { name: "College ID is mandatory." },
+                    { name: "Decision of the organizing committee would be final." },
+                ]
+            },
+        ],
+
+        "startTime": 1488436200,
+        "title": "Vices Quiz",
+    },
 
     /*  Gaming events ends */
 

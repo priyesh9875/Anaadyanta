@@ -178,76 +178,7 @@ EventDetails.defaultProps = {
         "startTime": 1488436200,
         "title": "Collage",
         "venue": "Back parking",
-        // },
-        // "-Kb23UNaFRH0Y2oyu6aA" : {
-        //   "category" : 1,
-        //   "coordinators" : [ {
-        //     "email" : "rxdsrex@gmail.com",
-        //     "name" : "RajNarayan Dutta ",
-        //     "phone" : "88618496646555",
-        //     "uid" : "50OpBWFjWXQmEL85uPT8Se9W1MR2"
-        //   } ],
-        //   "description" : "To dance is to be free. If you can communicate without words, if you can make the crowd go crazy with your moves this is the place to be. This event welcomes colleges to showcase their talent across all styles and genres and captivate the audience!",
-        //   "endTime" : 1488443400,
-        //   "euid" : "-Kb23UNaFRH0Y2oyu6aA",
-        //   "id" : 1,
-        //   "image" : "https://i.ytimg.com/vi/iExw1TD317o/maxresdefault.jpg",
-        //   "isEnded" : false,
-        //   "isGroup" : true,
-        //   "isStarted" : false,
-        //   "lastUpdated" : 1485036450,
-        //   "length" : 2,
-        //   "prizes" : [ {
-        //     "amount" : 10000,
-        //     "position" : 1
-        //   }, {
-        //     "amount" : 1000,
-        //     "position" : 2
-        //   } ],
-        //   "registeration" : 150000,
-        //   "rules" : [ {
-        //     "hasSubItem" : true,
-        //     "isHeader" : true,
-        //     "name" : "Rules",
-        //     "subContent" : [ {
-        //       "name" : "Time limit : 8+2 minutes"
-        //     }, {
-        //       "name" : "Number of participants: 12-30"
-        //     }, {
-        //       "name" : "Non-themed only"
-        //     }, {
-        //       "name" : "Any dance style canbe performed"
-        //     }, {
-        //       "name" : "The winners will be decided on the basis of choreography, coordination, costume, presentation."
-        //     }, {
-        //       "name" : "The team members could be current college students and alumni members."
-        //     } ]
-        //   }, {
-        //     "hasSubItem" : true,
-        //     "isHeader" : true,
-        //     "name" : "General rules",
-        //     "subContent" : [ {
-        //       "name" : "Each team member should possess a valid college ID proof."
-        //     }, {
-        //       "name" : "Each team will be given a time slot to perform which includes the time for stage setup on exceeding which the music will be stopped."
-        //     }, {
-        //       "name" : "In case of excess registration, an elimination round will be held. This will be intimated to the participants 3 days in advance."
-        //     }, {
-        //       "name" : "Dangerous props like inflammable or heavy objects are not allowed and no indecent behavior will be tolerated during the performance."
-        //     }, {
-        //       "name" : "The Participants could use props of their choice, all the props, costumes, music etc should be brought by the participants themselves."
-        //     }, {
-        //       "name" : "No extra lights or technical help will be provided during the performance. Teams should bring along people to manage sound and light if required."
-        //     }, {
-        //       "name" : "The team should submit their track in a CD/Flash Drive at least an hour prior to the event."
-        //     }, {
-        //       "name" : "The judge’s decision shall be final and there shall be no further debate."
-        //     } ]
-        //   } ],
-        //   "startTime" : 1488436200,
-        //   "title" : "Choreo night",
-        //   "updatedBy" : "Priyesh Kumar"
-        // }
+
     }
 }
 export default EventDetails

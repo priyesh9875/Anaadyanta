@@ -74,7 +74,12 @@ class allEventsList extends Component {
                             infoBox = <Text h3 >Event started</Text>
                         }
                     } else {
-                        infoBox = <IconText name="timeline" text={moment.unix(val.startTime).format("DD MMM YY hh:mm a")} />
+                        if (val.startTime && (parseInt(val.startTime) > 1488911400)) {
+                            infoBox = <IconText name="timeline" text={moment.unix(val.startTime).format("DD MMM YY hh:mm a")} />
+                        } else {
+                            infoBox = <IconText name="timeline" text="Will be updated soon" />
+
+                        }
                     }
                     return <Image key={key} source={{ uri: val.image }} style={styles.wrapper} >
                         <View style={{ flex: 1, justifyContent: "flex-end", alignItems: "center" }} >
