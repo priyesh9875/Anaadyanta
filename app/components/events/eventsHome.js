@@ -20,28 +20,11 @@ import { Text } from "@components/ui"
 const backImages = [
   require("@images/launch/underwater1.jpeg"),
 ]
-const styles = StyleSheet.create({
-  categoryImage: {
-    height: 150,
-    width: 400
-  },
-  categoryTitle: {
-    paddingLeft: 8,
-    fontSize: 20,
-    color: "black"
-  },
-  categoryContainer: {
-    flex: 1,
-    borderWidth: 1,
-    padding: 10,
-    alignItems: "center"
-  }
-});
 
 const category = [
-  { title: "Technical", pic: require("@images/tech.jpg"), category: 3, description: "Robowars, Hackathon, Jahaaz, Programming" },
+  { title: "Proshows", pic: require("@images/proshow.jpeg"), category: 2, description: "Bonfire night, Pronight..." },
   { title: "Cultural", pic: require("@images/music.jpg"), category: 1, description: "Fashion show, Music, Dance, DJ night" },
-  { title: "Games and Sports", pic: require("@images/sport.jpg"), category: 2, description: "Soccer, BasketBall, Counter Strike NFS" },
+  { title: "Technical", pic: require("@images/tech.jpg"), category: 3, description: "Cube open, Hackathon, Robowars" },
 
 ]
 
@@ -93,9 +76,9 @@ class EventCategory extends Component {
   changeCategory() {
     var title = "Event list - All";
     switch (this.props.item.category) {
-      case 1: title = "Cultural"; break;
-      case 2: title = "Games and Sports"; break;
-      case 3: title = "Technical"; break;
+      case 1: title = "Cultural events"; break;
+      case 2: title = "Proshows"; break;
+      case 3: title = "Technical events"; break;
     }
     Actions.allEvents({ category: this.props.item.category, title })
   }

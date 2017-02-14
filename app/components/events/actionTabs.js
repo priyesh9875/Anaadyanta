@@ -412,8 +412,6 @@ class ActionTab extends Component {
             </TouchableOpacity>
         }
 
-        // if (eventDetails.isStarted || eventDetails.isEnded) return
-
         if (!eventDetails.isFav) {
 
             return <TouchableOpacity
@@ -496,14 +494,14 @@ class ActionTab extends Component {
     renderInfoText() {
         let {eventDetails} = this.props
         if (eventDetails.isEnded) {
-            return `Event completed on ${moment.unix(eventDetails.endTime).format("hh:mm a DD-MMM-YY")}`
+            return `Event completed`
         }
 
         if (eventDetails.isStarted) {
-            return `In progress: ${moment.unix(eventDetails.startTime).format("hh:mm a")} - ${moment.unix(eventDetails.endTime).format("hh:mm a")}`
+            return `In progress`
         }
 
-        return `Upcoming event on ${moment.unix(eventDetails.startTime).format("hh:mm a DD-MMM-YY")}`
+        return `Upcoming event`
     }
 
     render() {

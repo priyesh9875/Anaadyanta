@@ -17,6 +17,60 @@ import { Text } from "@components/ui"
 
 var ds = new ListView.DataSource({ rowHasChanged: (r1, r2) => r1 !== r2 });
 
+let data = [
+    {
+        name: "Ramish Kafrey",
+        phone: "+91 7411600980",
+        email: "ramishjafery@gmail.com",
+        type: "Convener",
+        image: "https://anaadyanta.org/img/ramish.jpg"
+    },
+    {
+        name: "Shivam Dubey",
+        phone: "+918050225474",
+        email: "shivamdubet1103@gmail.com",
+        type: "Sponsorship team",
+        image: "https://anaadyanta.org/img/shivam.jpg"
+    }, {
+        name: "Arvind Balachandra",
+        phone: "+919742423013",
+        email: "arvind@anaadyanta.org",
+        type: "Sponsorship team",
+        image: "https://anaadyanta.org/img/arvind.jpg"
+    }, {
+        name: "Monica M Raju",
+        phone: "+918971923839",
+        email: "monica@anaadyanta.org",
+        type: "Sponsorship team",
+        image: "https://anaadyanta.org/img/monica.jpg"
+    }, {
+        name: "Dheeraj Ferrao",
+        phone: "+91994594122",
+        email: "dheerajferrao@gmail.com",
+        type: "Registration",
+        image: "https://anaadyanta.org/img/dheeraj.jpg"
+    }, {
+        name: "Lavanya",
+        phone: "+919886525856",
+        email: "lavanya@anaadyanta.org",
+        type: "Registration",
+        image: "https://anaadyanta.org/img/lavanya.jpg"
+    }, {
+        name: "Bharat Bijukumar",
+        phone: "+919663605640",
+        email: "bharatbijukumar@anaadyanta.org",
+        type: "Event organizer",
+        image: "https://anaadyanta.org/img/bharat.jpg"
+    }, {
+        name: "Aishwarya Gururaj",
+        phone: "+919902646787",
+        email: "aishwarya@anaadyanta.org",
+        type: "Event organizers",
+        image: "https://anaadyanta.org/img/aishwarya.jpg"
+    },
+
+]
+
 class Contacts extends Component {
 
     constructor(props) {
@@ -41,7 +95,7 @@ class Contacts extends Component {
 
         this.setState({
             loading: false,
-            datasource: ds.cloneWithRows(this.props.contacts)
+            datasource: ds.cloneWithRows(data)
         })
     }
 
@@ -73,7 +127,7 @@ class Row extends Component {
 
         return (
             <ListItem >
-                <Thumbnail source={require('@images/robo.jpg')} />
+                <Thumbnail source={{ uri: row.image }}  size={40}/>
                 <View style={{ flex: 1, flexDirection: "row" }}>
                     <Text style={{ flex: 1, color: "black" }} >
                         {row.name}

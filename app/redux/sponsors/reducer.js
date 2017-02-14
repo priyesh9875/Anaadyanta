@@ -1,5 +1,6 @@
 
-let sponsors = [
+let initialState = {
+  sponsors : [
   { name: "Aircel", pic: require("@images/sponsors/aircel.jpg") },
   { name: "Anchor by Panasonic", pic: require("@images/sponsors/anchor.png") },
   { name: "Axis Bank", pic: require("@images/sponsors/axis_bank.jpg") },
@@ -12,7 +13,18 @@ let sponsors = [
   { name: "Resonance Studio", pic: require("@images/sponsors/resonance_studios.jpg") },
   { name: "Shiamak Devar", pic: require("@images/sponsors/shiamak_davar.jpg") },
 ]
+}
 
-export default function (state = sponsors, action = {}) {
-  return state
+export default function (state = initialState, action = {}) {
+  
+  switch (action.type) {
+    case 'SAVE':
+      let {sponsors} = action.data
+      return {
+        ...state,
+        sponsors
+      }
+
+    default: return state
+  }
 }

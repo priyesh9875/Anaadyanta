@@ -15,6 +15,7 @@ import {
     TouchableOpacity
 } from 'react-native';
 
+import { urlBuilder } from '@config/firebase'
 
 const styles = StyleSheet.create({
     list: {
@@ -56,13 +57,27 @@ class Sponsors extends Component {
 
         InteractionManager.runAfterInteractions(this.renderView)
     }
+    componentWillReceiveProps(nextProps) {
+        this.setState({
+            dataSource: ds.cloneWithRows(nextProps.sponsors)
+
+        })
+    }
 
     renderView() {
+
+        fetch(urlBuilder('sponsors'))
+            .then((response) => response.json())
+            .then((responseJson) => {
+                this.props.actions.saveSponsors(responseJson)
+            }).catch((err) => {
+            })
 
         this.setState({
             loading: false,
             dataSource: ds.cloneWithRows(this.props.sponsors)
         })
+
     }
 
     getMainView() {
@@ -70,7 +85,7 @@ class Sponsors extends Component {
             containerStyle={{ margin: 5, paddingTop: 20 }}
             wrapperStyle={{ margin: 0, padding: 0 }}
             >
-            <Text  style={{color: "black", textAlign: "center", padding: 10}}>We are greatly thankful to following sponsors for their support</Text>
+            <Text style={{ color: "black", textAlign: "center", padding: 10 }}>We are greatly thankful to our sponsors for their support</Text>
             <ListView contentContainerStyle={styles.list}
                 dataSource={this.state.dataSource}
                 renderRow={(rowData) => <SponsorsRowItem item={rowData} />}
@@ -90,7 +105,7 @@ class SponsorsRowItem extends Component {
     render() {
         return (
             <View style={styles.item}>
-                <Image source={this.props.item.pic} style={styles.itemImage} />
+                <Image source={{ uri: this.props.item.image }} style={styles.itemImage} />
             </View>
         );
     }
@@ -99,11 +114,12 @@ class SponsorsRowItem extends Component {
 
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
-
+import * as actions from "@redux/sponsors/actions"
 const mapStateToProps = state => ({
-    sponsors: state.sponsors
+    sponsors: state.sponsors.sponsors
 })
 const mapActions = dispatch => ({
+    actions: bindActionCreators(actions, dispatch)
 })
 
 export default connect(mapStateToProps, mapActions)(Sponsors);

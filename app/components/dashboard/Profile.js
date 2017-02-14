@@ -27,6 +27,7 @@ class Profile extends Component {
             loading: true,
             name: props.currentUser.name,
             phone: props.currentUser.phone,
+            college: props.currentUser.college,
             editing: false,
             saving: false
         };
@@ -89,10 +90,10 @@ class Profile extends Component {
 
 
     saveProfile() {
-        let {phone, name } = this.state
+        let {phone, name, college } = this.state
         let {currentUser} = this.props
 
-        if (currentUser.phone == phone && currentUser.name == name) {
+        if (currentUser.phone == phone && currentUser.name == name && currentUser.college == college) {
             this.setState({
                 editing: false
             })
@@ -112,10 +113,11 @@ class Profile extends Component {
                     let updatedUser = { ...currentUser }
                     updatedUser.name = user.displayName
                     updatedUser.phone = phone
+                    updatedUser.college = college
                     delete updatedUser.isLoggedIn
                     if (!currentUser.coordinatingEvents) delete updatedUser.coordinatingEvents
                     firebaseApp.database().ref(updateKey).update(updatedUser).then(() => {
-                        this.props.updateProfile(name, phone)
+                        this.props.updateProfile(name, phone, college)
                         this.setState({
                             saving: false,
                             editing: false
@@ -143,7 +145,7 @@ class Profile extends Component {
                 listener()
 
                 alert("SessionExpires")
-                Actions.login({ type: 'reset' })
+                this.props.cleanLogout()
             }
         })
 
@@ -218,6 +220,26 @@ class Profile extends Component {
                     </View>
 
                 </ListItem>
+
+
+                <ListItem iconLeft style={{ flex: 1, flexDirection: 'row' }}>
+                    <Icon name="ios-paper" style={{ color: '#0A69FE' }} />
+                    <Text style={{ justifyContent: "flex-start", paddingTop: 2, paddingLeft: 5, color: "black" }}>College </Text>
+                    <View style={{ flex: 1, justifyContent: "flex-end", }}>
+                        {
+                            !this.state.editing
+                                ? <Text style={{ color: "black" }}>{currentUser.college}</Text>
+                                : <TextInput value={this.state.college}
+                                    onChangeText={(college) => this.setState({ college })}
+                                    underlineColorAndroid='rgba(0,0,0,0)'
+                                    style={{ height: 25, flex: 1, borderRadius: 5, padding: 3, paddingLeft: 5, paddingRight: 5, fontSize: 16, borderWidth: StyleSheet.hairlineWidth }}
+
+                                    />
+                        }
+                    </View>
+
+                </ListItem>
+
                 <ListItem iconLeft>
                     <Icon name="ios-mail" style={{ color: '#0A69FE' }} />
                     <Text style={{ paddingLeft: 5, color: "black" }}>Email {currentUser.email}</Text>

@@ -10,6 +10,7 @@ const initialState = {
     isLoggedIn: null,
     uid: null,
     role: null,
+    college: null
 };
 
 
@@ -33,11 +34,12 @@ export default function (state = initialState, action = {}) {
             }
 
         case UPDATE_PROFILE:
-            var { name, phone } = action.data
+            var { name, phone, college } = action.data
             return {
                 ...state,
                 name,
-                phone
+                phone,
+                college
             }
 
         case LOGOUT:

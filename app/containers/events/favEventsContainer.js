@@ -40,7 +40,7 @@ class FavEventsContainer extends Component {
     if (Object.keys(favEvents).length == 0) {
       return (
         <View style={{ flex: 1, justifyContent: "center", alignItems: "center", backgroundColor: 'white' }} >
-          <Text style={{ fontSize: 30,  textAlign: "center" }} >No registered events.</Text>
+          <Text style={{ fontSize: 30,  textAlign: "center" }} >You are not following any events.</Text>
           <Text style={{ fontSize: 20 , textAlign: "center"}} onPress={() => { Actions.events() } }>Browse all events</Text>
         </View>
       );

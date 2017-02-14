@@ -1,12 +1,13 @@
 export const LOGIN = 'LOGIN';
 export const LOGOUT = 'LOGOUT';
 export const UPDATE_PROFILE = 'UPDATE_PROFILE'
-export function updateProfile(name, phone) {
+export function updateProfile(name, phone, college) {
     return {
         type: UPDATE_PROFILE,
         data: {
             name,
-            phone
+            phone,
+            college
         }
     }
 }

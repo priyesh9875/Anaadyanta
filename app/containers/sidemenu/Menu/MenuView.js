@@ -23,6 +23,7 @@ import { Text } from "@components/ui"
 const menuList = [
   { text: "Profile", targetPage: "profile", icon: "ios-people" },
   { text: "Events", targetPage: "events", icon: "ios-aperture" },
+  { text: "Contacts", targetPage: "contacts", icon: "ios-person" },
   { text: "About", targetPage: "about", icon: "ios-clipboard" },
   { text: "FAQ", targetPage: "faq", icon: "ios-paper" }
 ]

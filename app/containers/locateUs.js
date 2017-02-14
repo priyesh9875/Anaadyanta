@@ -92,7 +92,8 @@ class LocateUs extends Component {
                             <Text style={{ color: "black" }}>Nitte Meenakshi Institute of Technology</Text>
                             <Text style={{ color: "black" }}>P.O. Box 6429, Yelahanka, Bangalore 560064</Text>
                             <Text style={{ color: "black" }}>Ph: 080-22167800</Text>
-                            <Text style={{ color: "black" }}>Email: principal@nmit.ac.in</Text>
+                            <Text style={{ color: "black" }}>registration@anaadyanta.org</Text>
+                            <Text style={{ color: "black" }}>appteam17@anaadyanta.org</Text>
                         </View>
                     </Card>
 

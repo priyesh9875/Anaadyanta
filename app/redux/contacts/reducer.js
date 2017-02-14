@@ -3,73 +3,47 @@ import { SAVE_CONTACTS } from './action';
 export const initialState = {
     contacts: [
         {
-            name: "Priyesh kumar",
-            phone: "XXXXXX",
-            email: "XXXXXXX@gmail.com",
-            type: "Owner"
+            name: "Ramish Kafrey",
+            phone: "+91 7411600980",
+            email: "ramishjafery@gmail.com",
+            type: "Convener"
         },
         {
-            name: "Priyesh kumar",
-            phone: "XXXXXX",
-            email: "XXXXXXX@gmail.com",
-            type: "Team leader"
+            name: "Shivam Dubey",
+            phone: "+918050225474",
+            email: "shivamdubet1103@gmail.com",
+            type: "Sponsorship team"
         }, {
-            name: "Priyesh kumar",
-            phone: "XXXXXX",
-            email: "XXXXXXX@gmail.com",
-            type: "Sponsor"
+            name: "Arvind Balachandra",
+            phone: "+919742423013",
+            email: "arvind@anaadyanta.org",
+            type: "Sponsorship team"
         }, {
-            name: "Priyesh kumar",
-            phone: "XXXXXX",
-            email: "XXXXXXX@gmail.com",
-            type: "Tech team head"
+            name: "Monica M Raju",
+            phone: "+918971923839",
+            email: "monica@anaadyanta.org",
+            type: "Sponsorship team"
         }, {
-            name: "Priyesh kumar",
-            phone: "XXXXXX",
-            email: "XXXXXXX@gmail.com",
-            type: "Transport head officer"
+            name: "Dheeraj Ferrao",
+            phone: "+91994594122",
+            email: "dheerajferrao@gmail.com",
+            type: "Registration"
         }, {
-            name: "Priyesh kumar",
-            phone: "XXXXXX",
-            email: "XXXXXXX@gmail.com",
+            name: "Lavanya",
+            phone: "+919886525856",
+            email: "lavanya@anaadyanta.org",
+            type: "Registration"
+        }, {
+            name: "Bharat Bijukumar",
+            phone: "+919663605640",
+            email: "bharatbijukumar@anaadyanta.org",
             type: "Coordinator"
         }, {
-            name: "Priyesh kumar",
-            phone: "XXXXXX",
-            email: "XXXXXXX@gmail.com",
+            name: "Aishwarya Gururaj",
+            phone: "+919902646787",
+            email: "aishwarya@anaadyanta.org",
             type: "Coordinator"
-        }, {
-            name: "Priyesh kumar",
-            phone: "XXXXXX",
-            email: "XXXXXXX@gmail.com",
-            type: "Coordinator"
-        }, {
-            name: "Priyesh kumar",
-            phone: "XXXXXX",
-            email: "XXXXXXX@gmail.com",
-            type: "Coordinator"
-        }, {
-            name: "Priyesh kumar",
-            phone: "XXXXXX",
-            email: "XXXXXXX@gmail.com",
-            type: "Coordinator"
-        }, {
-            name: "Priyesh kumar",
-            phone: "XXXXXX",
-            email: "XXXXXXX@gmail.com",
-            type: "Coordinator"
-        }, {
-            name: "Priyesh kumar",
-            phone: "XXXXXX",
-            email: "XXXXXXX@gmail.com",
-            type: "Coordinator"
-        }, {
-            name: "Priyesh kumar",
-            phone: "XXXXXX",
-            email: "XXXXXXX@gmail.com",
-            type: "Coordinator"
-        },
-
+        }, 
 
     ]
 };

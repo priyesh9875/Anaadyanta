@@ -115,7 +115,7 @@ export default Actions.create(
             title="Events"
             component={EventsHome}
             {...navbarProps}
-            
+
             />
 
 
@@ -204,7 +204,7 @@ export default Actions.create(
             title="Sponsors"
             component={Sponsors}
             {...navbarProps}
-
+            
             />
 
 
