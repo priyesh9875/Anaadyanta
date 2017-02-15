@@ -35,16 +35,6 @@ class HomeView extends Component {
             this.setState({
                 loading: false,
             })
-
-            let listner = firebaseApp.auth().onAuthStateChanged((user) => {
-                user.getToken().then((token) => {
-                    console.log(token)
-                })
-                listner()
-            }, (err) => {
-                console.log(err)
-                listner()
-            })
         })
 
     }
@@ -78,9 +68,9 @@ class HomeView extends Component {
                         flexDirection: "row"
                     }}
                     >
-                    <TabText text="Events" name="grid" type="simple-line-icon"  color="white" onPress={() => { Actions.events() } } />
+                    <TabText text="Events" name="grid" type="simple-line-icon" color="white" onPress={() => { Actions.events() } } />
 
-                    <TabText text="Feeds" name="feed" type="simple-line-icon"  color="white" onPress={() => { Actions.feeds() } } />
+                    <TabText text="Feeds" name="feed" type="simple-line-icon" color="white" onPress={() => { Actions.feeds() } } />
 
                 </View>
                 <View
@@ -90,9 +80,9 @@ class HomeView extends Component {
                     }}
                     >
 
-                    <TabText text="Sponsors" name="people" type="simple-line-icon"  color="white" onPress={() => { Actions.sponsors() } } />
+                    <TabText text="Sponsors" name="people" type="simple-line-icon" color="white" onPress={() => { Actions.sponsors() } } />
 
-                    <TabText text="Find us" name="location-pin" type="simple-line-icon"  color="white" onPress={() => { Actions.locateUs() } } />
+                    <TabText text="Find us" name="location-pin" type="simple-line-icon" color="white" onPress={() => { Actions.locateUs() } } />
 
                 </View>
                 <CarouselView allEvents={this.props.allEvents} />
@@ -129,65 +119,11 @@ TabText.defaultProps = {
 
 
 const styles = StyleSheet.create({
-
-
-
     aboutContainer: {
         alignItems: "center",
         paddingTop: 25,
         padding: 5,
     },
-    aboutHeading: {
-        color: "black",
-    },
-    aboutBody: {
-        textAlign: "center",
-        color: "black"
-    },
-    featureContainer: {
-        flex: 1,
-        flexDirection: "row",
-        padding: 5
-    },
-    featureItem: {
-        flex: 1,
-        borderWidth: 1,
-        padding: 5,
-        margin: 5,
-        elevation: 5
-    },
-    featureHeading: {
-        textAlign: "center",
-        fontSize: 25,
-        color: "green",
-        fontWeight: "bold"
-    },
-    featureBody: {
-        textAlign: "center",
-        fontSize: 20,
-    },
-    updatesContainer: {
-        flex: 1,
-        borderWidth: 1,
-        padding: 5,
-    },
-    updatesHeader: {
-        flex: 1,
-        flexDirection: "row",
-        justifyContent: "space-between",
-        borderBottomWidth: 1,
-        paddingLeft: 5,
-        paddingRight: 5,
-    },
-    updatesMain: {
-        fontSize: 20,
-        fontWeight: "bold",
-        color: "green"
-    },
-    updateMore: {
-        fontSize: 20,
-        fontWeight: "bold"
-    }
 });
 
 

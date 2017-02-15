@@ -94,41 +94,23 @@ class AddCoordinator extends Component {
 
 
     removeCoordinator(coord) {
-        let u = {}
-        u[`/users/${coord.uid}/events/coordinatingEvents/${this.state.currentEvent.euid}`] = null
-        firebaseApp.database().ref(`/users/${coord.uid}/events/coordinatingEvents/`).once('value', (snapshot) => {
-            if (!snapshot.val()) return
-            let profileKey = ""
-            Object.keys(snapshot.val()).map(key => {
-                if (snapshot.val()[key] == this.state.currentEvent.euid)
-                    profileKey = key
-            })
-            let updates = {}
 
-            if (profileKey !== "") {
-                profileKey = `/users/${coord.uid}/events/coordinatingEvents/` + profileKey
-                updates[profileKey] = null
-            }
-
-            let eventKey = `/events/${this.state.currentEvent.euid}/coordinators/`
-            let updatedCoordinators = this.state.currentEvent.coordinators.filter(val => {
-                return val.name != coord.name
-            })
-            let updatedEvent = { ...this.state.currentEvent }
-            updatedEvent.coordinators = updatedCoordinators
-            updates[eventKey] = updatedCoordinators
-            firebaseApp.database().ref().update(updates)
-                .then(() => {
-                    this.props.updateEvent(this.state.currentEvent.euid, updatedEvent)
-                }).catch(err => {
-                    alert(JSON.stringify(err))
-                })
-
-        }).catch(err => {
-            alert(JSON.stringify(err))
+        let updatedCoordinators = this.state.currentEvent.coordinators.filter(val => {
+            return val.email != coord.email
         })
 
+        let updates = {}
+        updates[`/newEvents/${this.state.currentEvent.euid}/coordinators/`] = updatedCoordinators
+        updates[`/users/${coord.uid}/events/coordinatingEvents/${this.state.currentEvent.euid}`] = null
+        let updatedEvent = { ...this.state.currentEvent }
+        updatedEvent.coordinators = updatedCoordinators
 
+        firebaseApp.database().ref().update(updates)
+            .then(() => {
+                this.props.updateEvent(this.state.currentEvent.euid, updatedEvent)
+            }).catch(err => {
+                alert(JSON.stringify(err))
+            })
     }
 
     addNewCoordinator() {
@@ -142,8 +124,8 @@ class AddCoordinator extends Component {
             phone: currentCoordinator.phone,
             uid: currentCoordinator.uid,
         }
-        let eventKey = `/events/${this.state.currentEvent.euid}/coordinators/`
-        let profileKey = `/users/${currentCoordinator.uid}/events/coordinatingEvents/`
+        let eventKey = `/newEvents/${this.state.currentEvent.euid}/coordinators/`
+        let profileKey = `/users/${currentCoordinator.uid}/events/coordinatingEvents/${currentEvent.euid}`
         let pushKey = firebaseApp.database().ref(profileKey).push().key
         let updatedCoordinators = this.state.currentEvent.coordinators
         if (!currentEvent.coordinators) {
@@ -155,7 +137,7 @@ class AddCoordinator extends Component {
         updatedEvent.coordinators = updatedCoordinators
 
         let updates = {}
-        updates[profileKey + pushKey] = currentEvent.euid
+        updates[profileKey] = true
         updates[eventKey] = updatedCoordinators
         firebaseApp.database().ref().update(updates)
             .then(() => {
@@ -195,7 +177,7 @@ class AddCoordinator extends Component {
         if (!currentEvent.coordinators || currentEvent.coordinators.length < 1) {
             return <Text style={{ color: "black" }}>No coordinator</Text>
         }
-        return <Card style={{ padding: 10 }}>
+        return <Card style={{ padding: 10, paddingLeft: 0 }}>
             <Text p style={{ alignSelf: "center", color: "black" }}>Current coordinator</Text>
 
             <List>

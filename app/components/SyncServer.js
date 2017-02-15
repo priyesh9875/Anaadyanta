@@ -80,7 +80,7 @@ export default class SyncServer extends Component {
             })
 
         // Fetch all events data
-        fetch(urlBuilder('events'))
+        fetch(urlBuilder('newEvents'))
             .then((response) => response.json())
             .then((responseJson) => {
                 this.setState({
@@ -115,9 +115,9 @@ export default class SyncServer extends Component {
         // Updating favourite/Following events
         if (favEventsSnap) {
             Object.keys(favEventsSnap).map(key => {
-                let val = allEvents[favEventsSnap[key]]
+                let val = allEvents[key]
                 if (val) {
-                    allEvents[favEventsSnap[key]].isFav = true
+                    allEvents[val.euid].isFav = true
                     favEvents[val.euid] = allEvents[val.euid]
                 }
             })
@@ -126,10 +126,9 @@ export default class SyncServer extends Component {
         // Updating registered events
         if (registeredEventsSnap) {
             Object.keys(registeredEventsSnap).map(key => {
-                let val = allEvents[registeredEventsSnap[key]]
+                let val = allEvents[key]
                 if (val) {
                     allEvents[val.euid].isRegistered = true
-                    allEvents[val.euid].registerationKey = key
                     registeredEvents[val.euid] = allEvents[val.euid]
                 }
             })
@@ -138,7 +137,7 @@ export default class SyncServer extends Component {
         // Updating coordinating events
         if (coordinatingSnap) {
             Object.keys(coordinatingSnap).map(key => {
-                let val = allEvents[coordinatingSnap[key]]
+                let val = allEvents[key]
                 if (val) {
                     allEvents[val.euid].isMine = true
                     coordinatingEvents[val.euid] = allEvents[val.euid]
@@ -172,7 +171,7 @@ export default class SyncServer extends Component {
 
                         <View>
                             <Spinner color='red' style={{ alignSelf: "center" }} size={1} />
-                            <Text style={{ marginLeft: 10, marginRight: 10, borderRadius: 10, borderWidth: 1, backgroundColor: "white", padding: 10, textAlign: "center" }}>{this.state.updating ? "Please wait while we are fetching latest data from the server. Auto skip in 10 seconds" : "Update complete"}</Text>
+                            <Text style={{ marginLeft: 10, marginRight: 10, borderRadius: 10, borderWidth: 1, backgroundColor: "white", padding: 10, textAlign: "center" }}>{this.state.updating ? "Please wait while we are fetching latest data from the server. Auto skip in 15-20 seconds" : "Update complete"}</Text>
                         </View>
                     </View>
                 </Content>

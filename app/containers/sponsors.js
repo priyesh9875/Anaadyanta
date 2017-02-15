@@ -58,8 +58,9 @@ class Sponsors extends Component {
         InteractionManager.runAfterInteractions(this.renderView)
     }
     componentWillReceiveProps(nextProps) {
+        let sponsors = nextProps.sponsors ? nextProps.sponsors : []
         this.setState({
-            dataSource: ds.cloneWithRows(nextProps.sponsors)
+            dataSource: ds.cloneWithRows(sponsors)
 
         })
     }
@@ -73,9 +74,11 @@ class Sponsors extends Component {
             }).catch((err) => {
             })
 
+        let sponsors = this.props.sponsors ? this.props.sponsors : []
+
         this.setState({
             loading: false,
-            dataSource: ds.cloneWithRows(this.props.sponsors)
+            dataSource: ds.cloneWithRows(sponsors)
         })
 
     }

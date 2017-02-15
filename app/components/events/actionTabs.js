@@ -59,25 +59,21 @@ class ActionTab extends Component {
             addingFav: true
         })
         const uid = this.props.currentUser.uid
-        FCM.unsubscribeFromTopic(`/topics/${this.props.eventDetails.title.replace(/[^a-zA-Z0-9-_.~%]+/g, '-').toLowerCase()}`);
-        firebaseApp.database().ref('/users/' + uid + '/events/favEvents/').orderByValue().equalTo(eventKey).once('value', (snapshot) => {
-            if (!snapshot.val()) {
+        FCM.unsubscribeFromTopic(`/topics/${this.props.eventDetails.title.replace(/[^a-zA-Z0-9-_~%]+/g, '-').toLowerCase()}`);
+        let updates = {}
+        updates['/users/' + uid + '/events/favEvents/' + eventKey] = null
+        firebaseApp.database().ref().update(updates)
+            .then(() => {
                 this.props.deleteFav(eventKey)
-            } else {
-                Object.keys(snapshot.val()).map(key => {
-                    firebaseApp.database().ref('/users/' + uid + '/events/favEvents/' + key).remove()
-                    this.props.deleteFav(eventKey)
+                this.setState({
+                    addingFav: false
                 })
-            }
-            this.setState({
-                addingFav: false
+
+            }).catch(() => {
+                this.setState({
+                    addingFav: false
+                })
             })
-        }).catch((err) => {
-            alert(JSON.stringify(err))
-            this.setState({
-                addingFav: false
-            })
-        })
     }
 
     addToFav(eventKey) {
@@ -85,10 +81,9 @@ class ActionTab extends Component {
             addingFav: true
         })
         const uid = this.props.currentUser.uid;
-        const newPostKey = firebaseApp.database().ref('/users/' + uid).child('/events/favEvents/').push().key
         let updates = {}
-        updates['/users/' + uid + '/events/favEvents/' + newPostKey] = eventKey
-        FCM.subscribeToTopic(`/topics/${this.props.eventDetails.title.replace(/[^a-zA-Z0-9-_.~%]+/g, '-').toLowerCase()}`);
+        updates['/users/' + uid + '/events/favEvents/' + eventKey] = true
+        FCM.subscribeToTopic(`/topics/${this.props.eventDetails.title.replace(/[^a-zA-Z0-9-_~%]+/g, '-').toLowerCase()}`);
         firebaseApp.database().ref().update(updates).then(() => {
             this.props.markFav(eventKey)
             this.setState({
@@ -230,7 +225,6 @@ class ActionTab extends Component {
         })
         let {currentUser} = this.props
         const registerKey = firebaseApp.database().ref('/registration/').push().key
-        const profileKey = firebaseApp.database().ref('/users/' + this.props.currentUser.uid + '/events/registeredEvents/').push().key
         let updates = {}
         updates['/registration/' + registerKey] = {
             uid: this.props.currentUser.uid,
@@ -239,15 +233,15 @@ class ActionTab extends Component {
             name: this.props.currentUser.name,
             phone: this.props.currentUser.phone,
             email: this.props.currentUser.email,
-            college: this.props.currentUser.college || "World",
+            college: this.props.currentUser.college || "N/A",
             agent: "app",
             eventKey
         }
-        let x = '/users/' + currentUser.uid + '/events/registeredEvents/' + profileKey
-        updates[x] = eventKey
+        let x = '/users/' + currentUser.uid + '/events/registeredEvents/' + eventKey
+        updates[x] = true
 
         firebaseApp.database().ref('/users/' + currentUser.uid + '/events/registeredEvents/')
-            .orderByValue()
+            .orderByKey()
             .equalTo(eventKey)
             .once('value', (snapshot) => {
                 if (snapshot.val()) {
@@ -257,7 +251,7 @@ class ActionTab extends Component {
                         registering: false
                     })
                 } else {
-                    FCM.subscribeToTopic(`/topics/${this.props.eventDetails.title.replace(/[^a-zA-Z0-9-_.~%]+/g, '-').toLowerCase()}`);
+                    FCM.subscribeToTopic(`/topics/${this.props.eventDetails.title.replace(/[^a-zA-Z0-9-_~%]+/g, '-').toLowerCase()}`);
                     firebaseApp.database().ref().update(updates).then(() => {
                         this.props.register(eventKey)
                         alert(`Successfully registered for ${eventDetails.title}.`)

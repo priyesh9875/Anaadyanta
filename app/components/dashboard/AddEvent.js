@@ -26,6 +26,7 @@ let events = [
     // Bonfire Night
     {
         "category": 2,
+        "sequence": 'a0',
         "description": "Bonfire night",
         "image": "https://res.cloudinary.com/dep8pxurn/image/upload/v1486985109/games/EGGS.jpg",
         "isProShow": true,
@@ -45,6 +46,7 @@ let events = [
     // Proshow
     {
         "category": 2,
+        "sequence": 'a1',
         "description": "Proshow",
         "image": "https://res.cloudinary.com/dep8pxurn/image/upload/v1486985109/games/EGGS.jpg",
         "isProShow": true,
@@ -67,6 +69,7 @@ let events = [
     // Fashion show
     {
         "category": 1,
+        "sequence": 'a0',
         "coords": [{
             "name": "Yasha Vijaykumar",
             "phone": "+91 9900932749"
@@ -114,6 +117,7 @@ let events = [
     // Street X
     {
         "category": 1,
+        "sequence": 'a1',
         "coords": [{
             "name": "Abhinav",
             "phone": "+91 8951507993"
@@ -159,6 +163,7 @@ let events = [
     // Ground 0 eastern
     {
         "category": 1,
+        "sequence": 'a2',
         "coords": [{
             "name": "Lohit A.M",
             "phone": "+91 8147995391"
@@ -224,6 +229,7 @@ let events = [
     // Ground 0 western
     {
         "category": 1,
+        "sequence": 'a3',
         "coords": [{
             "name": "Aditya Joshi",
             "phone": "+91 8095870862"
@@ -286,59 +292,10 @@ let events = [
         "title": "Ground Zero (Western)",
     },
 
-
-    // Choreo nite western
-    {
-        "category": 1,
-        "coords": [{
-            "name": "Prerana Permanand",
-            "phone": "+91 9972995418"
-        }, {
-            "name": "Anusha HP",
-            "phone": "+91 9686991686"
-        }],
-        "description": "Dance is the hidden language of the soul - Martha Graham.\n\n If you've got what it takes to narrate a story with just your body, to get all those around you to their feet, this is your chance to put that talent to the test. So pick up your dancing shoes and get ready for the biggest night of your lives.",
-        "endTime": 1488443400,
-        "image": "https://res.cloudinary.com/dep8pxurn/image/upload/v1486984252/cultural/choreonight_W.jpg",
-        "isGroup": true,
-        "prizes": [{
-            "amount": 30000,
-            "position": 1
-        }, {
-            "amount": 10000,
-            "position": 2
-        }],
-        "registration": 2000,
-        "rules": [{
-            "hasSubItem": true,
-            "isHeader": true,
-            "name": "Rules",
-            "subContent": [
-                {
-                    "name": "This is a Non-Theme (Strictly western) competition."
-                }, {
-                    "name": "Each team will be given a time slot of 8+2 minutes to perform which includes the time taken for stage set up. Music will be stopped exactly after 8 minutes."
-                }, {
-                    "name": "Minimum number of participants per team is 8. Maximum number of participants per team is 30 plus backstage helpers."
-                }, {
-                    "name": "Participation is open to college and semi-pro teams."
-                }, {
-                    "name": "Video prelims will be conducted for confirming team slots. Send in the dance sequence video links to lavanya@anaadyanta.org."
-                }, {
-                    "name": "Inflammable objects, water and hazardous objects are NOT allowed on stage. No indecent behavior will be tolerated during the performance."
-                }, {
-                    "name": "Any team which fails to perform during their allotted slot will be disqualified and no other alternate slots will be given."
-                }, {
-                    "name": "Judges and coordinators' decisions shall be final and binding. There shall be no arguments in this regard."
-                }]
-        }],
-        "startTime": 1486576380,
-        "title": "Choreo Nite (Western)",
-    },
-
     // Choreo nite Eastern
     {
         "category": 1,
+        "sequence": 'a4',
         "coords": [{
             "name": "Aditi Urs",
             "phone": "+91 8951245419"
@@ -385,9 +342,60 @@ let events = [
         "title": "Choreo Nite (Eastern)",
     },
 
+    // Choreo nite western
+    {
+        "category": 1,
+        "sequence": 'a5',
+        "coords": [{
+            "name": "Prerana Permanand",
+            "phone": "+91 9972995418"
+        }, {
+            "name": "Anusha HP",
+            "phone": "+91 9686991686"
+        }],
+        "description": "Dance is the hidden language of the soul - Martha Graham.\n\n If you've got what it takes to narrate a story with just your body, to get all those around you to their feet, this is your chance to put that talent to the test. So pick up your dancing shoes and get ready for the biggest night of your lives.",
+        "endTime": 1488443400,
+        "image": "https://res.cloudinary.com/dep8pxurn/image/upload/v1486984252/cultural/choreonight_W.jpg",
+        "isGroup": true,
+        "prizes": [{
+            "amount": 30000,
+            "position": 1
+        }, {
+            "amount": 10000,
+            "position": 2
+        }],
+        "registration": 2000,
+        "rules": [{
+            "hasSubItem": true,
+            "isHeader": true,
+            "name": "Rules",
+            "subContent": [
+                {
+                    "name": "This is a Non-Theme (Strictly western) competition."
+                }, {
+                    "name": "Each team will be given a time slot of 8+2 minutes to perform which includes the time taken for stage set up. Music will be stopped exactly after 8 minutes."
+                }, {
+                    "name": "Minimum number of participants per team is 8. Maximum number of participants per team is 30 plus backstage helpers."
+                }, {
+                    "name": "Participation is open to college and semi-pro teams."
+                }, {
+                    "name": "Video prelims will be conducted for confirming team slots. Send in the dance sequence video links to lavanya@anaadyanta.org."
+                }, {
+                    "name": "Inflammable objects, water and hazardous objects are NOT allowed on stage. No indecent behavior will be tolerated during the performance."
+                }, {
+                    "name": "Any team which fails to perform during their allotted slot will be disqualified and no other alternate slots will be given."
+                }, {
+                    "name": "Judges and coordinators' decisions shall be final and binding. There shall be no arguments in this regard."
+                }]
+        }],
+        "startTime": 1486576380,
+        "title": "Choreo Nite (Western)",
+    },
+
     // 7 to Smoke
     {
         "category": 1,
+        "sequence": 'a6',
         "coords": [{
             "name": "Darshan",
             "phone": "+91 8147954725"
@@ -435,6 +443,7 @@ let events = [
     // Solo dance
     {
         "category": 1,
+        "sequence": 'a7',
         "coords": [{
             "name": "Karthik Suresh",
             "phone": "+91 9741260060"
@@ -488,6 +497,7 @@ let events = [
     // Acoustics
     {
         "category": 1,
+        "sequence": 'a8',
         "coords": [{
             "name": "Amogh Acharya",
             "phone": "+91 9901584186"
@@ -527,6 +537,7 @@ let events = [
     // Vocal Solo Eastern
     {
         "category": 1,
+        "sequence": 'a9',
         "coords": [{
             "name": "Nikeetha Adiga",
             "phone": "+91 9663835213"
@@ -561,6 +572,7 @@ let events = [
     // Vocal solo Western
     {
         "category": 1,
+        "sequence": 'b0',
         "coords": [{
             "name": "Manasa Hegde",
             "phone": "+91 9611960847"
@@ -595,6 +607,7 @@ let events = [
     // Beat box
     {
         "category": 1,
+        "sequence": 'b1',
         "coords": [{
             "name": "Anantha Piltu",
             "phone": "+91 7411103996"
@@ -641,6 +654,7 @@ let events = [
     // Solo instrumental
     {
         "category": 1,
+        "sequence": 'b2',
         "coords": [{
             "name": "Ajay",
             "phone": "+91 8951281596"
@@ -676,6 +690,7 @@ let events = [
     // Street play
     {
         "category": 1,
+        "sequence": 'b3',
         "coords": [{
             "name": "Dixit Jain",
             "phone": "+91 8003059419"
@@ -723,6 +738,7 @@ let events = [
     // Improv
     {
         "category": 1,
+        "sequence": 'b4',
         "coords": [{
             "name": "Vishaal Rao",
             "phone": "+91 9769413903"
@@ -772,6 +788,7 @@ let events = [
     // Mono acting
     {
         "category": 1,
+        "sequence": 'b5',
         "coords": [{
             "name": "Pradeep Tiwari",
             "phone": "+91 9738801150"
@@ -813,6 +830,7 @@ let events = [
     // Imprint
     {
         "category": 1,
+        "sequence": 'b6',
         "coords": [{
             "name": "Ishaan",
             "phone": "+91 9902456450"
@@ -855,6 +873,7 @@ let events = [
     // Blind art
     {
         "category": 1,
+        "sequence": 'b7',
         "coords": [{
             "name": "Naveen",
             "phone": "+91 9591719217"
@@ -891,6 +910,7 @@ let events = [
     // Doodling
     {
         "category": 1,
+        "sequence": 'b7',
         "coords": [{
             "name": "Prathiksha Hoode",
             "phone": "+91 9686684268"
@@ -927,6 +947,7 @@ let events = [
     // String art
     {
         "category": 1,
+        "sequence": 'b9',
         "coords": [{
             "name": "Sanjana M",
             "phone": "+91 7022161825"
@@ -969,6 +990,7 @@ let events = [
     // Collage
     {
         "category": 1,
+        "sequence": 'c0',
         "coords": [{
             "name": "Sabari",
             "phone": "+91 9686802990"
@@ -1011,6 +1033,7 @@ let events = [
     // Face Painting
     {
         "category": 1,
+        "sequence": 'c1',
         "coords": [{
             "name": "Simaant",
             "phone": "+91 9631881074"
@@ -1048,6 +1071,7 @@ let events = [
     // DSLR 
     {
         "category": 1,
+        "sequence": 'c2',
         "coords": [{
             "name": "Rahul Banerjee",
             "phone": "+91 7976573749"
@@ -1089,6 +1113,7 @@ let events = [
     // Mobile
     {
         "category": 1,
+        "sequence": 'c3',
         "coords": [{
             "name": "Arun",
             "phone": "+91 8277564495"
@@ -1131,6 +1156,7 @@ let events = [
     // Debate
     {
         "category": 1,
+        "sequence": 'c4',
         "coords": [{
             "name": "Suraj Chowdary",
             "phone": "+91 8884870490"
@@ -1171,6 +1197,7 @@ let events = [
     // Pot Pourri
     {
         "category": 1,
+        "sequence": 'c5',
         "coords": [{
             "name": "Sadiya Ameem",
             "phone": "+91 9739357539"
@@ -1205,6 +1232,7 @@ let events = [
     // JAM
     {
         "category": 1,
+        "sequence": 'c6',
         "coords": [{
             "name": "Arjun Kini",
             "phone": "+91 9901279266"
@@ -1238,6 +1266,7 @@ let events = [
     // General quiz
     {
         "category": 1,
+        "sequence": 'c7',
         "coords": [{
             "name": "Tejus Rao",
             "phone": "+91 9845530857"
@@ -1272,6 +1301,7 @@ let events = [
     // Vices quiz
     {
         "category": 1,
+        "sequence": 'c8',
         "coords": [{
             "name": "Gaurav Simha",
             "phone": "+91 9108519953"
@@ -1306,6 +1336,7 @@ let events = [
     // Message in a bottle
     {
         "category": 1,
+        "sequence": 'c9',
         "coords": [{
             "name": "Aishwarya Rao",
             "phone": "+91 9591529314"
@@ -1338,6 +1369,7 @@ let events = [
     // FIFA 14
     {
         "category": 1,
+        "sequence": 'd0',
         "coords": [{
             "name": "Shashank",
             "phone": "+91 9483950426"
@@ -1379,6 +1411,7 @@ let events = [
     // CS 1.6
     {
         "category": 1,
+        "sequence": 'd1',
         "coords": [{
             "name": "Ashish",
             "phone": "+91 9739397282"
@@ -1423,6 +1456,7 @@ let events = [
     // DOTA 2
     {
         "category": 1,
+        "sequence": 'd2',
         "coords": [{
             "name": "Tajas V",
             "phone": "+91 9739397282"
@@ -1461,6 +1495,7 @@ let events = [
     // NFS MW
     {
         "category": 1,
+        "sequence": 'd3',
         "coords": [{
             "name": "Abel",
             "phone": "+91 9036136949"
@@ -1502,6 +1537,7 @@ let events = [
     // COD MW
     {
         "category": 1,
+        "sequence": 'd4',
         "coords": [{
             "name": "Aman",
             "phone": "+91 7406837999"
@@ -1536,12 +1572,13 @@ let events = [
                 }]
         }],
         "startTime": 1488436200,
-        "title": "Call of Duty - Modern Warefare",
+        "title": "Call of Duty Modern Warefare",
     },
 
     // Mini soccer
     {
         "category": 1,
+        "sequence": 'd5',
         "coords": [{
             "name": "Navneet Gopinath",
             "phone": "+91 9535307556"
@@ -1583,6 +1620,7 @@ let events = [
     // BasketBall
     {
         "category": 1,
+        "sequence": 'd6',
         "coords": [{
             "name": "Akshay Manjunath",
             "phone": "+91 9535145801"
@@ -1627,6 +1665,7 @@ let events = [
     // Volley ball
     {
         "category": 1,
+        "sequence": 'd7',
         "coords": [{
             "name": "Niranjan Pawar",
             "phone": "+91 9483462245"
@@ -1664,6 +1703,7 @@ let events = [
     // Badminton
     {
         "category": 1,
+        "sequence": 'd8',
         "coords": [{
             "name": "Niranjan Pawar",
             "phone": "+91 9483462245"
@@ -1710,6 +1750,7 @@ let events = [
     // Hunger games
     {
         "category": 1,
+        "sequence": 'd9',
         "coords": [{
             "name": "Dheeraj Singh",
             "phone": "+91 8884329319"
@@ -1739,7 +1780,8 @@ let events = [
 
     // Treasure hunt
     {
-        "category": 3,
+        "category": 1,
+        "sequence": 'e0',
         "coords": [{
             "name": "Srinabh",
             "phone": "+91 8971329284"
@@ -1779,6 +1821,7 @@ let events = [
     // Cube open 2017
     {
         "category": 3,
+        "sequence": 'a0',
         "coords": [{
             "name": "Shivam Dubey",
             "phone": "+91 8050225474"
@@ -1791,26 +1834,46 @@ let events = [
         "image": "https://res.cloudinary.com/dep8pxurn/image/upload/v1486581233/tech/rubiks.jpg",
         "isGroup": false,
         "registration": "Rs. 200 + (Rs. 50 per additional event.)",
-        "rules": [{
-            "hasSubItem": true,
-            "isHeader": true,
-            "name": "Rules",
-            "subContent": [{
-                "name": "All World Cubing Association (WCA) rules will be applicable"
-            }, {
-                "name": "General rules will be announced before starting of the event."
-            }, {
-                "name": "Judgment Criteria will be based on WCA."
-            }, {
-                "name": "Participants must carry a valid ID card of their institute."
-            }]
-        }],
+        "rules": [
+            {
+                "hasSubItem": true,
+                "isHeader": true,
+                "name": "Full schedule",
+                "subContent": [
+                    { "name": "09:00AM - 10:30AM: Registration & 4x4x4 Round 1" },
+                    { "name": "10:30AM - 11:30AM: Pyraminx Round 1" },
+                    { "name": "11:30AM - 12:30PM: 2x2x2 Round 1" },
+                    { "name": "12:30PM - 01:00PM: LUNCH" },
+                    { "name": "01:00PM - 03:30PM: 3x3x3 Round 1" },
+                    { "name": "03:30PM - 04:00PM: Pyraminx Finals" },
+                    { "name": "04:00PM - 04:30PM: 4x4x4 Finals" },
+                    { "name": "04:30PM - 05:00PM: 3x3x3 Round 2" },
+                    { "name": "05:00PM - 05:30PM: 2x2x2 Finals" },
+                    { "name": "05:30PM - 06:00PM: 3x3x3 Finals" },
+                ]
+            },
+            {
+                "hasSubItem": true,
+                "isHeader": true,
+                "name": "Rules",
+                "subContent": [{
+                    "name": "All World Cubing Association (WCA) rules will be applicable"
+                }, {
+                    "name": "General rules will be announced before starting of the event."
+                }, {
+                    "name": "Judgment Criteria will be based on WCA."
+                }, {
+                    "name": "Participants must carry a valid ID card."
+                }]
+            }
+        ],
         "startTime": 1488436200,
         "title": "Cube Open 2017",
     },
-    // Hackathon
+    // Hackmania
     {
         "category": 3,
+        "sequence": 'a1',
         "description": "If you are a creative programmer, this is the event you should exactly look for. The theme is “Cashless Economy”, based on which a usable application has to be created. Finally, the team has to give a demonstration of its application for about 10 min.",
         "endTime": 1488443400,
         "image": "https://res.cloudinary.com/dep8pxurn/image/upload/v1486581114/tech/hackmania.jpg",
@@ -1851,12 +1914,13 @@ let events = [
                 }]
             }],
         "startTime": 1488436200,
-        "title": "Hackathon",
+        "title": "Hackmania",
     },
 
     // Robowars
     {
         "category": 3,
+        "sequence": 'a2',
         "coords": [{
             "name": "Prabodh",
             "phone": "+91 9036543295"
@@ -2006,6 +2070,7 @@ let events = [
     // Quad speed
     {
         "category": 3,
+        "sequence": 'a3',
         "coords": [{
             "name": "Roshan Sah",
             "phone": "+91 8970283716"
@@ -2062,6 +2127,7 @@ let events = [
     // RC plane
     {
         "category": 3,
+        "sequence": 'a4',
         "coords": [{
             "name": "Apurva Anand",
             "phone": "+91 9036285404"
@@ -2128,6 +2194,7 @@ let events = [
     // Hydro rocket
     {
         "category": 3,
+        "sequence": 'a5',
         "coords": [{
             "name": "Anand Shah",
             "phone": "+91 9620288342"
@@ -2182,6 +2249,7 @@ let events = [
     // FLight simulator
     {
         "category": 3,
+        "sequence": 'a6',
         "coords": [{
             "name": "Navaneet",
             "phone": "+91 9739816496"
@@ -2224,6 +2292,7 @@ let events = [
     // Line Follower
     {
         "category": 3,
+        "sequence": 'a7',
         "coords": [{
             "name": "Karthik",
             "phone": "+91 8553936108"
@@ -2280,6 +2349,7 @@ let events = [
     // Circuitrix
     {
         "category": 3,
+        "sequence": 'a8',
         "coords": [{
             "name": "Suryakiran",
             "phone": "+91 9986281443"
@@ -2327,6 +2397,7 @@ let events = [
     // Full Throttle
     {
         "category": 3,
+        "sequence": 'a9',
         "coords": [{
             "name": "Pawan",
             "phone": "+91 9901158810"
@@ -2373,6 +2444,7 @@ let events = [
     // Debug
     {
         "category": 3,
+        "sequence": 'b0',
         "coords": [{
             "name": "Akshdeep",
             "phone": "+91 9632402156"
@@ -2434,6 +2506,7 @@ let events = [
     // Onspot
     {
         "category": 3,
+        "sequence": 'b1',
         "coords": [{
             "name": "Harsh Singh",
             "phone": "+91 8123358131"
@@ -2495,6 +2568,7 @@ let events = [
     // Guess the code
     {
         "category": 3,
+        "sequence": 'b2',
         "coords": [{
             "name": "Malvin",
             "phone": "+91 9663099295"
@@ -2545,13 +2619,10 @@ let events = [
         "title": "Guess The Code",
     },
 
-
-
-
-
     // Flappy
     {
         "category": 3,
+        "sequence": 'b3',
         "coords": [{
             "name": "Yuvraj",
             "phone": "+91 8553622928"
@@ -2587,6 +2658,7 @@ let events = [
     // Robo soccer
     {
         "category": 3,
+        "sequence": 'b4',
         "coords": [{
             "name": "Prasanna",
             "phone": "+91 9483969007"
@@ -2658,6 +2730,7 @@ let events = [
     //Automotive quiz
     {
         "category": 3,
+        "sequence": 'b5',
         "coords": [{
             "name": "Baswaraj Y",
             "phone": "+91 9738768225"
@@ -2711,6 +2784,7 @@ let events = [
     // Paper presentation
     {
         "category": 3,
+        "sequence": 'b6',
         "coords": [{
             "name": "Athreya",
             "phone": "+91 9483957700"
@@ -2765,6 +2839,7 @@ let events = [
     // Jahazz
     {
         "category": 3,
+        "sequence": 'b7',
         "coords": [{
             "name": "Keerthi P",
             "phone": "+91 9382708205"
@@ -2816,6 +2891,7 @@ let events = [
     // SETU
     {
         "category": 3,
+        "sequence": 'b8',
         "coords": [{
             "name": "Ranjan",
             "phone": "+91 8553663602"
@@ -2875,6 +2951,7 @@ let events = [
     // Tall structure
     {
         "category": 3,
+        "sequence": 'b9',
         "coords": [{
             "name": "Naveen",
             "phone": "+91 8971078025"
@@ -2943,6 +3020,7 @@ let events = [
     // Drop the egg
     {
         "category": 3,
+        "sequence": 'c0',
         "coords": [{
             "name": "Shalini S",
             "phone": "+91 7411443447"
@@ -3007,7 +3085,6 @@ let events = [
 
 ]
 
-
 class AddEvent extends Component {
     constructor(props) {
         super(props)
@@ -3033,6 +3110,7 @@ class AddEvent extends Component {
     }
 
     upload(e) {
+        let key = `${e.category}-${e.sequence}-${e.title.replace(/[^a-zA-Z0-9-_~%]+/g, '-').toLowerCase()}`
 
         let { currentUser } = this.props
 
@@ -3043,10 +3121,10 @@ class AddEvent extends Component {
             message: "working"
         })
         // if (user) {
-        const newPostKey = firebaseApp.database().ref().child('events').push().key
+        //const newPostKey = firebaseApp.database().ref().child('newEvents').push().key
         const postData = {
             ...e,
-            euid: newPostKey,
+            euid: key,
             lastUpdated: moment().unix(),
             startTime: moment("2017-03-02 12:00", "YYYY-MM-DD h:m").unix(),
             endTime: moment("2017-03-02 14:00", "YYYY-MM-DD h:m").unix(),
@@ -3058,7 +3136,7 @@ class AddEvent extends Component {
 
         const uid = currentUser.uid;
         let updates = {}
-        updates['/events/' + newPostKey] = postData
+        updates['/newEvents/' + key] = postData
 
         firebaseApp.database().ref().update(updates).then((res) => {
             this.setState({

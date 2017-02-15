@@ -80,6 +80,10 @@ export default class CarouselView extends Component {
 
                 {
                     this.state.featuredEvents.map(e => {
+                        if (e.isProShow) {
+                            return <Image key={e.euid} source={{ uri: e.image }} style={{ width: null, height: this.state.size.height }} />
+
+                        }
                         return <TouchableWithoutFeedback
                             key={e.euid}
                             onPress={() => { Actions.eventDetails({ eventKey: e.euid, title: e.title }) } }

@@ -81,6 +81,14 @@ class allEventsList extends Component {
 
                         }
                     }
+
+                    if (val.isProShow) {
+                        return <Image key={key} source={{ uri: val.image }} style={styles.wrapper} >
+                            <View style={{ flex: 1, justifyContent: "center", alignItems: "center" }} >
+                                <Text h1 style={{ textAlign: "center" }}>{val.title.toUpperCase()}</Text>
+                            </View>
+                        </Image>
+                    }
                     return <Image key={key} source={{ uri: val.image }} style={styles.wrapper} >
                         <View style={{ flex: 1, justifyContent: "flex-end", alignItems: "center" }} >
                             <Text h1 style={{ textAlign: "center" }}>{val.title.toUpperCase()}</Text>
