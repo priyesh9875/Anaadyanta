@@ -49,9 +49,6 @@ export default class CreatePDF extends Component {
             `
             })
         }
-
-
-
         return `
             <table >
             <thead> <tr>
@@ -69,6 +66,7 @@ export default class CreatePDF extends Component {
     generateImpDetails(eventDetails) {
         let dateTime = "Will be updated soon";
         if (eventDetails.startTime && (parseInt(eventDetails.startTime) > 1488911400)) {
+            dateTime = ""
             dateTime += moment.unix(eventDetails.startTime).format("hh:mm a");
             if (eventDetails.endTime && eventDetails.endTime > eventDetails.startTime) {
                 dateTime += moment.unix(eventDetails.endTime).format(" - hh:mm a")
@@ -170,52 +168,25 @@ export default class CreatePDF extends Component {
             <table>
 
             `
-
-        if (winners[0].name) {
-            content += `
+        content += `
                 <thead>
                     <tr>
                         <th>Position</th>
                         <th>Name</th>
-                        <th>College</th>
                         <th>Prize amount</th>
                     </tr>
                 </thead>
                 <tbody>
             `
-        } else {
-            content += `
-                <thead>
-                    <tr>
-                        <th>Position</th>
-                        <th>College</th>
-                        <th>Prize amount</th>
-                    </tr>
-                </thead>
-                <tbody>                
-            `
-        }
-
 
         winners.map(winner => {
-            if (winner.name) {
-                content += `
+            content += `
                     <tr>
                         <td>${winner.position}</td>
                         <td>${winner.name}</td>
-                        <td>${winner.college}</td>
                         <td>${winner.amount}</td>
                     </tr>
                 `
-            } else {
-                content += `
-                    <tr>
-                        <td>${winner.position}</td>
-                        <td>${winner.college}</td>
-                        <td>${winner.amount}</td>
-                    </tr>
-                `
-            }
         })
 
         content += `
@@ -277,24 +248,24 @@ export default class CreatePDF extends Component {
     convert(callback) {
         this.setState({
             creating: true
+        }, () => {
+            let options = { ...this.state.options }
+            options.html = this.parseEventDetails()
+
+            RNHTMLtoPDF.convert(options).then((data) => {
+                if (typeof callback == 'function') {
+                    callback()
+                } else {
+                    alert(`File saved in Documents/${options.fileName}.pdf`)
+                }
+
+                this.setState({
+                    created: true,
+                    creating: false
+                })
+
+            });
         })
-
-        let options = { ...this.state.options }
-        options.html = this.parseEventDetails()
-
-        RNHTMLtoPDF.convert(options).then((data) => {
-            if (typeof callback == 'function') {
-                callback()
-            } else {
-                alert(`File saved in Documents/${options.fileName}.pdf`)
-            }
-
-            this.setState({
-                created: true,
-                creating: false
-            })
-
-        });
     }
 
     render() {

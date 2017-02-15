@@ -79,14 +79,10 @@ class Winners extends Component {
     updateEventDetails() {
         let { eventDetails, currentUser, eventKey} = this.props;
 
-        // if (this.state.title == "") { alert("Title cannot be left blank"); return }
-        // if (this.state.description == "") { alert("Description cannot be left blank"); return }
-
-
         this.setState({
             updating: true
         })
-        let eventRef = `/events/${eventKey}/`;
+        let eventRef = `/newEvents/${eventKey}/`;
         firebaseApp.database().ref(eventRef).once('value', (snapshot) => {
 
             if (!snapshot.val()) {
@@ -170,15 +166,11 @@ class Winners extends Component {
                 <Card style={{ padding: 5, margin: 20 }} >
 
                     <ListItem style={{ padding: 0, paddingBottom: 10, margin: 5 }}>
-                        <InlineText label="Title" value={this.state.title} onValueChange={(title) => this.setState({ title })} />
-                    </ListItem>
-
-                    <ListItem style={{ padding: 0, paddingBottom: 10, margin: 5 }}>
                         <View style={{ flex: 1 }}>
                             <Text style={{ color: 'gray', fontSize: 16 }}>Description</Text>
                             <TextInput
                                 multiline={true}
-                                style={{ height: 100, fontSize: 16, borderWidth: 0 }}
+                                style={{ height: 150, fontSize: 16, borderWidth: 0 }}
                                 underlineColorAndroid='rgba(0,0,0,0)'
                                 value={this.state.description}
                                 onChangeText={(description) => this.setState({ description })}
@@ -210,8 +202,6 @@ class Winners extends Component {
 
                         })
                     }
-
-
 
                     <ListItem onPress={this._showStartPicker} style={{ padding: 0, paddingBottom: 10, margin: 5 }}>
                         <View style={{ flex: 1, flexDirection: 'row' }}>

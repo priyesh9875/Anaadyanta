@@ -19,7 +19,7 @@ var ds = new ListView.DataSource({ rowHasChanged: (r1, r2) => r1 !== r2 });
 
 let data = [
     {
-        name: "Ramish Kafrey",
+        name: "Ramish Jafery",
         phone: "+91 7411600980",
         email: "ramishjafery@gmail.com",
         type: "Convener",
@@ -141,7 +141,7 @@ class Row extends Component {
                             <Icon name="sms" size={20} color="green" />
                         </TouchableOpacity>
 
-                        <TouchableOpacity onPress={() => { email("priyesh9875@gmail.com", null, null, "Event", 'Hi ' + row.name) } } style={{ paddingLeft: 20 }}  >
+                        <TouchableOpacity onPress={() => { email(row.email, null, null, "Event", 'Hi ' + row.name) } } style={{ paddingLeft: 20 }}  >
                             <Icon name="email" size={20} color="red" />
                         </TouchableOpacity>
                     </View>

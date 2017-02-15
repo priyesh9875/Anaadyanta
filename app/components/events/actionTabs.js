@@ -99,15 +99,15 @@ class ActionTab extends Component {
             startEndEvent: true
         })
 
-        let eventRef = firebaseApp.database().ref('/events/' + eventKey);
+        let eventRef = firebaseApp.database().ref('/newEvents/' + eventKey);
         let feedsKey = firebaseApp.database().ref('/feeds/').push().key
         let newFeed = {
             author: this.props.currentUser.name,
             time: moment().unix(),
-            title: `${eventDetails.title} has started`,
+            title: `${eventDetails.title} is started`,
             image: eventDetails.image,
-            description: `${eventDetails.title} has been started. All the best to all participants`,
-            to: `/topics/${this.props.eventDetails.title.replace(/[^a-zA-Z0-9-_.~%]+/g, '-').toLowerCase()}`
+            description: `${eventDetails.title} is started. All the best to all participants`,
+            to: `/topics/${this.props.eventDetails.title.replace(/[^a-zA-Z0-9-_~%]+/g, '-').toLowerCase()}`
         }
 
         let {currentUser } = this.props
@@ -134,7 +134,7 @@ class ActionTab extends Component {
 
                 let updates = {}
                 updates['/feeds/' + feedsKey] = newFeed
-                updates['/events/' + eventKey] = currentEvent
+                updates['/newEvents/' + eventKey] = currentEvent
 
                 firebaseApp.database().ref().update(updates).then(() => {
                     currentEvent.isFav = eventDetails.isFav
@@ -161,15 +161,15 @@ class ActionTab extends Component {
             startEndEvent: true
         })
         let {currentUser } = this.props
-        let eventRef = firebaseApp.database().ref('/events/' + eventKey);
+        let eventRef = firebaseApp.database().ref('/newEvents/' + eventKey);
         let feedsKey = firebaseApp.database().ref('/feeds/').push().key
         let newFeed = {
             author: currentUser.name,
             time: moment().unix(),
-            title: `${eventDetails.title} has finished`,
+            title: `${eventDetails.title} is finished`,
             image: eventDetails.image,
-            description: `${eventDetails.title} has been concluded. Thankyou all participants for making this event a great success.`,
-            to: `/topics/${this.props.eventDetails.title.replace(/[^a-zA-Z0-9-_.~%]+/g, '-').toLowerCase()}`
+            description: `${eventDetails.title} is finished. Thankyou all participants for making this event a great success.`,
+            to: `/topics/${this.props.eventDetails.title.replace(/[^a-zA-Z0-9-_~%]+/g, '-').toLowerCase()}`
         }
 
         eventRef.once('value', (snapshot) => {
@@ -195,7 +195,7 @@ class ActionTab extends Component {
 
                 let updates = {}
                 updates['/feeds/' + feedsKey] = newFeed
-                updates['/events/' + eventKey] = currentEvent
+                updates['/newEvents/' + eventKey] = currentEvent
 
                 firebaseApp.database().ref().update(updates).then(() => {
                     currentEvent.isFav = eventDetails.isFav
@@ -339,12 +339,7 @@ class ActionTab extends Component {
         let winners = this.props.eventDetails.winners
         let message = ""
         winners.map(val => {
-            if (val.name) {
-                message += ` ${val.name} from ${val.college} college secured position ${val.position} \n`
-            } else {
-                message += `${val.college} college secured position ${val.position} \n`
-            }
-
+            message += `${val.name} secured position ${val.position} \n`
         })
 
         Alert.alert(
@@ -367,7 +362,7 @@ class ActionTab extends Component {
 
     renderRegisterButton() {
         const { eventKey, eventDetails, currentUser } = this.props
-        if (eventDetails.isRegistered || eventDetails.isMine) return
+        if (eventDetails.isRegistered || eventDetails.isMine || eventDetails.isEnded) return
 
         // Registeration closes 2 Hrs prior scheduled start time
         if (!eventDetails.isStarted && (eventDetails.startTime - moment().unix() > 7200)) {
@@ -456,14 +451,19 @@ class ActionTab extends Component {
 
     renderActionIcons() {
         let { eventDetails, eventKey, currentUser } = this.props
-        let message = `Check out ${this.props.eventDetails.title} event at Anaadyanta 17 and win exciting prizes`
+        let message = `Check out ${this.props.eventDetails.title} event at Anaadyanta 17`
         if (eventDetails.winners) {
-            message = `${eventDetails.winners[0].name} and ${eventDetails.winners[0].name} won ${eventDetails.title} at Anaadyanta 17.`
+            message = ""
+            eventDetails.winners.map(w => {
+                message += w.name + ', '
+            })
+
+            message += `won ${eventDetails.title} at Anaadyanta 17, NMIT.`
         }
         let shareOptions = {
             title: this.props.eventDetails.title,
             message,
-            url: "http://github.com/priyesh9875",
+            url: "https://goo.gl/FgpmLu",
             subject: this.props.eventDetails.title //  for email
         };
 

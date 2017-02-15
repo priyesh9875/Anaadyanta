@@ -34,6 +34,14 @@ let faq = [
         description: "Some events are open only for offline registration. In that case you can visit campus for registeration."
     },
     {
+        title: "I can't see all details for events in generated pdf",
+        description: "Restart the app and try again or visit the website."
+    },
+    {
+        title: "I have already registered for event throught official/associatiated website, do I need to do it again in app?",
+        description: "No. Final registration list will be the combination of all lists."
+    },
+    {
         title: "I am not getting any notification?",
         description: "App will receive notification only when it is in background. When app is in foreground, it will land up in feeds section."
     },

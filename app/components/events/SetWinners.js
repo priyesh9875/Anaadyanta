@@ -39,7 +39,7 @@ class Winners extends Component {
 
     setWinners() {
         for (let i = 0; i < this.state.winners.length; i++) {
-            if (this.state.winners[i].college == "") { alert(`College name required" for winner ${i + 1}`); return }
+            if (this.state.winners[i].name == "") { alert(`Name/College required" for winner ${i + 1}`); return }
             if (this.state.winners[i].position == "") { alert(`Positoion required" for winner ${i + 1}`); return }
             if (this.state.winners[i].amount == "") { alert(`Prize money required" for winner ${i + 1}`); return }
         }
@@ -48,7 +48,7 @@ class Winners extends Component {
             settingWinners: true
         })
         let {currentUser, eventDetails, eventKey } = this.props
-        let eventRef = firebaseApp.database().ref('/events/' + eventKey);
+        let eventRef = firebaseApp.database().ref('/newEvents/' + eventKey);
         let feedsKey = firebaseApp.database().ref('/feeds/').push().key
 
         let winners = this.state.winners
@@ -57,20 +57,13 @@ class Winners extends Component {
             time: moment().unix(),
             title: `${eventDetails.title} Winners`,
             image: eventDetails.image,
-            to: `/topics/${this.props.eventDetails.title.replace(/\s+/g, '-').toLowerCase()}`
+            to: `/topics/${this.props.eventDetails.title.replace(/[^a-zA-Z0-9-_~%]+/g, '-').toLowerCase()}`,
+            extras: []
         }
 
-        if (winners[0].name) {
-            newFeed.extras = [
-                { name: `${winners[0].name} from ${winners[0].college} college secured ${winners[0].position}, won Rs ${winners[0].amount}` },
-                { name: `${winners[1].name} from ${winners[1].college} college secured ${winners[1].position}, won Rs ${winners[1].amount}` }
-            ]
-        } else {
-            newFeed.extras = [
-                { name: `${winners[0].college} college secured ${winners[0].position}, won Rs ${winners[0].amount}` },
-                { name: `${winners[1].college} college secured ${winners[1].position}, won Rs ${winners[1].amount}` }
-            ]
-        }
+        winners.map(w => {
+            newFeed.extras.push({ name: `${w.name} secured ${w.position}, won Rs ${w.amount}` })
+        })
 
         if (this.state.comment == "") {
             newFeed.description = `Congratulations to all winners of ${eventDetails.title} event.`
@@ -99,7 +92,7 @@ class Winners extends Component {
             currentEvent.winners = winners
             let updates = {}
             updates['/feeds/' + feedsKey] = newFeed
-            updates['/events/' + eventKey] = currentEvent
+            updates['/newEvents/' + eventKey] = currentEvent
 
             firebaseApp.database().ref().update(updates).then(() => {
                 currentEvent.isFav = eventDetails.isFav
@@ -162,7 +155,7 @@ class Winners extends Component {
                         </CardItem>
                         <ListItem>
                             <InputGroup>
-                                <Input inlineLabel label="Name         " placeholder="Full name (optional)"
+                                <Input inlineLabel label="Name         " placeholder="Full name (or college)"
                                     value={this.state.winners[index].name}
                                     onChangeText={(text) => {
                                         this.onChangeValue('name', text, index)
@@ -171,23 +164,13 @@ class Winners extends Component {
                             </InputGroup>
                         </ListItem>
                         <ListItem>
-                            <InputGroup>
-                                <Input inlineLabel label="College        " placeholder="NMIT"
-                                    value={this.state.winners[index].college}
-                                    onChangeText={(text) => {
-                                        this.onChangeValue('college', text, index)
-                                    } } />
-                            </InputGroup>
-                        </ListItem>
-                        <ListItem>
                             <InputGroup disabled>
-                                <Input inlineLabel label="Position       " 
+                                <Input inlineLabel label="Position       "
                                     value={this.state.winners[index].position.toString()}
-                                    
+
                                     />
                             </InputGroup>
                         </ListItem>
-
                         <ListItem>
                             <InputGroup>
                                 <Input inlineLabel label="Prize Money" placeholder="00000"
@@ -199,16 +182,32 @@ class Winners extends Component {
                             </InputGroup>
                         </ListItem>
                     </Card>
-
                 })}
 
                 <Card style={{ padding: 5, margin: 20 }} >
                     <ListItem>
                         <InputGroup >
-                            <Input stackedLabel label="Comment" placeholder="Type in something about event"
+                            <Input stackedLabel label="Additional comment" placeholder="Type in something about event"
                                 value={this.state.comment} onChangeText={(comment) => this.setState({ comment })} />
                         </InputGroup>
                     </ListItem>
+                </Card>
+                <Card style={{ padding: 5, margin: 20 }}>
+                    <Text>Preview</Text>
+                    <View>
+                        {
+                            this.state.winners.map((w, i) => {
+                                return <Text key={i}>{w.name} secured {w.position}, won Rs {w.amount}</Text>
+                            })
+                        }
+
+                        {
+                            !this.state.comment
+                                ? <Text>Congratulations to all winners of {eventDetails.title}</Text>
+                                : <Text>{this.state.comment}</Text>
+                        }
+
+                    </View>
                 </Card>
 
                 <Button style={{ alignSelf: 'center', marginTop: 20, marginBottom: 20, padding: 20 }} onPress={() => { this.setWinners() } }>

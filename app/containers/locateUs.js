@@ -55,11 +55,10 @@ class LocateUs extends Component {
     getMainView() {
         let shareOptions = {
             title: "Anaadyanta 2017",
-            message: "Check out latest Anaadyanta app on github",
-            url: "http://github.com/priyesh9875/Anaadyanta",
+            message: "Check out latest Anaadyanta app on playstore",
+            url: "https://goo.gl/FgpmLu",
             subject: "Anaadyanta 2017" //  for email
         };
-
         return <View style={{ flex: 1, }}>
 
             <Container >
@@ -76,8 +75,8 @@ class LocateUs extends Component {
 
                         <View style={{ flexDirection: 'row', justifyContent: "space-around", padding: 10 }}>
                             <SocialIcon onPress={() => { web("https://www.fb.com/anaadyantanmit/") } } type='facebook' size={30} />
-                            <SocialIcon onPress={() => { web("https://github.com/priyesh9875") } } type='github' size={30} />
-                            <SocialIcon onPress={() => { web("http://anaadyanta.org/") } } type='twitch' size={30} />
+                            <SocialIcon onPress={() => { web("https://github.com/priyesh9875/anaadyanta") } } type='github' size={30} />
+                            <SocialIcon onPress={() => { web("https://anaadyanta.org/") } } type='twitch' size={30} />
 
                             <TouchableOpacity
                                 onPress={() => {
