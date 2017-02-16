@@ -30,6 +30,7 @@ class ActionTab extends Component {
             addingFav: false,
             registering: false,
             startEndEvent: false,
+            online: false
         };
     }
 
@@ -47,10 +48,18 @@ class ActionTab extends Component {
             this.renderEventControlButton = this.renderEventControlButton.bind(this)
             this.renderFollowButton = this.renderFollowButton.bind(this)
             this.renderRegisterButton = this.renderRegisterButton.bind(this)
+            this.checkInternet = this.checkInternet.bind(this)
 
             this.setState({
                 loading: false
             });
+
+            fetch("https://httpbin.org/ip")
+                .then(() => {
+                    this.setState({
+                        online: true
+                    })
+                }).catch(() => { })
         });
     }
 
@@ -348,13 +357,21 @@ class ActionTab extends Component {
         )
     }
 
+    checkInternet(callback, param1, param2) {
+        if (this.state.online) {
+            callback(param1, param2)
+        } else {
+            Alert.alert("Warning", "No/slow internet connection detected. Please try again later.")
+        }
+    }
+
     confirmAction(callback, title, message, param1, param2) {
         Alert.alert(
             title || "Confirm action",
             message || "Press CONFIRM to continue",
             [
                 { text: "Cancel", style: "cancel" },
-                { text: "CONFIRM", onPress: () => { callback(param1, param2) } },
+                { text: "CONFIRM", onPress: () => { this.checkInternet(callback, param1, param2) } },
             ]
         )
 
