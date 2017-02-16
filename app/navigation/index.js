@@ -197,7 +197,6 @@ export default Actions.create(
             title="Feeds"
             component={FeedsContainer}
             {...navbarProps}
-
             />
         <Scene
             key="sponsors"

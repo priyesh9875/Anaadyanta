@@ -88,11 +88,11 @@ android {
     buildToolsVersion "23.0.1"
 
     defaultConfig {
-        applicationId "com.anaadyanta"
-        minSdkVersion 16
+        applicationId "org.anaadyanta.anaadyanta17"
+        minSdkVersion 19
         targetSdkVersion 22
         versionCode 1
-        versionName "1.2.0"
+        versionName "1.2.1"
         ndk {
             abiFilters "armeabi-v7a", "x86"
         }

@@ -104,9 +104,9 @@ class ActionTab extends Component {
         let newFeed = {
             author: this.props.currentUser.name,
             time: moment().unix(),
-            title: `${eventDetails.title} is started`,
+            title: `${eventDetails.title} has started`,
             image: eventDetails.image,
-            description: `${eventDetails.title} is started. All the best to all participants`,
+            description: `All the best to all participants`,
             to: `/topics/${this.props.eventDetails.title.replace(/[^a-zA-Z0-9-_~%]+/g, '-').toLowerCase()}`
         }
 
@@ -166,9 +166,9 @@ class ActionTab extends Component {
         let newFeed = {
             author: currentUser.name,
             time: moment().unix(),
-            title: `${eventDetails.title} is finished`,
+            title: `${eventDetails.title} has finished`,
             image: eventDetails.image,
-            description: `${eventDetails.title} is finished. Thankyou all participants for making this event a great success.`,
+            description: `Thank you all for making this event a great success.`,
             to: `/topics/${this.props.eventDetails.title.replace(/[^a-zA-Z0-9-_~%]+/g, '-').toLowerCase()}`
         }
 
@@ -254,7 +254,7 @@ class ActionTab extends Component {
                     FCM.subscribeToTopic(`/topics/${this.props.eventDetails.title.replace(/[^a-zA-Z0-9-_~%]+/g, '-').toLowerCase()}`);
                     firebaseApp.database().ref().update(updates).then(() => {
                         this.props.register(eventKey)
-                        alert(`Successfully registered for ${eventDetails.title}.`)
+                        alert(`Successfully registered for ${eventDetails.title}. Please check your email.`)
                         this.setState({
                             registering: false
                         })
@@ -364,8 +364,8 @@ class ActionTab extends Component {
         const { eventKey, eventDetails, currentUser } = this.props
         if (eventDetails.isRegistered || eventDetails.isMine || eventDetails.isEnded) return
 
-        // Registeration closes 2 Hrs prior scheduled start time
-        if (!eventDetails.isStarted && (eventDetails.startTime - moment().unix() > 7200)) {
+        // Registeration closes 24 Hrs prior scheduled start time
+        if (!eventDetails.isStarted && (eventDetails.startTime - moment().unix() > 86400)) {
             return <TouchableOpacity
                 onPress={
                     () => {
@@ -423,7 +423,7 @@ class ActionTab extends Component {
                 () => {
                     this.confirmAction(
                         this.deleteFav,
-                        "Confirm action",
+                        "Confirm Unfollow",
                         null,
                         eventKey
                     )

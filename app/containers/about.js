@@ -15,19 +15,17 @@ import * as CONSTANTS from "@config/constants"
 const contributors = [
     {
         name: "Priyesh Kumar",
-        phone: "+91XXXXXXXXXX",
-        email: "XXXXXXXX@gmail.com",
+        email: "priyesh9875@gmail.com",
         linkedin: "https://in.linkedin.com/in/priyesh9875",
         github: "https://github.com/priyesh9875",
         type: "Developer, UI, Designer, Tester"
     },
     {
         name: "Raj narayan dutta",
-        phone: "+91XXXXXXXXXX",
         email: "rxdsrex@gmail.com",
         linkedin: "https://in.linkedin.com/in/rajnarayan-dutta",
         github: "https://github.com/rxdsrex",
-        type: ""
+        type: "Designer, Tester"
     }
 
 

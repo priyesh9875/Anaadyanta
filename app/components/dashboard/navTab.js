@@ -21,7 +21,7 @@ class NavTab extends Component {
             }}>
                 <Text style={{
                     fontSize: 20,
-                    color: "black",
+                    color: "white",
                     fontWeight: "bold",
                 }}>Anaadyanta 17</Text>
             </View>

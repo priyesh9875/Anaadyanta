@@ -1,5 +1,5 @@
 export const APP_NAME = "Annadyanta"
-export const APP_VERSION = "1.0.0"
+export const APP_VERSION = "1.2.1"
 export const STORE_KEY_PREFIX = "DemoApp"
 export const GIT_REPO = "https://github.com/priyesh9875/Anaadyanta"
 export const GIT_TLICENSE = "https://github.com/priyesh9875/Anaadyanta/blob/master/THIRD_PARTY_LICENSE.md"

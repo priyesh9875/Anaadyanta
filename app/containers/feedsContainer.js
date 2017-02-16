@@ -17,9 +17,9 @@ class FeedsContainer extends Component {
     }
 
     render() {
-        const { feeds, actions} = this.props
+        const { feeds, actions, currentUser} = this.props
         return (
-            <Feeds {...actions} feeds={feeds} />
+            <Feeds {...actions} feeds={feeds} currentUser={currentUser} />
         );
     }
 }
@@ -30,7 +30,8 @@ import { connect } from 'react-redux';
 import * as FeedsActions from "@redux/feeds/action";
 
 const mapStateToProps = state => ({
-    feeds: state.feeds.feeds
+    feeds: state.feeds.feeds,
+    currentUser: state.currentUser
 })
 const mapActions = dispatch => ({
     actions: bindActionCreators(FeedsActions, dispatch)

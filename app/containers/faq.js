@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Container, Content, H1, Card, ListItem } from 'native-base';
+import { Container, Content, ListItem} from 'native-base';
 import Loading from "@components/general/Loading";
 import * as CONSTANTS from "@config/constants"
 import {
@@ -10,10 +10,12 @@ import {
     TouchableOpacity,
     Image,
     ListView,
-    StyleSheet
+    StyleSheet,
 } from 'react-native';
 import { Text } from "@components/ui"
-
+import { web, email } from "react-native-communications"
+import { Icon } from 'react-native-elements'
+import { GIT_REPO } from "@config/constants"
 var ds = new ListView.DataSource({ rowHasChanged: (r1, r2) => r1 !== r2 });
 let faq = [
     {
@@ -21,8 +23,8 @@ let faq = [
         description: "Anaadyanta, the annual techno-cultural festival, a 3 day extravaganza, started in the year 2003 and over the years has been built to a platform which now hosts a national level festival. With over 80 colleges participating since the year 2013, Anaadyanta aims to grow bigger and better with more events, bigger line ups and interesting quirks with every passing year. We aim to bring a smile to your face :)"
     },
     {
-        title: "Why registration for events in app",
-        description: "App provides hassle free registeration for all events. You dont have to enter your details again and again.."
+        title: "Why registration for events in app?",
+        description: "App provides hassle free registeration for all events. You dont have to enter your details again and again."
     },
     {
         title: "I have registered for an event, how to pay registration fees?",
@@ -30,11 +32,11 @@ let faq = [
     },
 
     {
-        title: "Cant register for some event(s)",
+        title: "Cant register for some event(s).",
         description: "Some events are open only for offline registration. In that case you can visit campus for registeration."
     },
     {
-        title: "I can't see all details for events in generated pdf",
+        title: "I can't see all details for events in generated pdf.",
         description: "Restart the app and try again or visit the website."
     },
     {
@@ -56,7 +58,7 @@ let faq = [
     ,
     {
         title: "I am a developer, Can I contribute in app development?",
-        description: `We will love to have you. You can check all details at out github repo. Checkout about page.`
+        description: `We will love to have you. You can check all details at out github repo.`
     },
 
 
@@ -97,12 +99,33 @@ class FAQ extends Component {
             <Container >
 
                 <Content style={{ backgroundColor: "white" }}>
+
+
+
                     <Text h3 style={{ paddingTop: 20, textAlign: "center", fontWeight: "normal", color: "black" }}>Common questions</Text>
+
+                    <View style={{ flexDirection: 'row', alignItems: "center", justifyContent: "center" }}>
+                        <Icon
+                            reverse
+                            name='github'
+                            type='font-awesome'
+                            color='black'
+                            onPress={() => { web(GIT_REPO) } }
+                            />
+                        <Icon
+                            reverse
+                            name='envelope'
+                            type='font-awesome'
+                            color='red'
+                            onPress={() => { email("appteam17@anaadyanta.org", null, null, "Anaadyanta app 17", "Hello developers,") } }
+                            />
+                    </View>
 
                     <ListView
                         dataSource={this.state.dataSource}
                         renderRow={(row) => <FAQRow row={row} />}
                         />
+
                 </Content>
             </Container >
         </View>
@@ -146,10 +169,12 @@ class FAQRow extends Component {
         );
 
         return (
-            <View style={{ padding: 10, paddingLeft: 15 }}>
-                {header}
-                {this.state.open ? content : null}
-            </View>
+            <ListItem>
+                <View >
+                    {header}
+                    {this.state.open ? content : null}
+                </View>
+            </ListItem>
         );
     }
 }

@@ -56,7 +56,7 @@ class MakeAnnoucement extends Component {
             author: currentUser.name,
             time: moment().unix(),
             title: this.state.title,
-            image: "http://wfarm3.dataknet.com/static/resources/icons/set108/8ef19fce.png",
+            image: "https://res.cloudinary.com/dep8pxurn/image/upload/v1487272096/ic_launcher_ayluas.jpg",
             description: this.state.description,
             to: "/topics/all",
         }

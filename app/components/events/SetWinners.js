@@ -62,11 +62,11 @@ class Winners extends Component {
         }
 
         winners.map(w => {
-            newFeed.extras.push({ name: `${w.name} secured ${w.position}, won Rs ${w.amount}` })
+            newFeed.extras.push({ name: `${w.name} secured position ${w.position}, won Rs ${w.amount}` })
         })
 
         if (this.state.comment == "") {
-            newFeed.description = `Congratulations to all winners of ${eventDetails.title} event.`
+            newFeed.description = `Congratulations to all winners.`
         } else {
             newFeed.description = this.state.comment
         }

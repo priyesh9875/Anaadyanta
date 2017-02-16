@@ -1,4 +1,4 @@
-package com.anaadyanta;
+package org.anaadyanta.anaadyanta17;
 
 import com.facebook.react.ReactActivity;
 
