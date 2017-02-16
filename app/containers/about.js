@@ -134,7 +134,7 @@ class About extends Component {
                                             <Text style={{ fontSize: 12, color: "black" }}>{row.type}</Text>
                                         </View>
                                         <View style={{ flexDirection: "row", justifyContent: "flex-end" }}>
-                                            <TouchableOpacity onPress={() => { email(row.email, null, null, "Anaadyanta 17", null) } } style={{ paddingLeft: 30 }}  >
+                                            <TouchableOpacity onPress={() => { email([row.email], null, null, "Anaadyanta 17", null) } } style={{ paddingLeft: 30 }}  >
                                                 <Icon name="email" size={25} color="red" />
                                             </TouchableOpacity>
                                             <TouchableOpacity onPress={() => { web(row.linkedin) } } style={{ paddingLeft: 30 }}  >

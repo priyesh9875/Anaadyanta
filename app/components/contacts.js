@@ -141,7 +141,7 @@ class Row extends Component {
                             <Icon name="sms" size={20} color="green" />
                         </TouchableOpacity>
 
-                        <TouchableOpacity onPress={() => { email(row.email, null, null, "Event", 'Hi ' + row.name) } } style={{ paddingLeft: 20 }}  >
+                        <TouchableOpacity onPress={() => { email([row.email], null, null, "Event", 'Hi ' + row.name) } } style={{ paddingLeft: 20 }}  >
                             <Icon name="email" size={20} color="red" />
                         </TouchableOpacity>
                     </View>

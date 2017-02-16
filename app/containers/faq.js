@@ -117,7 +117,7 @@ class FAQ extends Component {
                             name='envelope'
                             type='font-awesome'
                             color='red'
-                            onPress={() => { email("appteam17@anaadyanta.org", null, null, "Anaadyanta app 17", "Hello developers,") } }
+                            onPress={() => { email(["appteam17@anaadyanta.org"], null, null, "Anaadyanta app 17", "Hello developers,") } }
                             />
                     </View>
 
