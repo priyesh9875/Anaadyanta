@@ -238,7 +238,7 @@ class ActionTab extends Component {
             eventKey
         }
         let x = '/users/' + currentUser.uid + '/events/registeredEvents/' + eventKey
-        updates[x] = true
+        updates[x] = eventKey
 
         firebaseApp.database().ref('/users/' + currentUser.uid + '/events/registeredEvents/')
             .orderByKey()
