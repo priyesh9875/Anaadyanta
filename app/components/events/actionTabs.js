@@ -19,7 +19,7 @@ const IconColor = '#4285f4'
 import IconText from "@components/ui/IconText"
 import CreatePDF from "@components/createPDF";
 import FCM from 'react-native-fcm';
-
+import { numberToPosition } from "@config/constants"
 
 class ActionTab extends Component {
 
@@ -113,9 +113,9 @@ class ActionTab extends Component {
         let newFeed = {
             author: this.props.currentUser.name,
             time: moment().unix(),
-            title: `${eventDetails.title} has started`,
+            title: `${eventDetails.title} just started!`,
             image: eventDetails.image,
-            description: `All the best to all participants`,
+            description: `Good luck participants!`,
             to: `/topics/${this.props.eventDetails.title.replace(/[^a-zA-Z0-9-_~%]+/g, '-').toLowerCase()}`
         }
 
@@ -175,7 +175,7 @@ class ActionTab extends Component {
         let newFeed = {
             author: currentUser.name,
             time: moment().unix(),
-            title: `${eventDetails.title} has finished`,
+            title: `${eventDetails.title} just finished!`,
             image: eventDetails.image,
             description: `Thank you all for making this event a great success.`,
             to: `/topics/${this.props.eventDetails.title.replace(/[^a-zA-Z0-9-_~%]+/g, '-').toLowerCase()}`
@@ -348,7 +348,7 @@ class ActionTab extends Component {
         let winners = this.props.eventDetails.winners
         let message = ""
         winners.map(val => {
-            message += `${val.name} secured position ${val.position} \n`
+            message += `${val.name} secured ${numberToPosition(val.position)} position, won Rs. ${val.amount} \n`
         })
 
         Alert.alert(

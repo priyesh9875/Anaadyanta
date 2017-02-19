@@ -212,7 +212,6 @@ class Profile extends Component {
                                 : <TextInput value={this.state.phone}
                                     onChangeText={(phone) => this.setState({ phone })}
                                     underlineColorAndroid='rgba(0,0,0,0)'
-                                    keyboardType="numeric"
                                     style={{ height: 25, flex: 1, borderRadius: 5, padding: 3, paddingLeft: 5, paddingRight: 5, fontSize: 16, borderWidth: StyleSheet.hairlineWidth }}
 
                                     />

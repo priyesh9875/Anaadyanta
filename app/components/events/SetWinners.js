@@ -12,6 +12,7 @@ import { firebaseApp } from '@config/firebase'
 import { SNAPSHOT_NULL, alertError } from "@config/errors"
 import { Actions } from "react-native-router-flux"
 import moment from "moment"
+import { numberToPosition } from "@config/constants"
 class Winners extends Component {
     constructor(props) {
         super(props)
@@ -39,7 +40,7 @@ class Winners extends Component {
 
     setWinners() {
         for (let i = 0; i < this.state.winners.length; i++) {
-            if (this.state.winners[i].name == "") { alert(`Name/College required" for winner ${i + 1}`); return }
+            if (!this.state.winners[i].name || this.state.winners[i].name == "") { alert(`Name/College required for winner ${i + 1}`); return }
             if (this.state.winners[i].position == "") { alert(`Positoion required" for winner ${i + 1}`); return }
             if (this.state.winners[i].amount == "") { alert(`Prize money required" for winner ${i + 1}`); return }
         }
@@ -62,7 +63,7 @@ class Winners extends Component {
         }
 
         winners.map(w => {
-            newFeed.extras.push({ name: `${w.name} secured position ${w.position}, won Rs ${w.amount}` })
+            newFeed.extras.push({ name: `${w.name} secured ${numberToPosition(w.position)} position, won Rs ${w.amount}` })
         })
 
         if (this.state.comment == "") {
@@ -197,7 +198,7 @@ class Winners extends Component {
                     <View>
                         {
                             this.state.winners.map((w, i) => {
-                                return <Text key={i}>{w.name} secured {w.position}, won Rs {w.amount}</Text>
+                                return <Text key={i}>{w.name} secured {numberToPosition(w.position)} position, won Rs {w.amount}</Text>
                             })
                         }
 

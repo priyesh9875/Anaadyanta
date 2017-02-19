@@ -50,13 +50,14 @@ class Feeds extends Component {
                 if (responseJson) {
                     let feeds = []
                     Object.keys(responseJson).map(key => {
-                        feeds.push(responseJson[key])
+                        if (responseJson[key].title)
+                            feeds.push(responseJson[key])
                     })
 
                     this.props.saveFeeds([
                         {
                             title: `Welcome ${this.props.currentUser.name}`,
-                            description: `Thank you for joining anaadyanta journey. For any queries about the app, drop an email to appteam@anaadyanta.org`,
+                            description: `Thank you for joining anaadyanta journey. For any queries about the app, drop an email to appteam17@anaadyanta.org`,
                             sticky: true,
                             author: 'admin',
                             image: "https://res.cloudinary.com/dep8pxurn/image/upload/v1487272096/ic_launcher_ayluas.jpg"
@@ -70,7 +71,7 @@ class Feeds extends Component {
                     this.props.saveFeeds([
                         {
                             title: `Welcome ${this.props.currentUser.name}`,
-                            description: `Thank you for joining anaadyanta journey. For any queries about the app, drop an email to appteam@anaadyanta.org`,
+                            description: `Thank you for joining anaadyanta journey. For any queries about the app, drop an email to appteam17@anaadyanta.org`,
                             sticky: true,
                             author: 'admin',
                             image: "https://res.cloudinary.com/dep8pxurn/image/upload/v1487272096/ic_launcher_ayluas.jpg"

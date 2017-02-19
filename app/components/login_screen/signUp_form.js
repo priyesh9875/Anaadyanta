@@ -11,7 +11,8 @@ import {
   LayoutAnimation,
   Platform,
   UIManager,
-  StyleSheet
+  StyleSheet,
+  Alert
 } from 'react-native'
 import { firebaseApp } from '@config/firebase'
 import { getColor } from '@config/getColor'
@@ -116,9 +117,8 @@ export default class SignUpForm extends Component {
             value={this.state.phone}
             onChangeText={(text) => this.setState({ phone: text })}
             autoCorrect={false}
-            keyboardType="numeric"
             underlineColorAndroid='transparent'
-            placeholder='phone number'
+            placeholder='Phone Number (+91XXXXXXXXXX)'
             placeholderTextColor='rgba(0,0,0,.6)'
             />
         </View>
@@ -178,8 +178,8 @@ export default class SignUpForm extends Component {
       this.setState({ errMsg: 'Name required' })
       return
     }
-    if (this.state.phone.length != 10) {
-      this.setState({ errMsg: 'Phone number required exact 10 digits' })
+    if (this.state.phone.length < 12) {
+      this.setState({ errMsg: '10 digit mobile number with country code. Enter +910000000000 and update it later' })
       return
     }
     if (!this.state.password || this.state.password.length < 6) {
@@ -188,7 +188,7 @@ export default class SignUpForm extends Component {
     }
 
     if (!this.state.college) {
-      this.setState({ errMsg: 'College name required. You can enter your organizational name also' })
+      this.setState({ errMsg: 'College name required. You can enter your None if not applicable' })
       return
     }
 
@@ -217,7 +217,13 @@ export default class SignUpForm extends Component {
 
             firebaseApp.auth().currentUser.sendEmailVerification()
               .then(() => {
-                if (this.state.isMounted) this.setState({ errMsg: null, successMessage: 'Thank you for signing up. Please check you email for confirmation link.', signUpSuccess: true })
+                if (this.state.isMounted) {
+                  Alert.alert(
+                    "Success",
+                    "Thank you for signing up. Please check you email for confirmation link."
+                  )
+                  this._handleGoBack()
+                }
               }).catch(err => {
                 alert("Error in signing up: ERROR_EMAIL_VERIFY")
               })

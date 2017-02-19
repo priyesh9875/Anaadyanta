@@ -3,6 +3,7 @@ android/app/google-services.json
 app/config/firebase.js.bak
 android/app/src/main/assets/index.android.bundle
 android/app/src/main/assets/index.android.bundle.meta
+android/app/my-release-key.keystore
 
 # OSX
 #

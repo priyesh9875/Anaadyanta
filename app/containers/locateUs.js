@@ -24,7 +24,7 @@ let mapUrl = ""
 if (Platform.OS == 'ios') {
     mapUrl = "http://maps.apple.com/?ll=13.128464,77.587308,15"
 } else {
-    mapUrl = "geo:13.128464,77.587308,15"
+    mapUrl = "https://www.google.com/maps/place/Nitte+Meenakshi+Institute+of+Technology/@13.1219206,77.5612269,13z"
 }
 
 class LocateUs extends Component {

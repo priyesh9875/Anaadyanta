@@ -167,7 +167,7 @@ export default class SyncServer extends Component {
             <Container>
                 <Content >
                     <View style={{ marginTop: 150, justifyContent: "center", alignItems: "center" }}>
-                        <H1>Welcome {currentUser.name}</H1>
+                        <H1 style={{color: 'white', fontWeight: 'bold'}}>Welcome {currentUser.name}</H1>
 
                         <View>
                             <Spinner color='red' style={{ alignSelf: "center" }} size={1} />

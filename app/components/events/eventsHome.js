@@ -22,7 +22,7 @@ const backImages = [
 ]
 
 const category = [
-  { title: "Proshows", pic: require("@images/proshow.jpeg"), category: 2, description: "Bonfire night, Pronight..." },
+  { title: "Pro Nites", pic: require("@images/proshow.jpeg"), category: 2, description: "Bonfire night, Proshow..." },
   { title: "Cultural", pic: require("@images/music.jpg"), category: 1, description: "Fashion show, Music, Dance, DJ night" },
   { title: "Technical", pic: require("@images/tech.jpg"), category: 3, description: "Cube open, Hackathon, Robowars" },
 
@@ -77,7 +77,7 @@ class EventCategory extends Component {
     var title = "Event list - All";
     switch (this.props.item.category) {
       case 1: title = "Cultural events"; break;
-      case 2: title = "Proshows"; break;
+      case 2: title = "Pro Nites"; break;
       case 3: title = "Technical events"; break;
     }
     Actions.allEvents({ category: this.props.item.category, title })

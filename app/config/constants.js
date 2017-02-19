@@ -9,6 +9,10 @@ export const WEB_LINK = "http://anaadyanta.org/"
 
 import { AppColors, AppStyles, AppSizes } from '@theme/';
 
+export function numberToPosition(pos) {
+    let position = ['', '1st', '2nd', '3rd', '4th', '5th', '6th', '7th', '8th'];
+    return position[pos]
+}
 export default {
     navbarProps: {
         hideNavBar: false,
