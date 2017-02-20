@@ -44,7 +44,7 @@ class RulesRow extends Component {
         let rulesView = null
         let { rule } = this.props
         if (rule.hasSubItem) {
-            let subContent = rule.subContent.splice(0, 3)
+            let subContent = rule.subContent.slice(0, 3)
             rulesView = <List>
                 <Text style={{ color: 'black' }} >
                     {this.props.rule.name}
