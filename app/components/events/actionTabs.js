@@ -458,10 +458,13 @@ class ActionTab extends Component {
         let { eventDetails, eventKey, currentUser, updateEvent } = this.props
         if (eventDetails.isMine || currentUser.role == 'admin') {
             if (!eventDetails.isStarted && (eventDetails.startTime - moment().unix() > 3600)) {
-
-                return <TouchableOpacity style={{ justifyContent: 'flex-end' }} onPress={() => { Actions.updateEventDetails({ eventDetails, eventKey, currentUser, updateEvent }) } }>
-                    <IconText text="Edit" name="mode-edit" textStyle={{ fontSize: 15, color: 'black' }} size={25} />
-                </TouchableOpacity>
+                return <Card>
+                    <ListItem>
+                        <TouchableOpacity style={{ alignItems: 'center' }} onPress={() => { Actions.updateEventDetails({ eventDetails, eventKey, currentUser, updateEvent }) } }>
+                            <IconText text="Edit event details" name="mode-edit" textStyle={{ fontSize: 15, color: 'black' }} size={25} />
+                        </TouchableOpacity>
+                    </ListItem>
+                </Card>
             }
         }
     }
@@ -502,31 +505,11 @@ class ActionTab extends Component {
         </Card >
     }
 
-    renderInfoText() {
-        let {eventDetails} = this.props
-        if (eventDetails.isEnded) {
-            return `Event completed`
-        }
-
-        if (eventDetails.isStarted) {
-            return `In progress`
-        }
-
-        return `Upcoming event`
-    }
-
     render() {
         return (
             this.state.loading ? <Loading /> : <View >
                 {this.renderActionIcons()}
-
-
-                <Card>
-                    <ListItem>
-                        <Text style={{ flex: 1, textAlign: 'center', fontSize: 16, fontWeight: "bold" }}>{this.renderInfoText()}</Text>
-                        {this.renderEditButton()}
-                    </ListItem>
-                </Card>
+                {this.renderEditButton()}
             </View >
         );
 
